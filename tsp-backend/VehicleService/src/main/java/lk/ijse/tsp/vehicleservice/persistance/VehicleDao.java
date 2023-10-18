@@ -5,6 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created By shamodha_s_rathnamalala
@@ -14,5 +15,6 @@ import java.util.List;
 
 @Repository
 public interface VehicleDao extends CrudRepository<Vehicle, String> {
+    Optional<Vehicle> findVehicleByVehicleLicenseNumber(String vehicleLicenseNumber);
     List<Vehicle> findAll();
 }

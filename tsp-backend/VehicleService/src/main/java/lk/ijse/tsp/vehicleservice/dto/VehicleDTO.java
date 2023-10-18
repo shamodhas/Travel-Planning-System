@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 
@@ -20,6 +19,7 @@ import java.math.BigDecimal;
 @Builder
 public class VehicleDTO {
     private String vehicleId;
+    private String vehicleLicenseNumber;
     private String brand;
     private String category;
     private String fuelType;

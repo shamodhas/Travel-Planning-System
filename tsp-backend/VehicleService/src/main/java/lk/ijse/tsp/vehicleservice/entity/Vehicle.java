@@ -21,6 +21,7 @@ import java.math.BigDecimal;
 public class Vehicle {
     @Id
     private String vehicleId;
+    private String vehicleLicenseNumber;
     private String brand;
     private String category;
     private String fuelType;

@@ -5,7 +5,6 @@ import lk.ijse.tsp.vehicleservice.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 
@@ -34,18 +33,19 @@ public class VehicleController {
 
     @PostMapping
     ResponseEntity<?> saveVehicle(
+            @RequestPart String vehicleLicenseNumber,
             @RequestPart String brand,
             @RequestPart String category,
             @RequestPart String fuelType,
-            @RequestPart boolean isHybrid,
-            @RequestPart double fuelUsagePerKM,
+            @RequestPart String isHybrid,
+            @RequestPart String fuelUsagePerKM,
             @RequestPart byte[] vehicleFrontImage,
             @RequestPart byte[] vehicleRearImage,
             @RequestPart byte[] vehicleSideImage,
             @RequestPart byte[] vehicleFrontInteriorImage,
             @RequestPart byte[] vehicleRearInteriorImage,
-            @RequestPart BigDecimal pricePerKM,
-            @RequestPart int capacity,
+            @RequestPart String pricePerKM,
+            @RequestPart String capacity,
             @RequestPart String type,
             @RequestPart String transmission,
             @RequestPart String driverName,
@@ -53,21 +53,26 @@ public class VehicleController {
             @RequestPart byte[] driverLicenseBackImage,
             @RequestPart String phone
     ) {
-        // validation set need to dto class
+        // validation set need to dto class null value not go
+//        isHybrid to boolean
+//        fuelUsagePerKM check can convert double
+//        pricePerKM convert to big decimal
+//        capacity to int
         return ResponseEntity.ok(vehicleService.saveVehicle(
                 VehicleDTO.builder()
+                        .vehicleLicenseNumber(vehicleLicenseNumber)
                         .brand(brand)
                         .category(category)
                         .fuelType(fuelType)
-                        .isHybrid(isHybrid)
-                        .fuelUsagePerKM(fuelUsagePerKM)
+                        .isHybrid(isHybrid.equals("true"))
+                        .fuelUsagePerKM(Double.parseDouble(fuelUsagePerKM))
                         .vehicleFrontImage(vehicleFrontImage)
                         .vehicleRearImage(vehicleRearImage)
                         .vehicleSideImage(vehicleSideImage)
                         .vehicleFrontInteriorImage(vehicleFrontInteriorImage)
                         .vehicleRearInteriorImage(vehicleRearInteriorImage)
-                        .pricePerKM(pricePerKM)
-                        .capacity(capacity)
+                        .pricePerKM(new BigDecimal(pricePerKM))
+                        .capacity(Integer.parseInt(capacity))
                         .type(type)
                         .transmission(transmission)
                         .driverName(driverName)
@@ -80,19 +85,25 @@ public class VehicleController {
 
     @PutMapping("{vehicleId}")
     ResponseEntity<?> updateVehicle(
+            // validation set need to dto class null value not go
+//        isHybrid to boolean
+//        fuelUsagePerKM check can convert double
+//        pricePerKM convert to big decimal
+//        capacity to int
             @PathVariable String vehicleId,
+            @RequestPart String vehicleLicenseNumber,
             @RequestPart String brand,
             @RequestPart String category,
             @RequestPart String fuelType,
-            @RequestPart boolean isHybrid,
-            @RequestPart double fuelUsagePerKM,
+            @RequestPart String isHybrid,
+            @RequestPart String fuelUsagePerKM,
             @RequestPart byte[] vehicleFrontImage,
             @RequestPart byte[] vehicleRearImage,
             @RequestPart byte[] vehicleSideImage,
             @RequestPart byte[] vehicleFrontInteriorImage,
             @RequestPart byte[] vehicleRearInteriorImage,
-            @RequestPart BigDecimal pricePerKM,
-            @RequestPart int capacity,
+            @RequestPart String pricePerKM,
+            @RequestPart String capacity,
             @RequestPart String type,
             @RequestPart String transmission,
             @RequestPart String driverName,
@@ -103,18 +114,19 @@ public class VehicleController {
         vehicleService.updateVehicle(
                 VehicleDTO.builder()
                         .vehicleId(vehicleId)
+                        .vehicleLicenseNumber(vehicleLicenseNumber)
                         .brand(brand)
                         .category(category)
                         .fuelType(fuelType)
-                        .isHybrid(isHybrid)
-                        .fuelUsagePerKM(fuelUsagePerKM)
+                        .isHybrid(isHybrid.equals("true"))
+                        .fuelUsagePerKM(Double.parseDouble(fuelUsagePerKM))
                         .vehicleFrontImage(vehicleFrontImage)
                         .vehicleRearImage(vehicleRearImage)
                         .vehicleSideImage(vehicleSideImage)
                         .vehicleFrontInteriorImage(vehicleFrontInteriorImage)
                         .vehicleRearInteriorImage(vehicleRearInteriorImage)
-                        .pricePerKM(pricePerKM)
-                        .capacity(capacity)
+                        .pricePerKM(new BigDecimal(pricePerKM))
+                        .capacity(Integer.parseInt(capacity))
                         .type(type)
                         .transmission(transmission)
                         .driverName(driverName)

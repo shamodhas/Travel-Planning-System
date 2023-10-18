@@ -2,6 +2,7 @@ package lk.ijse.tsp.vehicleservice.service.impl;
 
 import lk.ijse.tsp.vehicleservice.dto.VehicleDTO;
 import lk.ijse.tsp.vehicleservice.entity.Vehicle;
+import lk.ijse.tsp.vehicleservice.exception.DuplicateException;
 import lk.ijse.tsp.vehicleservice.exception.NotFoundException;
 import lk.ijse.tsp.vehicleservice.persistance.VehicleDao;
 import lk.ijse.tsp.vehicleservice.service.VehicleService;
@@ -30,6 +31,8 @@ public class vehicleServiceImpl implements VehicleService {
 
     @Override
     public VehicleDTO saveVehicle(VehicleDTO vehicleDTO) {
+        if (vehicleDao.findVehicleByVehicleLicenseNumber(vehicleDTO.getVehicleLicenseNumber()).isPresent())
+            throw new DuplicateException("Vehicle license number duplicated");
         String vehicleId;
         do {
             vehicleId = String.valueOf(UUID.randomUUID());
