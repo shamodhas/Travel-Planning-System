@@ -1,12 +1,15 @@
 package lk.ijse.tsp.vehicleservice.api;
 
 import lk.ijse.tsp.vehicleservice.dto.VehicleDTO;
+import lk.ijse.tsp.vehicleservice.exception.InvalidException;
 import lk.ijse.tsp.vehicleservice.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.validation.Validator;
 import java.math.BigDecimal;
+import java.util.regex.Pattern;
 
 /**
  * Created By shamodha_s_rathnamalala
@@ -53,18 +56,64 @@ public class VehicleController {
             @RequestPart byte[] driverLicenseBackImage,
             @RequestPart String phone
     ) {
-        // validation set need to dto class null value not go
-//        isHybrid to boolean
-//        fuelUsagePerKM check can convert double
-//        pricePerKM convert to big decimal
-//        capacity to int
+        if (vehicleLicenseNumber == null)
+            throw new InvalidException("InValid vehicle license number");
+        if (brand == null)
+            throw new InvalidException("InValid brand name");
+        if (category == null)
+            throw new InvalidException("InValid category");
+        if (fuelType == null)
+            throw new InvalidException("InValid fuel type");
+        if (isHybrid == null)
+            throw new InvalidException("InValid boolean for isHybrid");
+        if (fuelUsagePerKM == null)
+            throw new InvalidException("InValid fuel usage per km");
+        try {
+            if (Double.parseDouble(fuelUsagePerKM) <= 0)
+                throw new InvalidException("InValid fuel usage per km");
+        } catch (NumberFormatException e) {
+            throw new InvalidException("InValid fuel usage per km");
+        }
+        if (vehicleFrontImage.length == 0)
+            throw new InvalidException("InValid vehicle front image");
+        if (vehicleRearImage.length == 0)
+            throw new InvalidException("InValid vehicle rear image");
+        if (vehicleSideImage.length == 0)
+            throw new InvalidException("InValid vehicle side image");
+        if (vehicleFrontInteriorImage.length == 0)
+            throw new InvalidException("InValid vehicle front interior image");
+        if (vehicleRearInteriorImage.length == 0)
+            throw new InvalidException("InValid vehicle rear interior image");
+        if (pricePerKM == null || !Pattern.matches("^(\\d+)||((\\d+\\.)(\\d){2})$", pricePerKM))
+            throw new InvalidException("InValid price per km");
+        if (capacity == null)
+            throw new InvalidException("InValid capacity");
+        try {
+            if (Integer.parseInt(capacity) <= 0)
+                throw new InvalidException("InValid capacity");
+        } catch (NumberFormatException e) {
+            throw new InvalidException("InValid capacity");
+        }
+        if (type == null)
+            throw new InvalidException("InValid type");
+        if (transmission == null)
+            throw new InvalidException("InValid transmission");
+        if (driverName == null || !Pattern.matches("^[a-zA-Z.+=@\\-_\\s]{3,50}$",driverName))
+            throw new InvalidException("InValid driver name");
+        if (driverLicenseFrontImage.length == 0)
+            throw new InvalidException("InValid driver license front image");
+        if (driverLicenseBackImage.length == 0)
+            throw new InvalidException("InValid driver license back image");
+        if (phone == null || !Pattern.matches("^(?:0|94|\\+94|0094)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|91)(0|2|3|4|5|7|9)|7(0|1|2|4|5|6|7|8)\\d)\\d{6}$",phone))
+            throw new InvalidException("InValid phone number");
+
         return ResponseEntity.ok(vehicleService.saveVehicle(
                 VehicleDTO.builder()
                         .vehicleLicenseNumber(vehicleLicenseNumber)
                         .brand(brand)
                         .category(category)
                         .fuelType(fuelType)
-                        .isHybrid(isHybrid.equals("true"))
+                        .isHybrid(Boolean.parseBoolean(isHybrid))
                         .fuelUsagePerKM(Double.parseDouble(fuelUsagePerKM))
                         .vehicleFrontImage(vehicleFrontImage)
                         .vehicleRearImage(vehicleRearImage)
@@ -85,11 +134,6 @@ public class VehicleController {
 
     @PutMapping("{vehicleId}")
     ResponseEntity<?> updateVehicle(
-            // validation set need to dto class null value not go
-//        isHybrid to boolean
-//        fuelUsagePerKM check can convert double
-//        pricePerKM convert to big decimal
-//        capacity to int
             @PathVariable String vehicleId,
             @RequestPart String vehicleLicenseNumber,
             @RequestPart String brand,
@@ -111,6 +155,57 @@ public class VehicleController {
             @RequestPart byte[] driverLicenseBackImage,
             @RequestPart String phone
     ) {
+        if (vehicleLicenseNumber == null)
+            throw new InvalidException("InValid vehicle license number");
+        if (brand == null)
+            throw new InvalidException("InValid brand name");
+        if (category == null)
+            throw new InvalidException("InValid category");
+        if (fuelType == null)
+            throw new InvalidException("InValid fuel type");
+        if (isHybrid == null)
+            throw new InvalidException("InValid boolean for isHybrid");
+        if (fuelUsagePerKM == null)
+            throw new InvalidException("InValid fuel usage per km");
+        try {
+            if (Double.parseDouble(fuelUsagePerKM) <= 0)
+                throw new InvalidException("InValid fuel usage per km");
+        } catch (NumberFormatException e) {
+            throw new InvalidException("InValid fuel usage per km");
+        }
+        if (vehicleFrontImage.length == 0)
+            throw new InvalidException("InValid vehicle front image");
+        if (vehicleRearImage.length == 0)
+            throw new InvalidException("InValid vehicle rear image");
+        if (vehicleSideImage.length == 0)
+            throw new InvalidException("InValid vehicle side image");
+        if (vehicleFrontInteriorImage.length == 0)
+            throw new InvalidException("InValid vehicle front interior image");
+        if (vehicleRearInteriorImage.length == 0)
+            throw new InvalidException("InValid vehicle rear interior image");
+        if (pricePerKM == null || !Pattern.matches("^(\\d+)||((\\d+\\.)(\\d){2})$", pricePerKM))
+            throw new InvalidException("InValid price per km");
+        if (capacity == null)
+            throw new InvalidException("InValid capacity");
+        try {
+            if (Integer.parseInt(capacity) <= 0)
+                throw new InvalidException("InValid capacity");
+        } catch (NumberFormatException e) {
+            throw new InvalidException("InValid capacity");
+        }
+        if (type == null)
+            throw new InvalidException("InValid type");
+        if (transmission == null)
+            throw new InvalidException("InValid transmission");
+        if (driverName == null || !Pattern.matches("^[a-zA-Z.+=@\\-_\\s]{3,50}$",driverName))
+            throw new InvalidException("InValid driver name");
+        if (driverLicenseFrontImage.length == 0)
+            throw new InvalidException("InValid driver license front image");
+        if (driverLicenseBackImage.length == 0)
+            throw new InvalidException("InValid driver license back image");
+        if (phone == null || !Pattern.matches("^(?:0|94|\\+94|0094)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|91)(0|2|3|4|5|7|9)|7(0|1|2|4|5|6|7|8)\\d)\\d{6}$",phone))
+            throw new InvalidException("InValid phone number");
+
         vehicleService.updateVehicle(
                 VehicleDTO.builder()
                         .vehicleId(vehicleId)
@@ -118,7 +213,7 @@ public class VehicleController {
                         .brand(brand)
                         .category(category)
                         .fuelType(fuelType)
-                        .isHybrid(isHybrid.equals("true"))
+                        .isHybrid(Boolean.parseBoolean(isHybrid))
                         .fuelUsagePerKM(Double.parseDouble(fuelUsagePerKM))
                         .vehicleFrontImage(vehicleFrontImage)
                         .vehicleRearImage(vehicleRearImage)

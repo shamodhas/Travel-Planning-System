@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -49,7 +50,10 @@ public class vehicleServiceImpl implements VehicleService {
     @Override
     public void updateVehicle(VehicleDTO vehicleDTO) {
         vehicleDao.findById(vehicleDTO.getVehicleId()).orElseThrow(() -> new NotFoundException("Vehicle not found"));
-        // check license number duplicated case
+        Optional<Vehicle> vehicleByVehicleLicenseNumber = vehicleDao.findVehicleByVehicleLicenseNumber(vehicleDTO.getVehicleLicenseNumber());
+        if (vehicleByVehicleLicenseNumber.isPresent() && !vehicleByVehicleLicenseNumber.get().getVehicleId().equals(vehicleDTO.getVehicleId())){
+            throw new DuplicateException("Duplicate license number");
+        }
         vehicleDao.save(convertor.getVehicle(vehicleDTO));
     }
 
