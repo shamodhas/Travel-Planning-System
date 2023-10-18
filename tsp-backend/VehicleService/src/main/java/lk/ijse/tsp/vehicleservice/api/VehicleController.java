@@ -24,12 +24,12 @@ public class VehicleController {
 
     @GetMapping("{vehicleId}")
     ResponseEntity<?> getSelectedVehicle(@PathVariable String vehicleId) {
-        return null;
+        return ResponseEntity.ok(vehicleService.getSelectedVehicle(vehicleId));
     }
 
     @GetMapping
     ResponseEntity<?> getAllVehicle() {
-        return null;
+        return ResponseEntity.ok(vehicleService.getAllVehicle());
     }
 
     @PostMapping
@@ -53,7 +53,29 @@ public class VehicleController {
             @RequestPart byte[] driverLicenseBackImage,
             @RequestPart String phone
     ) {
-        return null;
+        // validation set need to dto class
+        return ResponseEntity.ok(vehicleService.saveVehicle(
+                VehicleDTO.builder()
+                        .brand(brand)
+                        .category(category)
+                        .fuelType(fuelType)
+                        .isHybrid(isHybrid)
+                        .fuelUsagePerKM(fuelUsagePerKM)
+                        .vehicleFrontImage(vehicleFrontImage)
+                        .vehicleRearImage(vehicleRearImage)
+                        .vehicleSideImage(vehicleSideImage)
+                        .vehicleFrontInteriorImage(vehicleFrontInteriorImage)
+                        .vehicleRearInteriorImage(vehicleRearInteriorImage)
+                        .pricePerKM(pricePerKM)
+                        .capacity(capacity)
+                        .type(type)
+                        .transmission(transmission)
+                        .driverName(driverName)
+                        .driverLicenseFrontImage(driverLicenseFrontImage)
+                        .driverLicenseBackImage(driverLicenseBackImage)
+                        .phone(phone)
+                        .build()
+        ));
     }
 
     @PutMapping("{vehicleId}")
@@ -78,12 +100,36 @@ public class VehicleController {
             @RequestPart byte[] driverLicenseBackImage,
             @RequestPart String phone
     ) {
-        return null;
+        vehicleService.updateVehicle(
+                VehicleDTO.builder()
+                        .vehicleId(vehicleId)
+                        .brand(brand)
+                        .category(category)
+                        .fuelType(fuelType)
+                        .isHybrid(isHybrid)
+                        .fuelUsagePerKM(fuelUsagePerKM)
+                        .vehicleFrontImage(vehicleFrontImage)
+                        .vehicleRearImage(vehicleRearImage)
+                        .vehicleSideImage(vehicleSideImage)
+                        .vehicleFrontInteriorImage(vehicleFrontInteriorImage)
+                        .vehicleRearInteriorImage(vehicleRearInteriorImage)
+                        .pricePerKM(pricePerKM)
+                        .capacity(capacity)
+                        .type(type)
+                        .transmission(transmission)
+                        .driverName(driverName)
+                        .driverLicenseFrontImage(driverLicenseFrontImage)
+                        .driverLicenseBackImage(driverLicenseBackImage)
+                        .phone(phone)
+                        .build()
+        );
+        return ResponseEntity.ok("Vehicle updated");
     }
 
     @DeleteMapping("{vehicleId}")
     ResponseEntity<?> deleteVehicle(@PathVariable String vehicleId) {
-        return null;
+        vehicleService.deleteVehicle(vehicleId);
+        return ResponseEntity.ok("Vehicle deleted");
     }
 
 }
