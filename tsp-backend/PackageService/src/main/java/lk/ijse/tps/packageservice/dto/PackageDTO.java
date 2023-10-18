@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Data
 public class PackageDTO {
-    @Null(message = "Package id auto generate by backend")
+    @Null(message = "Package id auto generated")
     private String packageId;
 
     @NotNull(message = "InValid category")
