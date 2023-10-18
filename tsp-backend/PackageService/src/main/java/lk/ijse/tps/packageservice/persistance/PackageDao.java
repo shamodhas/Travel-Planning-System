@@ -15,5 +15,6 @@ import java.util.Optional;
 
 @Repository
 public interface PackageDao extends CrudRepository<Package, String> {
+    Optional<Package> findByCategoryAndArea(String category,String area);
     List<Package> findAll();
 }

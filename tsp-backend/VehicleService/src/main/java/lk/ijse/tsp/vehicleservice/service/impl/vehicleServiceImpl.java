@@ -50,10 +50,9 @@ public class vehicleServiceImpl implements VehicleService {
     @Override
     public void updateVehicle(VehicleDTO vehicleDTO) {
         vehicleDao.findById(vehicleDTO.getVehicleId()).orElseThrow(() -> new NotFoundException("Vehicle not found"));
-        Optional<Vehicle> vehicleByVehicleLicenseNumber = vehicleDao.findVehicleByVehicleLicenseNumber(vehicleDTO.getVehicleLicenseNumber());
-        if (vehicleByVehicleLicenseNumber.isPresent() && !vehicleByVehicleLicenseNumber.get().getVehicleId().equals(vehicleDTO.getVehicleId())){
+        Optional<Vehicle> optionalVehicle = vehicleDao.findVehicleByVehicleLicenseNumber(vehicleDTO.getVehicleLicenseNumber());
+        if (optionalVehicle.isPresent() && !optionalVehicle.get().getVehicleId().equals(vehicleDTO.getVehicleId()))
             throw new DuplicateException("Duplicate license number");
-        }
         vehicleDao.save(convertor.getVehicle(vehicleDTO));
     }
 
