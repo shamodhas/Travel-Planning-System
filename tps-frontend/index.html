@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Planning System</title>
+</head>
+
+<body>
+    <input type="file" id="file">
+    <button id="btn" onclick="send()">send</button>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+
+        const send = () => {
+            const description = $('#text').val();
+            var file = document.getElementById('file').files[0];
+            var formData = new FormData();
+
+            formData.append('file', file);
+
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8084/test/api/v1/test",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: (data) => {
+                    alert(data)
+                },
+                error: (error) => {
+                    alert(error)
+                }
+            });
+        }
+
+        const vehicle = {
+            vehicleId: "vehicleId",
+            brand: "brand",
+            category: "category",
+            fuelType: "fuelType",
+            isHybrid: true,
+            fuelUsagePerKM: 500.564,
+            image: {
+                front: "",
+                rear: "",
+                side: "",
+                frontInterior: "",
+                rearInterior: "",
+            },
+            pricePerKM: 500.00,
+            capacity: 4,
+            type: "type",
+            transmission: "transmission",
+            driverName: "driverName",
+            driverLicense: {
+                front: "",
+                back: ""
+            },
+            phone: "phone"
+        }
+    </script>
+
+</body>
+
+</html>
