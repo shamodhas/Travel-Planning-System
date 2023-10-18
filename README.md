@@ -1,5 +1,5 @@
 <div align="center">
-<div style="font-size: 100px">Travel Planning System</div>
+<div style="font-size: xxx-large">Travel Planning System</div>
 <br>
 <img style="margin: 20px" width="80px" src="https://user-images.githubusercontent.com/25181517/192108890-200809d1-439c-4e23-90d3-b090cf9a4eea.png">
 <img style="margin: 20px" width="80px" src="https://user-images.githubusercontent.com/25181517/192108891-d86b6220-e232-423a-bf5f-90903e6887c3.png">
