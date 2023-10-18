@@ -2,6 +2,7 @@ package lk.ijse.tps.packageservice.api;
 
 import jakarta.validation.Valid;
 import lk.ijse.tps.packageservice.dto.PackageDTO;
+import lk.ijse.tps.packageservice.exception.InvalidException;
 import lk.ijse.tps.packageservice.service.PackageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,13 +36,17 @@ public class PackageController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> savePackage(@Valid @RequestBody PackageDTO packageDTO, Errors errors) {
-        System.out.println(packageDTO);
-        System.out.println(errors);
+        if (errors.hasErrors()){
+            throw new InvalidException(errors.getAllErrors().toString());
+        }
         return ResponseEntity.ok(packageService.savePackage(packageDTO));
     }
 
     @PutMapping(value = "{packageId}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<?> updatePackage(@PathVariable String packageId, @Valid @RequestBody PackageDTO packageDTO) {
+    ResponseEntity<?> updatePackage(@PathVariable String packageId, @Valid @RequestBody PackageDTO packageDTO,Errors errors) {
+        if (errors.hasErrors()){
+            throw new InvalidException(errors.getAllErrors().toString());
+        }
         packageDTO.setPackageId(packageId);
         packageService.updatePackage(packageDTO);
         return ResponseEntity.ok("Package updated");

@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.math.BigDecimal;
+
 /**
  * Created By shamodha_s_rathnamalala
  * Date : 10/12/2023
@@ -28,5 +30,5 @@ public class Guide {
     private String idCardFront;
     private String idCardBack;
 
-    private String pricePerDay;
+    private BigDecimal pricePerDay;
 }
