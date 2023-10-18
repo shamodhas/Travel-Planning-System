@@ -1,9 +1,12 @@
 package lk.ijse.tps.hotelservice.api;
 
+import jakarta.validation.Valid;
 import lk.ijse.tps.hotelservice.dto.HotelOptionDTO;
+import lk.ijse.tps.hotelservice.exception.InvalidException;
 import lk.ijse.tps.hotelservice.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -19,28 +22,35 @@ public class HotelOptionController {
     @Autowired
     HotelService hotelService;
 
-    @GetMapping
-    ResponseEntity<?> getSelectedHotelOption(String hotelOptionId) {
-        return null;
+    @GetMapping("{hotelOptionId}")
+    ResponseEntity<?> getSelectedHotelOption(@PathVariable String hotelOptionId) {
+        return ResponseEntity.ok(hotelService.getSelectedHotelOption(hotelOptionId));
     }
 
     @GetMapping
     ResponseEntity<?> getAllHotelOption() {
-        return null;
+        return ResponseEntity.ok(hotelService.getAllHotelOption());
     }
 
     @PostMapping
-    ResponseEntity<?> saveHotelOption(HotelOptionDTO hotelOptionDTO) {
-        return null;
+    ResponseEntity<?> saveHotelOption(@Valid @RequestBody HotelOptionDTO hotelOptionDTO, Errors errors) {
+        if (errors.hasErrors())
+            throw new InvalidException(errors.getAllErrors().toString());
+        return ResponseEntity.ok(hotelService.addHotelOption(hotelOptionDTO));
     }
 
-    @PutMapping
-    ResponseEntity<?> updateHotelOption(String hotelOptionId, HotelOptionDTO hotelOptionDTO) {
-        return null;
+    @PutMapping("{hotelOptionId}")
+    ResponseEntity<?> updateHotelOption(@PathVariable String hotelOptionId, @Valid @RequestBody HotelOptionDTO hotelOptionDTO, Errors errors) {
+        if (errors.hasErrors())
+            throw new InvalidException(errors.getAllErrors().toString());
+        hotelOptionDTO.setHotelOptionId(hotelOptionId);
+        hotelService.updateHotelOption(hotelOptionDTO);
+        return ResponseEntity.ok("Hotel option updated");
     }
 
-    @DeleteMapping
-    ResponseEntity<?> deleteHotelOption(String hotelOptionId) {
-        return null;
+    @DeleteMapping("{hotelOptionId}")
+    ResponseEntity<?> deleteHotelOption(@PathVariable String hotelOptionId) {
+        hotelService.deleteHotelOption(hotelOptionId);
+        return ResponseEntity.ok("Hotel option deleted");
     }
 }

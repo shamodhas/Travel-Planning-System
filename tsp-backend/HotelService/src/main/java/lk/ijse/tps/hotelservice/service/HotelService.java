@@ -17,8 +17,10 @@ public interface HotelService {
     void updateHotel(HotelDTO hotelDTO);
     void deleteHotel(String hotelId);
     HotelDTO getSelectedHotel(String hotelId);
+
+    List<HotelOptionDTO> getAllHotelOption();
     HotelOptionDTO addHotelOption(HotelOptionDTO hotelOptionDTO);
     void updateHotelOption(HotelOptionDTO hotelOptionDTO);
     void deleteHotelOption(String hotelOptionId);
-    List<HotelOptionDTO> getHotelOptionByHotelId(String hotelId);
+    HotelOptionDTO getSelectedHotelOption(String hotelOptionId);
 }

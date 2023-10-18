@@ -1,5 +1,9 @@
 package lk.ijse.tps.hotelservice.util;
 
+import lk.ijse.tps.hotelservice.dto.HotelDTO;
+import lk.ijse.tps.hotelservice.dto.HotelOptionDTO;
+import lk.ijse.tps.hotelservice.entity.Hotel;
+import lk.ijse.tps.hotelservice.entity.HotelOption;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -17,4 +21,19 @@ public class DataTypeConvertor {
         this.modelMapper = modelMapper;
     }
 
+    public HotelDTO getHotelDTO(Hotel hotel){
+        return modelMapper.map(hotel,HotelDTO.class);
+    }
+
+    public Hotel getHotel(HotelDTO hotelDTO){
+        return modelMapper.map(hotelDTO,Hotel.class);
+    }
+
+    public HotelOptionDTO getHotelOptionDTO(HotelOption hotelOption){
+        return modelMapper.map(hotelOption,HotelOptionDTO.class);
+    }
+
+    public HotelOption getHotelOption(HotelOptionDTO hotelOptionDTO){
+        return modelMapper.map(hotelOptionDTO,HotelOption.class);
+    }
 }
