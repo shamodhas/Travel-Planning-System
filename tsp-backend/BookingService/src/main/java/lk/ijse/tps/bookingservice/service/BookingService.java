@@ -17,6 +17,7 @@ public interface BookingService {
     BookingDTO getSelectedBooking(String bookingId);
     void updateBooking(BookingDTO bookingDTO);
     void deleteBooking(String bookingId);
+    void deleteVehicleBooking(String bookingId,String vehicleId);
     List<BookingDTO> getAllBooking();
     List<BookingDTO> getAllBookingByCustomerId(String customerId);
     List<BookingDTO> getAllBookingByPackageId(String packageId);

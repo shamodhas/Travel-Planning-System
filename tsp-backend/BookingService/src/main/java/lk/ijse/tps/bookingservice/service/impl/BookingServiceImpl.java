@@ -3,6 +3,7 @@ package lk.ijse.tps.bookingservice.service.impl;
 import lk.ijse.tps.bookingservice.dto.BookingDTO;
 import lk.ijse.tps.bookingservice.entity.Booking;
 import lk.ijse.tps.bookingservice.entity.VehicleBooking;
+import lk.ijse.tps.bookingservice.entity.VehicleBookingPk;
 import lk.ijse.tps.bookingservice.exception.InUseException;
 import lk.ijse.tps.bookingservice.exception.NotFoundException;
 import lk.ijse.tps.bookingservice.persistance.BookingDao;
@@ -70,6 +71,16 @@ public class BookingServiceImpl implements BookingService {
             throw new InUseException("Booking is active");
         bookingDao.deleteById(bookingId);
 
+    }
+
+    @Override
+    public void deleteVehicleBooking(String bookingId, String vehicleId) {
+        VehicleBookingPk vehicleBookingPk = new VehicleBookingPk(bookingId, vehicleId);
+        vehicleBookingDao.findById(vehicleBookingPk).orElseThrow(() -> new NotFoundException("Vehicle booking not found"));
+        Booking booking = bookingDao.findById(bookingId).orElseThrow(() -> new NotFoundException("Booking not found"));
+        if (booking.getStatus().equals("ACTIVE"))
+            throw new InUseException("Booking is active");
+        vehicleBookingDao.deleteById(vehicleBookingPk);
     }
 
     @Override

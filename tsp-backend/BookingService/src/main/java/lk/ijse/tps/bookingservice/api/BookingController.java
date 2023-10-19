@@ -1,6 +1,8 @@
 package lk.ijse.tps.bookingservice.api;
 
 import lk.ijse.tps.bookingservice.dto.BookingDTO;
+import lk.ijse.tps.bookingservice.dto.VehicleBookingDTO;
+import lk.ijse.tps.bookingservice.exception.InvalidException;
 import lk.ijse.tps.bookingservice.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +23,12 @@ public class BookingController {
 
     @GetMapping("{bookingId}")
     ResponseEntity<?> getSelectedBooking(@PathVariable String bookingId) {
-        return null;
+        return ResponseEntity.ok(bookingService.getSelectedBooking(bookingId));
     }
 
     @GetMapping
     ResponseEntity<?> getAllBooking() {
-        return null;
+        return ResponseEntity.ok(bookingService.getAllBooking());
     }
 
     @GetMapping
@@ -36,16 +38,27 @@ public class BookingController {
 
     @PostMapping
     ResponseEntity<?> saveBooking(@RequestBody BookingDTO bookingDTO) {
-        return null;
+        // validation need
+        return ResponseEntity.ok(bookingService.addBooking(bookingDTO));
     }
 
     @PutMapping("{bookingId}")
-    ResponseEntity<?> updateBooking(@PathVariable String bookingId,@RequestBody BookingDTO bookingDTO) {
-        return null;
+    ResponseEntity<?> updateBooking(@PathVariable String bookingId, @RequestBody BookingDTO bookingDTO) {
+        // validation need
+        bookingDTO.setBookingId(bookingId);
+        bookingService.updateBooking(bookingDTO);
+        return ResponseEntity.ok("Booking updated");
     }
 
     @DeleteMapping("{bookingId}")
     ResponseEntity<?> deleteBooking(@PathVariable String bookingId) {
-        return null;
+        bookingService.deleteBooking(bookingId);
+        return ResponseEntity.ok("Booking deleted");
+    }
+
+    @DeleteMapping
+    ResponseEntity<?> deleteBooking(@RequestBody VehicleBookingDTO vehicleBookingDTO) {
+        bookingService.deleteVehicleBooking(vehicleBookingDTO.getBookingId(), vehicleBookingDTO.getVehicleId());
+        return ResponseEntity.ok("Booking deleted");
     }
 }
