@@ -17,4 +17,11 @@ public interface BookingService {
     void updateBooking(BookingDTO bookingDTO);
     void deleteBooking(String bookingId);
     List<BookingDTO> getAllBooking();
+    List<BookingDTO> getAllBookingByCustomerId(String customerId);
+    List<BookingDTO> getAllBookingByPackageId(String packageId);
+    List<BookingDTO> getAllBookingByGuideId(String guideId);
+    List<BookingDTO> getAllBookingByHotelOptionId(String hotelOptionId);
+    List<BookingDTO> getAllBookingByVehicleId(String vehicleId);
+    List<BookingDTO> getAllBookingByDate(String date);
+    List<BookingDTO> getAllBookingByStartDate(String startDate);
 }

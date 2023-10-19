@@ -15,4 +15,5 @@ import java.util.List;
 @Repository
 public interface VehicleBookingDao extends CrudRepository<VehicleBooking,Integer> {
     List<VehicleBooking> findAll();
+    List<VehicleBooking> findAllByVehicleId(String vehicleId);
 }

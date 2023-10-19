@@ -19,8 +19,8 @@ public class BookingController {
     @Autowired
     BookingService bookingService;
 
-    @GetMapping
-    ResponseEntity<?> getSelectedBooking(String bookingId) {
+    @GetMapping("{bookingId}")
+    ResponseEntity<?> getSelectedBooking(@PathVariable String bookingId) {
         return null;
     }
 
@@ -29,18 +29,23 @@ public class BookingController {
         return null;
     }
 
-    @PostMapping
-    ResponseEntity<?> saveBooking(BookingDTO bookingDTO) {
+    @GetMapping
+    ResponseEntity<?> getAllBookingByBookingDTO(@RequestBody BookingDTO bookingDTO) {
         return null;
     }
 
     @PostMapping
-    ResponseEntity<?> updateBooking(String bookingId, BookingDTO bookingDTO) {
+    ResponseEntity<?> saveBooking(@RequestBody BookingDTO bookingDTO) {
         return null;
     }
 
-    @DeleteMapping
-    ResponseEntity<?> deleteBooking(String bookingId) {
+    @PutMapping("{bookingId}")
+    ResponseEntity<?> updateBooking(@PathVariable String bookingId,@RequestBody BookingDTO bookingDTO) {
+        return null;
+    }
+
+    @DeleteMapping("{bookingId}")
+    ResponseEntity<?> deleteBooking(@PathVariable String bookingId) {
         return null;
     }
 }

@@ -8,6 +8,7 @@ import lk.ijse.tps.bookingservice.persistance.BookingDao;
 import lk.ijse.tps.bookingservice.persistance.VehicleBookingDao;
 import lk.ijse.tps.bookingservice.service.BookingService;
 import lk.ijse.tps.bookingservice.util.DataTypeConvertor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,13 +25,11 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class BookingServiceImpl implements BookingService {
-    @Autowired
-    private BookingDao bookingDao;
-    @Autowired
-    private VehicleBookingDao vehicleBookingDao;
-    @Autowired
-    private DataTypeConvertor convertor;
+    private final BookingDao bookingDao;
+    private final VehicleBookingDao vehicleBookingDao;
+    private final DataTypeConvertor convertor;
     @Override
     public BookingDTO addBooking(BookingDTO bookingDTO) {
         String bookingId;
@@ -72,6 +71,41 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<BookingDTO> getAllBooking() {
-        return bookingDao.findAll().stream().map(booking -> convertor.getBookingDTO(booking)).collect(Collectors.toList());
+        return bookingDao.findAll().stream().map(convertor::getBookingDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<BookingDTO> getAllBookingByCustomerId(String customerId) {
+        return bookingDao.findAllByCustomerId(customerId).stream().map(convertor::getBookingDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<BookingDTO> getAllBookingByPackageId(String packageId) {
+        return null;
+    }
+
+    @Override
+    public List<BookingDTO> getAllBookingByGuideId(String guideId) {
+        return null;
+    }
+
+    @Override
+    public List<BookingDTO> getAllBookingByHotelOptionId(String hotelOptionId) {
+        return null;
+    }
+
+    @Override
+    public List<BookingDTO> getAllBookingByVehicleId(String vehicleId) {
+        return null;
+    }
+
+    @Override
+    public List<BookingDTO> getAllBookingByDate(String date) {
+        return null;
+    }
+
+    @Override
+    public List<BookingDTO> getAllBookingByStartDate(String startDate) {
+        return null;
     }
 }

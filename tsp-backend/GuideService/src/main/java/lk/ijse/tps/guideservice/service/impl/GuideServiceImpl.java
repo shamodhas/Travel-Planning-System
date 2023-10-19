@@ -64,6 +64,6 @@ public class GuideServiceImpl implements GuideService {
 
     @Override
     public List<GuideDTO> getAllGuide() {
-        return guideDao.findAll().stream().map(guide -> convertor.getGuideDTO(guide)).collect(Collectors.toList());
+        return guideDao.findAll().stream().map(convertor::getGuideDTO).collect(Collectors.toList());
     }
 }
