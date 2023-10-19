@@ -17,15 +17,15 @@
         const send = () => {
 
             const obj = {
-                // packageId: "P001",
-                category:"five",
-                area:"colxombo",
-                price:"dgf",
-                averageNoOfDate:1
+                name:"shamodha",
+                address:"kurunegala",
+                age:3,
+                salary:500,
+                status:"END"
             }
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8085/package/api/v1/package",
+                url: "http://localhost:8084/test/api/v1/textTest",
                 data: JSON.stringify(obj),
                 contentType: "application/json",
                 success: (data) => {
@@ -35,6 +35,26 @@
                     console.log(error)
                 }
             });
+
+            // const obj = {
+            //     // packageId: "P001",
+            //     category:"five",
+            //     area:"colxombo",
+            //     price:"dgf",
+            //     averageNoOfDate:1
+            // }
+            // $.ajax({
+            //     type: "POST",
+            //     url: "http://localhost:8085/package/api/v1/package",
+            //     data: JSON.stringify(obj),
+            //     contentType: "application/json",
+            //     success: (data) => {
+            //         console.log(data)
+            //     },
+            //     error: (error) => {
+            //         console.log(error)
+            //     }
+            // });
         }
 
         // const vehicle = {

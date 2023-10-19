@@ -1,6 +1,7 @@
 package lk.ijse.tps.bookingservice.dto;
 
 
+import lk.ijse.tps.bookingservice.dto.util.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,6 @@ public class BookingDTO {
     private LocalDate date;
     private LocalDate startDate;
     private LocalDate endDate;
-    private String status;
+    private Status status;// pending, active, end
     private BigDecimal downPayment;
 }
