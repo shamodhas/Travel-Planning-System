@@ -2,6 +2,7 @@ package lk.ijse.tps.bookingservice.service.impl;
 
 import lk.ijse.tps.bookingservice.dto.BookingDTO;
 import lk.ijse.tps.bookingservice.entity.Booking;
+import lk.ijse.tps.bookingservice.entity.VehicleBooking;
 import lk.ijse.tps.bookingservice.exception.InUseException;
 import lk.ijse.tps.bookingservice.exception.NotFoundException;
 import lk.ijse.tps.bookingservice.persistance.BookingDao;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -30,12 +32,13 @@ public class BookingServiceImpl implements BookingService {
     private final BookingDao bookingDao;
     private final VehicleBookingDao vehicleBookingDao;
     private final DataTypeConvertor convertor;
+
     @Override
     public BookingDTO addBooking(BookingDTO bookingDTO) {
         String bookingId;
         do {
             bookingId = String.valueOf(UUID.randomUUID());
-        }while (bookingDao.existsById(bookingId));
+        } while (bookingDao.existsById(bookingId));
         // call customer service findById() not null
         // call package service findById() not null
         // call guide service findById() guide id can null
@@ -46,12 +49,12 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public BookingDTO getSelectedBooking(String bookingId) {
-        return convertor.getBookingDTO(bookingDao.findById(bookingId).orElseThrow(()->new NotFoundException("Booking not found")));
+        return convertor.getBookingDTO(bookingDao.findById(bookingId).orElseThrow(() -> new NotFoundException("Booking not found")));
     }
 
     @Override
     public void updateBooking(BookingDTO bookingDTO) {
-        bookingDao.findById(bookingDTO.getBookingId()).orElseThrow(()->new NotFoundException("Booking not found"));
+        bookingDao.findById(bookingDTO.getBookingId()).orElseThrow(() -> new NotFoundException("Booking not found"));
         // call customer service findById() not null
         // call package service findById() not null
         // call guide service findById() guide id can null
@@ -81,31 +84,33 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<BookingDTO> getAllBookingByPackageId(String packageId) {
-        return null;
+        return bookingDao.findAllByPackageId(packageId).stream().map(convertor::getBookingDTO).collect(Collectors.toList());
     }
 
     @Override
     public List<BookingDTO> getAllBookingByGuideId(String guideId) {
-        return null;
+        return bookingDao.findAllByGuideId(guideId).stream().map(convertor::getBookingDTO).collect(Collectors.toList());
     }
 
     @Override
     public List<BookingDTO> getAllBookingByHotelOptionId(String hotelOptionId) {
-        return null;
+        return bookingDao.findAllByHotelOptionId(hotelOptionId).stream().map(convertor::getBookingDTO).collect(Collectors.toList());
     }
 
     @Override
     public List<BookingDTO> getAllBookingByVehicleId(String vehicleId) {
-        return null;
+        return ((List<Booking>) bookingDao.findAllById(
+                vehicleBookingDao.findAllByVehicleId(vehicleId).stream().map(VehicleBooking::getBookingId).collect(Collectors.toList())
+        )).stream().map(convertor::getBookingDTO).collect(Collectors.toList());
     }
 
     @Override
-    public List<BookingDTO> getAllBookingByDate(String date) {
-        return null;
+    public List<BookingDTO> getAllBookingByDate(LocalDate date) {
+        return bookingDao.findAllByDate(date).stream().map(convertor::getBookingDTO).collect(Collectors.toList());
     }
 
     @Override
-    public List<BookingDTO> getAllBookingByStartDate(String startDate) {
-        return null;
+    public List<BookingDTO> getAllBookingByStartDate(LocalDate startDate) {
+        return bookingDao.findAllByStartDate(startDate).stream().map(convertor::getBookingDTO).collect(Collectors.toList());
     }
 }

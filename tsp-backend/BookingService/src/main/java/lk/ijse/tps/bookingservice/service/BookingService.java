@@ -3,6 +3,7 @@ package lk.ijse.tps.bookingservice.service;
 
 import lk.ijse.tps.bookingservice.dto.BookingDTO;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -22,6 +23,6 @@ public interface BookingService {
     List<BookingDTO> getAllBookingByGuideId(String guideId);
     List<BookingDTO> getAllBookingByHotelOptionId(String hotelOptionId);
     List<BookingDTO> getAllBookingByVehicleId(String vehicleId);
-    List<BookingDTO> getAllBookingByDate(String date);
-    List<BookingDTO> getAllBookingByStartDate(String startDate);
+    List<BookingDTO> getAllBookingByDate(LocalDate date);
+    List<BookingDTO> getAllBookingByStartDate(LocalDate startDate);
 }
