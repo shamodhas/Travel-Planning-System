@@ -17,13 +17,13 @@ import java.util.regex.Pattern;
  */
 
 @RestController
-@RequestMapping("api/v1/vehicle")
+@RequestMapping("api/v1/customer")
 @CrossOrigin("*")
 @RequiredArgsConstructor
 public class CustomerController {
     private final CustomerService customerService;
 
-    @GetMapping("{customerId:^[C][A-Fa-f0-9\\\\-]{36}}")
+    @GetMapping("{customerId:^[C][A-Fa-f0-9\\\\-]{36}$}")
     ResponseEntity<?> getSelectedCustomer(@PathVariable String customerId) {
         return ResponseEntity.ok(customerService.getSelectedCustomer(customerId));
     }

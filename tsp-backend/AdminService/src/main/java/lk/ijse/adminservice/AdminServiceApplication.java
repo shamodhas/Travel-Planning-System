@@ -1,4 +1,4 @@
-package lk.ijse.adminservicemysql;
+package lk.ijse.adminservice;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;

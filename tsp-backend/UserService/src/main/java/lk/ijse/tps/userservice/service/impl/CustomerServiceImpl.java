@@ -59,7 +59,7 @@ public class CustomerServiceImpl implements CustomerService {
         Optional<Customer> optionalCustomerForNic = customerDao.findByNic(customerDTO.getNic());
         if (optionalCustomerForNic.isPresent() && !optionalCustomerForNic.get().getCustomerId().equals(customerDTO.getCustomerId()))
             throw new DuplicateException("Duplicate customer nic");
-        Optional<Customer> optionalCustomerForUserName = customerDao.findByNic(customerDTO.getNic());
+        Optional<Customer> optionalCustomerForUserName = customerDao.findByUserName(customerDTO.getUserName());
         if (optionalCustomerForUserName.isPresent() && !optionalCustomerForUserName.get().getCustomerId().equals(customerDTO.getCustomerId()))
             throw new DuplicateException("Duplicate customer userName");
         customerDao.save(convertor.getCustomer(customerDTO));

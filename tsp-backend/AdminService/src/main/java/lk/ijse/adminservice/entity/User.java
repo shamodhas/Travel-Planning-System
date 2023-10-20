@@ -1,5 +1,6 @@
-package lk.ijse.adminservicemysql.dto;
+package lk.ijse.adminservice.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,12 +14,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class UserDTO {
+@Entity
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String userId;
     private String name;
     private String nic;
-    private byte[] nicFrontImage;
-    private byte[] nicBackImage;
+
+    @Lob
+    @Column(nullable = false,columnDefinition = "LONGTEXT")
+    private String nicFrontImage;
+
+    @Lob
+    @Column(nullable = false,columnDefinition = "LONGTEXT")
+    private String nicBackImage;
+
     private String email;
     private String phone;
     private String address;
