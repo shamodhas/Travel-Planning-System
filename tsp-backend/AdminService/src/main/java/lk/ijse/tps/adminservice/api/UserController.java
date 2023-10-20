@@ -146,6 +146,7 @@ public class UserController {
                         .address(address)
                         .userName(userName)
                         .userRole(UserRole.valueOf(userRole))
+                        .password(password)
                         .build()
         );
         return ResponseEntity.ok("User updated");

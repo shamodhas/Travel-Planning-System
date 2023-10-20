@@ -3,6 +3,7 @@ package lk.ijse.tps.userservice.util;
 import lk.ijse.tps.userservice.dto.CustomerDTO;
 import lk.ijse.tps.userservice.entity.Customer;
 import lombok.RequiredArgsConstructor;
+import org.mindrot.jbcrypt.BCrypt;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +29,7 @@ public class DataTypeConvertor {
     public Customer getCustomer(CustomerDTO customerDTO) {
         Customer customer = modelMapper.map(customerDTO, Customer.class);
         customer.setProfile(Base64.getEncoder().encodeToString(customerDTO.getProfile()));
+        customer.setPassword(BCrypt.hashpw(customerDTO.getPassword(), BCrypt.gensalt()));
         return customer;
     }
 }
