@@ -3,6 +3,7 @@ package lk.ijse.tsp.vehicleservice.api;
 import lk.ijse.tsp.vehicleservice.dto.VehicleDTO;
 import lk.ijse.tsp.vehicleservice.exception.InvalidException;
 import lk.ijse.tsp.vehicleservice.service.VehicleService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +21,9 @@ import java.util.regex.Pattern;
 @RestController
 @RequestMapping("api/v1/vehicle")
 @CrossOrigin("*")
+@RequiredArgsConstructor
 public class VehicleController {
-    @Autowired
-    VehicleService vehicleService;
+    private final VehicleService vehicleService;
 
     @GetMapping("{vehicleId}")
     ResponseEntity<?> getSelectedVehicle(@PathVariable String vehicleId) {

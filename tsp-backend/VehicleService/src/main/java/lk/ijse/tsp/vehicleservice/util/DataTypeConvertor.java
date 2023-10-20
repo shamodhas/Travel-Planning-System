@@ -3,6 +3,7 @@ package lk.ijse.tsp.vehicleservice.util;
 import lk.ijse.tsp.vehicleservice.dto.VehicleDTO;
 import lk.ijse.tsp.vehicleservice.entity.Vehicle;
 import lk.ijse.tsp.vehicleservice.exception.NotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -16,12 +17,9 @@ import java.util.Base64;
  */
 
 @Component
+@RequiredArgsConstructor
 public class DataTypeConvertor {
     private final ModelMapper modelMapper;
-
-    public DataTypeConvertor(ModelMapper modelMapper) {
-        this.modelMapper = modelMapper;
-    }
 
     public VehicleDTO getVehicleDTO(Vehicle vehicle) {
         VehicleDTO vehicleDTO = modelMapper.map(vehicle, VehicleDTO.class);
