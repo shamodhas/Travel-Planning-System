@@ -17,7 +17,6 @@ import lombok.NoArgsConstructor;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String userId;
 
     @Column(nullable = false,columnDefinition = "TEXT")
@@ -49,6 +48,6 @@ public class User {
     @Column(nullable = false,columnDefinition = "TEXT")
     private String userRole;
 
-    @Column(nullable = false,columnDefinition = "TEXT")
+    @Column(nullable = false,columnDefinition = "LONGTEXT")
     private String password;
 }

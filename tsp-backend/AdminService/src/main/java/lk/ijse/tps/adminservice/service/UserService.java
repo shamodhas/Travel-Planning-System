@@ -18,5 +18,5 @@ public interface UserService {
     void updateUser(UserDTO userDTO);
     void deleteUser(String userId);
     List<UserDTO> getAllUser();
-    boolean verifyUser(String userName, String password);
+    boolean authenticateUser(String userName, String password);
 }

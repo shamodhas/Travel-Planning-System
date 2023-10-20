@@ -1,14 +1,12 @@
-package lk.ijse.tps.adminservice.handler;
+package lk.ijse.tps.tps.hotelservice.handler;
 
-import lk.ijse.tps.adminservice.exception.DuplicateException;
-import lk.ijse.tps.adminservice.exception.InUseException;
-import lk.ijse.tps.adminservice.exception.InvalidException;
-import lk.ijse.tps.adminservice.exception.NotFoundException;
-import org.springframework.http.HttpStatus;
+import lk.ijse.tps.tps.hotelservice.exception.DuplicateException;
+import lk.ijse.tps.tps.hotelservice.exception.InUseException;
+import lk.ijse.tps.tps.hotelservice.exception.InvalidException;
+import lk.ijse.tps.tps.hotelservice.exception.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.server.ResponseStatusException;
 
 /**
  * Created By shamodha_s_rathnamalala

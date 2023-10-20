@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean verifyUser(String userName, String password) {
+    public boolean authenticateUser(String userName, String password) {
         User user = userDao.findByUserName(userName).orElseThrow(() -> new NotFoundException("User not found"));
         return BCrypt.checkpw(password, user.getPassword());
     }

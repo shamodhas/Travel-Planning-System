@@ -38,7 +38,7 @@ public class DataTypeConvertor {
         try {
             user.setNicFrontImage(encodeImage(userDTO.getNicFrontImage()));
             user.setNicBackImage(encodeImage(userDTO.getNicBackImage()));
-            user.setPassword(BCrypt.hashpw(user.getPassword(),BCrypt.gensalt()));
+            user.setPassword(BCrypt.hashpw(userDTO.getPassword(), BCrypt.gensalt()));
         } catch (IOException e) {
             throw new NotFoundException("Image not found");
         }
