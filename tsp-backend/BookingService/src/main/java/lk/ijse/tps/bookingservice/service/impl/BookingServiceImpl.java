@@ -119,9 +119,4 @@ public class BookingServiceImpl implements BookingService {
     public List<BookingDTO> getAllBookingByDate(LocalDate date) {
         return bookingDao.findAllByDate(date).stream().map(convertor::getBookingDTO).collect(Collectors.toList());
     }
-
-    @Override
-    public List<BookingDTO> getAllBookingByStartDate(LocalDate startDate) {
-        return bookingDao.findAllByStartDate(startDate).stream().map(convertor::getBookingDTO).collect(Collectors.toList());
-    }
 }

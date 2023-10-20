@@ -5,11 +5,17 @@ import lk.ijse.tps.packageservice.dto.PackageDTO;
 import lk.ijse.tps.packageservice.exception.InvalidException;
 import lk.ijse.tps.packageservice.service.PackageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created By shamodha_s_rathnamalala
@@ -36,15 +42,21 @@ public class PackageController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> savePackage(@Valid @RequestBody PackageDTO packageDTO, Errors errors) {
-        if (errors.hasErrors()){
-            throw new InvalidException(errors.getAllErrors().toString());
+        if (errors.hasErrors()) {
+            throw new InvalidException(
+                    errors.getAllErrors().stream().filter(error -> error instanceof FieldError)
+                            .collect(Collectors.toMap(
+                                    error -> ((FieldError) error).getField(),
+                                    error -> error.getDefaultMessage()
+                            )).toString()
+            );
         }
         return ResponseEntity.ok(packageService.savePackage(packageDTO));
     }
 
     @PutMapping(value = "{packageId}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<?> updatePackage(@PathVariable String packageId, @Valid @RequestBody PackageDTO packageDTO,Errors errors) {
-        if (errors.hasErrors()){
+    ResponseEntity<?> updatePackage(@PathVariable String packageId, @Valid @RequestBody PackageDTO packageDTO, Errors errors) {
+        if (errors.hasErrors()) {
             throw new InvalidException(errors.getAllErrors().toString());
         }
         packageDTO.setPackageId(packageId);

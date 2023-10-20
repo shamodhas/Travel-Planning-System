@@ -17,15 +17,15 @@
         const send = () => {
 
             const obj = {
-                name:"shamodha",
-                address:"kurunegala",
-                age:3,
-                salary:500,
-                status:"END"
+                packageId:"P001",
+                // category:"",
+                // area:"",
+                price:"",
+                averageNoOfDate:"",
             }
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8084/test/api/v1/textTest",
+                url: "http://localhost:8085/package/api/v1/package",
                 data: JSON.stringify(obj),
                 contentType: "application/json",
                 success: (data) => {

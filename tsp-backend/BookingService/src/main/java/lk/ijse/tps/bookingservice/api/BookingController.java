@@ -1,5 +1,6 @@
 package lk.ijse.tps.bookingservice.api;
 
+import jakarta.validation.Valid;
 import lk.ijse.tps.bookingservice.dto.BookingDTO;
 import lk.ijse.tps.bookingservice.dto.VehicleBookingDTO;
 import lk.ijse.tps.bookingservice.exception.InvalidException;
@@ -7,6 +8,7 @@ import lk.ijse.tps.bookingservice.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -52,6 +54,11 @@ public class BookingController {
         return ResponseEntity.ok(bookingService.getAllBookingByHotelOptionId(hotelOptionId));
     }
 
+    @GetMapping("{vehicleId:^[V][A-Fa-f0-9\\\\-]{36}}")
+    ResponseEntity<?> getAllBookingByVehicle(@PathVariable String vehicleId) {
+        return ResponseEntity.ok(bookingService.getAllBookingByVehicleId(vehicleId));
+    }
+
     @GetMapping("{date:^\\d{4}-\\d{2}-\\d{2}$}")
     ResponseEntity<?> getAllBookingByDate(@PathVariable LocalDate date) {
         return ResponseEntity.ok(bookingService.getAllBookingByDate(date));
@@ -63,7 +70,10 @@ public class BookingController {
     }
 
     @PostMapping
-    ResponseEntity<?> saveBooking(@RequestBody BookingDTO bookingDTO) {
+    ResponseEntity<?> saveBooking(@Valid @RequestBody BookingDTO bookingDTO, Errors errors) {
+        if (errors.hasErrors()){
+            throw new InvalidException(errors.getAllErrors().toString());
+        }
         // validation need
         return ResponseEntity.ok(bookingService.addBooking(bookingDTO));
     }
