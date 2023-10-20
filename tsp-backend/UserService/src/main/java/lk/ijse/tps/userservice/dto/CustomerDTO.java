@@ -20,7 +20,7 @@ public class CustomerDTO {
     private String email;
     private String nic;
     private String address;
-    private MultipartFile profile;
+    private byte[] profile;
     private String userName;
     private String password;
 }

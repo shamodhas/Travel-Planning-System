@@ -25,41 +25,33 @@ public class DataTypeConvertor {
 
     public VehicleDTO getVehicleDTO(Vehicle vehicle) {
         VehicleDTO vehicleDTO = modelMapper.map(vehicle, VehicleDTO.class);
-        try {
-            vehicleDTO.setVehicleFrontImage(decodeImage(vehicle.getVehicleFrontImage()));
-            vehicleDTO.setVehicleRearImage(decodeImage(vehicle.getVehicleRearImage()));
-            vehicleDTO.setVehicleSideImage(decodeImage(vehicle.getVehicleSideImage()));
-            vehicleDTO.setVehicleFrontInteriorImage(decodeImage(vehicle.getVehicleFrontInteriorImage()));
-            vehicleDTO.setVehicleRearInteriorImage(decodeImage(vehicle.getVehicleRearInteriorImage()));
-            vehicleDTO.setDriverLicenseFrontImage(decodeImage(vehicle.getDriverLicenseFrontImage()));
-            vehicleDTO.setDriverLicenseBackImage(decodeImage(vehicle.getDriverLicenseBackImage()));
-        } catch (IOException e) {
-            throw new NotFoundException("Image not found");
-        }
+        vehicleDTO.setVehicleFrontImage(decodeImage(vehicle.getVehicleFrontImage()));
+        vehicleDTO.setVehicleRearImage(decodeImage(vehicle.getVehicleRearImage()));
+        vehicleDTO.setVehicleSideImage(decodeImage(vehicle.getVehicleSideImage()));
+        vehicleDTO.setVehicleFrontInteriorImage(decodeImage(vehicle.getVehicleFrontInteriorImage()));
+        vehicleDTO.setVehicleRearInteriorImage(decodeImage(vehicle.getVehicleRearInteriorImage()));
+        vehicleDTO.setDriverLicenseFrontImage(decodeImage(vehicle.getDriverLicenseFrontImage()));
+        vehicleDTO.setDriverLicenseBackImage(decodeImage(vehicle.getDriverLicenseBackImage()));
         return vehicleDTO;
     }
 
     public Vehicle getVehicle(VehicleDTO vehicleDTO) {
         Vehicle vehicle = modelMapper.map(vehicleDTO, Vehicle.class);
-        try {
-            vehicle.setVehicleFrontImage(encodeImage(vehicleDTO.getVehicleFrontImage()));
-            vehicle.setVehicleRearImage(encodeImage(vehicleDTO.getVehicleRearImage()));
-            vehicle.setVehicleSideImage(encodeImage(vehicleDTO.getVehicleSideImage()));
-            vehicle.setVehicleFrontInteriorImage(encodeImage(vehicleDTO.getVehicleFrontInteriorImage()));
-            vehicle.setVehicleRearInteriorImage(encodeImage(vehicleDTO.getVehicleRearInteriorImage()));
-            vehicle.setDriverLicenseFrontImage(encodeImage(vehicleDTO.getDriverLicenseFrontImage()));
-            vehicle.setDriverLicenseBackImage(encodeImage(vehicleDTO.getDriverLicenseBackImage()));
-        } catch (IOException e) {
-            throw new NotFoundException("Image not found");
-        }
+        vehicle.setVehicleFrontImage(encodeImage(vehicleDTO.getVehicleFrontImage()));
+        vehicle.setVehicleRearImage(encodeImage(vehicleDTO.getVehicleRearImage()));
+        vehicle.setVehicleSideImage(encodeImage(vehicleDTO.getVehicleSideImage()));
+        vehicle.setVehicleFrontInteriorImage(encodeImage(vehicleDTO.getVehicleFrontInteriorImage()));
+        vehicle.setVehicleRearInteriorImage(encodeImage(vehicleDTO.getVehicleRearInteriorImage()));
+        vehicle.setDriverLicenseFrontImage(encodeImage(vehicleDTO.getDriverLicenseFrontImage()));
+        vehicle.setDriverLicenseBackImage(encodeImage(vehicleDTO.getDriverLicenseBackImage()));
         return vehicle;
     }
 
-    private String encodeImage(byte[] imageByte) throws IOException {
+    private String encodeImage(byte[] imageByte) {
         return Base64.getEncoder().encodeToString(imageByte);
     }
 
-    private byte[] decodeImage(String imageString) throws IOException {
+    private byte[] decodeImage(String imageString) {
         return Base64.getDecoder().decode(imageString);
     }
 }

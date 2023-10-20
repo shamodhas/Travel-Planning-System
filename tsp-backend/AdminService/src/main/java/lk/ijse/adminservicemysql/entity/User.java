@@ -1,9 +1,6 @@
-package lk.ijse.tps.userservice.entity;
+package lk.ijse.adminservicemysql.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +21,15 @@ public class User {
     private String userId;
     private String name;
     private String nic;
+
+    @Lob
+    @Column(nullable = false,columnDefinition = "LONGTEXT")
+    private String nicFrontImage;
+
+    @Lob
+    @Column(nullable = false,columnDefinition = "LONGTEXT")
+    private String nicBackImage;
+
     private String email;
     private String phone;
     private String address;
