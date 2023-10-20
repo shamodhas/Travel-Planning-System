@@ -43,12 +43,9 @@ public class PackageController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> savePackage(@Valid @RequestBody PackageDTO packageDTO, Errors errors) {
         if (errors.hasErrors()) {
-            throw new InvalidException(
-                    errors.getAllErrors().stream().filter(error -> error instanceof FieldError)
-                            .collect(Collectors.toMap(
-                                    error -> ((FieldError) error).getField(),
-                                    error -> error.getDefaultMessage()
-                            )).toString()
+            throw new InvalidException(errors.getAllErrors().stream()
+                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                    .toList().toString()
             );
         }
         return ResponseEntity.ok(packageService.savePackage(packageDTO));
@@ -57,7 +54,10 @@ public class PackageController {
     @PutMapping(value = "{packageId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> updatePackage(@PathVariable String packageId, @Valid @RequestBody PackageDTO packageDTO, Errors errors) {
         if (errors.hasErrors()) {
-            throw new InvalidException(errors.getAllErrors().toString());
+            throw new InvalidException(errors.getAllErrors().stream()
+                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                    .toList().toString()
+            );
         }
         packageDTO.setPackageId(packageId);
         packageService.updatePackage(packageDTO);

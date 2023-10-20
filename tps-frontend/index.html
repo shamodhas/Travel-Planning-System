@@ -17,11 +17,11 @@
         const send = () => {
 
             const obj = {
-                packageId:"P001",
+                packageId: "P001",
                 // category:"",
                 // area:"",
-                price:"",
-                averageNoOfDate:"",
+                price: "",
+                averageNoOfDate: "",
             }
             $.ajax({
                 type: "POST",
@@ -32,7 +32,8 @@
                     console.log(data)
                 },
                 error: (error) => {
-                    console.log(error)
+                    const errorObj = JSON.parse(error.responseText);
+                    console.log(errorObj.message)
                 }
             });
 

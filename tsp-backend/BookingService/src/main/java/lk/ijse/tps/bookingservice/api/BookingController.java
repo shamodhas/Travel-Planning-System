@@ -6,6 +6,7 @@ import lk.ijse.tps.bookingservice.dto.VehicleBookingDTO;
 import lk.ijse.tps.bookingservice.exception.InvalidException;
 import lk.ijse.tps.bookingservice.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
@@ -71,16 +72,23 @@ public class BookingController {
 
     @PostMapping
     ResponseEntity<?> saveBooking(@Valid @RequestBody BookingDTO bookingDTO, Errors errors) {
-        if (errors.hasErrors()){
-            throw new InvalidException(errors.getAllErrors().toString());
+        if (errors.hasErrors()) {
+            throw new InvalidException(errors.getAllErrors().stream()
+                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                    .toList().toString()
+            );
         }
-        // validation need
         return ResponseEntity.ok(bookingService.addBooking(bookingDTO));
     }
 
     @PutMapping("{bookingId}")
-    ResponseEntity<?> updateBooking(@PathVariable String bookingId, @RequestBody BookingDTO bookingDTO) {
-        // validation need
+    ResponseEntity<?> updateBooking(@PathVariable String bookingId, @Valid @RequestBody BookingDTO bookingDTO, Errors errors) {
+        if (errors.hasErrors()) {
+            throw new InvalidException(errors.getAllErrors().stream()
+                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                    .toList().toString()
+            );
+        }
         bookingDTO.setBookingId(bookingId);
         bookingService.updateBooking(bookingDTO);
         return ResponseEntity.ok("Booking updated");

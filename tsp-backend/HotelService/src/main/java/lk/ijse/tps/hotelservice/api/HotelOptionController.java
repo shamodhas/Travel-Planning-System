@@ -5,6 +5,7 @@ import lk.ijse.tps.hotelservice.dto.HotelOptionDTO;
 import lk.ijse.tps.hotelservice.exception.InvalidException;
 import lk.ijse.tps.hotelservice.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
@@ -34,15 +35,23 @@ public class HotelOptionController {
 
     @PostMapping
     ResponseEntity<?> saveHotelOption(@Valid @RequestBody HotelOptionDTO hotelOptionDTO, Errors errors) {
-        if (errors.hasErrors())
-            throw new InvalidException(errors.getAllErrors().toString());
+        if (errors.hasErrors()) {
+            throw new InvalidException(errors.getAllErrors().stream()
+                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                    .toList().toString()
+            );
+        }
         return ResponseEntity.ok(hotelService.addHotelOption(hotelOptionDTO));
     }
 
     @PutMapping("{hotelOptionId}")
     ResponseEntity<?> updateHotelOption(@PathVariable String hotelOptionId, @Valid @RequestBody HotelOptionDTO hotelOptionDTO, Errors errors) {
-        if (errors.hasErrors())
-            throw new InvalidException(errors.getAllErrors().toString());
+        if (errors.hasErrors()) {
+            throw new InvalidException(errors.getAllErrors().stream()
+                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                    .toList().toString()
+            );
+        }
         hotelOptionDTO.setHotelOptionId(hotelOptionId);
         hotelService.updateHotelOption(hotelOptionDTO);
         return ResponseEntity.ok("Hotel option updated");
