@@ -35,7 +35,7 @@ public class GuideServiceImpl implements GuideService {
             throw new DuplicateException("Guide nic duplicated");
         String guideId;
         do {
-            guideId = String.valueOf(UUID.randomUUID());
+            guideId = String.format("G%S", UUID.randomUUID());
         } while (guideDao.findById(guideId).isPresent());
         guideDTO.setGuideId(guideId);
         return convertor.getGuideDTO(guideDao.save(convertor.getGuide(guideDTO)));

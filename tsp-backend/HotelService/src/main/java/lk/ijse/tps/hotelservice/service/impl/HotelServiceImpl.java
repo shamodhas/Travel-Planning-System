@@ -45,7 +45,7 @@ public class HotelServiceImpl implements HotelService {
             throw new DuplicateException("Hotel name and address duplicated");
         String hotelId;
         do {
-            hotelId = String.valueOf(UUID.randomUUID());
+            hotelId = String.format("HT%S", UUID.randomUUID());
         }while (hotelDao.findById(hotelId).isPresent());
         hotelDTO.setHotelId(hotelId);
         return convertor.getHotelDTO(hotelDao.save(convertor.getHotel(hotelDTO)));
@@ -78,7 +78,7 @@ public class HotelServiceImpl implements HotelService {
             throw new NotFoundException("Hotel not found for add hotel option");
         String hotelOptionId;
         do {
-            hotelOptionId= String.valueOf(UUID.randomUUID());
+            hotelOptionId= String.format("HOP%S", UUID.randomUUID());
         }while (hotelOptionDao.findById(hotelOptionId).isPresent());
         hotelOptionDTO.setHotelOptionId(hotelOptionId);
         return convertor.getHotelOptionDTO(hotelOptionDao.save(convertor.getHotelOption(hotelOptionDTO)));

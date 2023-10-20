@@ -25,5 +25,4 @@ public interface BookingService {
     List<BookingDTO> getAllBookingByHotelOptionId(String hotelOptionId);
     List<BookingDTO> getAllBookingByVehicleId(String vehicleId);
     List<BookingDTO> getAllBookingByDate(LocalDate date);
-    List<BookingDTO> getAllBookingByStartDate(LocalDate startDate);
 }

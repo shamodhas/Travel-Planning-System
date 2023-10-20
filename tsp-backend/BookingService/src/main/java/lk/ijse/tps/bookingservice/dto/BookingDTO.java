@@ -31,6 +31,6 @@ public class BookingDTO {
     private LocalDate date;
     private LocalDate startDate;
     private LocalDate endDate;
-    private Status status;// pending, active, end
+    private Status status;
     private BigDecimal downPayment;
 }

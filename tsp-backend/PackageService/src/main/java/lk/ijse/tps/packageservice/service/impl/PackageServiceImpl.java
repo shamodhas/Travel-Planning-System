@@ -36,7 +36,7 @@ public class PackageServiceImpl implements PackageService {
             throw new DuplicateException("Duplicate category and area");
         String packageId;
         do {
-            packageId = String.valueOf(UUID.randomUUID());
+            packageId = String.format("P%S", UUID.randomUUID());
         } while (packageDao.findById(packageId).isPresent());
         packageDTO.setPackageId(packageId);
         return convertor.getPackageDTO(packageDao.save(convertor.getPackage(packageDTO)));

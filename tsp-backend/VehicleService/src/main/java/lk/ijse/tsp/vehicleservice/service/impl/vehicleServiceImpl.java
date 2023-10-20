@@ -36,7 +36,7 @@ public class vehicleServiceImpl implements VehicleService {
             throw new DuplicateException("Vehicle license number duplicated");
         String vehicleId;
         do {
-            vehicleId = String.valueOf(UUID.randomUUID());
+            vehicleId = String.format("V%S", UUID.randomUUID());
         } while (vehicleDao.findById(vehicleId).isPresent());
         vehicleDTO.setVehicleId(vehicleId);
         return convertor.getVehicleDTO(vehicleDao.save(convertor.getVehicle(vehicleDTO)));

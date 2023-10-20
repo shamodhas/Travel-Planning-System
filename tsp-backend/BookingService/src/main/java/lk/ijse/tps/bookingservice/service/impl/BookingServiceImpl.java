@@ -38,7 +38,7 @@ public class BookingServiceImpl implements BookingService {
     public BookingDTO addBooking(BookingDTO bookingDTO) {
         String bookingId;
         do {
-            bookingId = String.valueOf(UUID.randomUUID());
+            bookingId = String.format("B%S", UUID.randomUUID());
         } while (bookingDao.existsById(bookingId));
         // call customer service findById() not null
         // call package service findById() not null
