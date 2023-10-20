@@ -2,8 +2,6 @@ package lk.ijse.adminservice.service;
 
 
 import lk.ijse.adminservice.dto.UserDTO;
-import lk.ijse.tps.guideservice.dto.GuideDTO;
-
 import java.util.List;
 
 /**
