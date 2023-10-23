@@ -18,7 +18,7 @@ public class GatewayConfig {
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route("adminService", predicateSpec -> predicateSpec
-                        .path("/secure/**")
+                        .path("/admin/**")
                         .uri("http://localhost:8083/admin")
                 )
                 .route("bookingService", predicateSpec -> predicateSpec

@@ -1,0 +1,84 @@
+#version: '3'
+#services:
+#  eureka:
+#    image: eureka-service-image:latest
+#    ports:
+#      - "8761:8761"
+#    networks:
+#      - my-network
+#
+#  ADMINSERVICE:
+#    image: admin-service:latest
+#    ports:
+#      - "8083:8083"
+#    networks:
+#      - my-network
+#    depends_on:
+#      - eureka
+#
+#  API-GATEWAY:
+#    image: microservice2-image:latest
+#    ports:
+#      - "8090:8090"
+#    networks:
+#      - my-network
+#    depends_on:
+#      - eureka
+#
+#  BOOKINGSERVICE:
+#    image: microservice2-image:latest
+#    ports:
+#      - "8084:8084"
+#    networks:
+#      - my-network
+#    depends_on:
+#      - eureka
+#
+#  GUIDESERVICE:
+#    image: microservice2-image:latest
+#    ports:
+#      - "8085:8085"
+#    networks:
+#      - my-network
+#    depends_on:
+#      - eureka
+#
+#  HOTELSERVICE:
+#    image: microservice2-image:latest
+#    ports:
+#      - "8086:8086"
+#    networks:
+#      - my-network
+#    depends_on:
+#      - eureka
+#
+#  PACKAGESERVICE:
+#    image: microservice2-image:latest
+#    ports:
+#      - "8087:8087"
+#    networks:
+#      - my-network
+#    depends_on:
+#      - eureka
+#
+#  USERSERVICE:
+#    image: microservice2-image:latest
+#    ports:
+#      - "8088:8088"
+#    networks:
+#      - my-network
+#    depends_on:
+#      - eureka
+#
+#  VEHICLESERVICE:
+#    image: microservice2-image:latest
+#    ports:
+#      - "8089:8089"
+#    networks:
+#      - my-network
+#    depends_on:
+#      - eureka
+#
+#networks:
+#  my-network:
+#    driver: bridge
