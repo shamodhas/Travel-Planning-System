@@ -6,85 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Planning System</title>
 </head>
-
 <body>
-    <input type="file" id="file">
-    <button id="btn" onclick="send()">send</button>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script>
-
-        const send = () => {
-
-            const obj = {
-                packageId: "P001",
-                // category:"",
-                // area:"",
-                price: "",
-                averageNoOfDate: "",
-            }
-            $.ajax({
-                type: "POST",
-                url: "http://localhost:8085/package/api/v1/package",
-                data: JSON.stringify(obj),
-                contentType: "application/json",
-                success: (data) => {
-                    console.log(data)
-                },
-                error: (error) => {
-                    const errorObj = JSON.parse(error.responseText);
-                    console.log(errorObj.message)
-                }
-            });
-
-            // const obj = {
-            //     // packageId: "P001",
-            //     category:"five",
-            //     area:"colxombo",
-            //     price:"dgf",
-            //     averageNoOfDate:1
-            // }
-            // $.ajax({
-            //     type: "POST",
-            //     url: "http://localhost:8085/package/api/v1/package",
-            //     data: JSON.stringify(obj),
-            //     contentType: "application/json",
-            //     success: (data) => {
-            //         console.log(data)
-            //     },
-            //     error: (error) => {
-            //         console.log(error)
-            //     }
-            // });
-        }
-
-        // const vehicle = {
-        //     vehicleId: "vehicleId",
-        //     brand: "brand",
-        //     category: "category",
-        //     fuelType: "fuelType",
-        //     isHybrid: true,
-        //     fuelUsagePerKM: 500.564,
-        //     image: {
-        //         front: "",
-        //         rear: "",
-        //         side: "",
-        //         frontInterior: "",
-        //         rearInterior: "",
-        //     },
-        //     pricePerKM: 500.00,
-        //     capacity: 4,
-        //     type: "type",
-        //     transmission: "transmission",
-        //     driverName: "driverName",
-        //     driverLicense: {
-        //         front: "",
-        //         back: ""
-        //     },
-        //     phone: "phone"
-        // }
-    </script>
-
+    
 </body>
 
 </html>

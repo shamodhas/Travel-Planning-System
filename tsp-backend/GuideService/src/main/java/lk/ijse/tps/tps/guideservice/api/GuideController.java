@@ -28,7 +28,7 @@ public class GuideController {
         return ResponseEntity.ok(guideService.getSelectedGuide(guideId));
     }
 
-    @GetMapping
+    @GetMapping("/public")
     ResponseEntity<?> getAllGuide() {
         return ResponseEntity.ok(guideService.getAllGuide());
     }

@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Created By shamodha_s_rathnamalala
@@ -18,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Entity
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String customerId;
     private String name;
     private String email;
