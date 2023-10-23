@@ -19,18 +19,18 @@ public class GlobeVideExceptionHandler {
 
     @ExceptionHandler(DuplicateException.class)
     public ResponseEntity<?> handleDuplicateException(Exception exception) {
-        return ResponseEntity.badRequest().body("Duplicate case\n "+exception.getMessage());
+        return ResponseEntity.badRequest().body(exception);
     }
     @ExceptionHandler(InUseException.class)
     public ResponseEntity<?> handleInUseException(Exception exception) {
-        return ResponseEntity.badRequest().body("In use case\n "+exception.getMessage());
+        return ResponseEntity.badRequest().body(exception);
     }
     @ExceptionHandler(InvalidException.class)
     public ResponseEntity<?> handleInValidException(Exception exception) {
-        return ResponseEntity.badRequest().body("In valid case\n "+exception.getMessage());
+        return ResponseEntity.badRequest().body(exception);
     }
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<?> handleNotFountException(Exception exception) {
-        return ResponseEntity.badRequest().body("Not found case\n "+exception.getMessage());
+        return ResponseEntity.badRequest().body(exception);
     }
 }
