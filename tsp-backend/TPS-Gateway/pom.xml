@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>lk.ijse</groupId>
-    <artifactId>API-Gateway</artifactId>
+    <artifactId>TPS-Gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>API-Gateway</name>
+    <name>TPS-Gateway</name>
     <description>API-Gateway</description>
     <properties>
         <java.version>17</java.version>
