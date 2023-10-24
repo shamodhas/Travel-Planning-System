@@ -39,3 +39,24 @@ const navigate = (text) => {
     $('#' + text.toLowerCase() + '-section').css("display", "block");
 }
 
+$('#btn-go-customer-reg').click(event=>{
+    event.preventDefault(); 
+    $('#login-form').css('display','none');
+    $('#regester-form').css('display','block');
+})
+$('#btn-go-customer-login').click(event=>{
+    event.preventDefault(); 
+    $('#regester-form').css('display','none');
+    $('#login-form').css('display','block');
+})
+$('#btn-login-close').click(event=>{
+    // location.reload();
+})
+
+// $('#btn-customer-login').click(event=>{
+
+// })
+
+// $('#btn-customer-create').click(event=>{
+    
+// })

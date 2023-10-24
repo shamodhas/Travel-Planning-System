@@ -35,7 +35,10 @@
         <div class="container">
             <div class="screen">
                 <div class="screen__content">
-                    <form style="display: none;" id="login-form" class="login">
+                    <a href="index.html">
+                        <i id="btn-login-close" class="bx bx-x"></i>
+                    </a>
+                    <form id="login-form" class="login">
                         <div class="login__field">
                             <i class="login__icon fas fa-user"></i>
                             <input type="text" class="login__input" placeholder="User name">
@@ -44,33 +47,65 @@
                             <i class="login__icon fas fa-lock"></i>
                             <input type="password" class="login__input" placeholder="Password">
                         </div>
-                        <button class="button login__submit">
+                        <button id="btn-customer-login" class="button login__submit">
                             <span class="button__text">Log In Now</span>
                             <i class="button__icon fas fa-chevron-right"></i>
                         </button>
-                        <button class="button login__submit">
+                        <button id="btn-go-customer-reg" class="button login__submit">
                             <span class="button__text">Regester Now</span>
                             <i class="button__icon fas fa-chevron-right"></i>
                         </button>
                     </form>
-                    <form id="Regester" class="login">
+                    <form id="regester-form" style="display: none;" class="login">
                         <div class="login__field">
-                            <label for="txtName" class="form-label"
-                                style="margin: 0 15px 0 0;">Name</label>
-                            <input type="text" class="login__input" style="padding: 0;margin: 0;"
-                                id="txtName">
+                            <label for="txtCustomerName" class="form-label" style="margin: 0 15px 0 0;">Name</label><br>
+                            <input type="text" class="login__input" style="padding: 0;margin: 0;" id="txtCustomerName">
                         </div>
                         <div class="login__field">
-                            <label for="exampleFormControlInput1" class="form-label"
-                                style="margin: 0 15px 0 0;">Name</label>
-                            <input type="text" class="login__input" style="padding: 0;margin: 0;"
-                                id="exampleFormControlInput1">
+                            <label for="txtCustomerEmail" class="form-label"
+                                style="margin: 0 15px 0 0;">Email</label><br>
+                            <input type="email" class="login__input" style="padding: 0;margin: 0;"
+                                id="txtCustomerEmail">
                         </div>
-                        <button class="button login__submit">
+                        <div class="login__field">
+                            <label for="txtCustomerNic" class="form-label" style="margin: 0 15px 0 0;">Nic</label><br>
+                            <input type="text" class="login__input" style="padding: 0;margin: 0;" id="txtCustomerNic">
+                        </div>
+                        <div class="login__field">
+                            <label for="txtCustomerAddress" class="form-label"
+                                style="margin: 0 15px 0 0;">Address</label><br>
+                            <input type="text" class="login__input" style="padding: 0;margin: 0;"
+                                id="txtCustomerAddress">
+                        </div>
+                        <div class="login__field">
+                            <label for="txtCustomerUserName" class="form-label" style="margin: 0 15px 0 0;">User
+                                Name</label><br>
+                            <input type="text" class="login__input" style="padding: 0;margin: 0;"
+                                id="txtCustomerUserName">
+                        </div>
+                        <div class="login__field">
+                            <label for="txtCustomerPassword" class="form-label"
+                                style="margin: 0 15px 0 0;">Password</label><br>
+                            <input type="text" class="login__input" style="padding: 0;margin: 0;"
+                                id="txtCustomerPassword">
+                        </div>
+                        <div class="login__field">
+                            <label for="txtCustomerRePassword" class="form-label" style="margin: 0 15px 0 0;">Re-enter
+                                Password</label><br>
+                            <input type="text" class="login__input" style="padding: 0;margin: 0;"
+                                id="txtCustomerRePassword">
+                        </div>
+                        <div class="">
+                            <label for="imgCustomerProfile" class="form-label"
+                                style="margin: 0 15px 0 0;">Profile</label>
+                            <input type="file" accept="image/png, image/jpeg" style="padding: 0;margin: 0;"
+                                id="imgCustomerProfile">
+                        </div>
+                        <button id="btn-customer-create" class="button login__submit">
                             <span class="button__text">Ceate Account</span>
                             <i class="button__icon fas fa-chevron-right"></i>
                         </button>
-                        <button class="button login__submit">
+                        <button id="btn-go-customer-login" class="button login__submit">
                             <i class="button__icon fas fa-chevron-left" style="margin-left: 0;"></i>
                             <span class="button__text" style="margin-left: auto;">Log In Now</span>
                         </button>

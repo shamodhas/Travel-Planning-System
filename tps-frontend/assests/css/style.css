@@ -213,13 +213,20 @@ body {
         min-height: 100vh;
     }
 
-    /* C7C5F4 */
     .screen {
         background: linear-gradient(90deg, #5D54A4, #7C78B8);
         position: relative;
         height: 600px;
         width: 360px;
         box-shadow: 0px 0px 24px #5C5696;
+    }
+
+    .screen .bx{
+        color: #000;
+        font-size: 2rem;
+        position: absolute;
+        right: 0;
+        cursor: pointer;
     }
 
     .screen__content {
@@ -280,7 +287,7 @@ body {
         border-radius: 60px;
     }
 
-    .form-label{
+    .form-label {
         font-size: 14px;
         color: var(--first-color);
     }
@@ -350,7 +357,41 @@ body {
         margin-left: auto;
         color: #7875B5;
     }
-    #Regester{
+
+    #regester-form {
         padding-top: 10px;
+        width: 370px;
+
+        .login__input {
+            width: 100%;
+        }
+
+        >div {
+            padding: 0;
+            margin: 0;
+            margin-bottom: 8px;
+        }
+
+        >.button {
+            margin: 0;
+            margin-bottom: 15px;
+            padding: 10px;
+        }
+
+        #imgCustomerProfile {
+            margin-top: 1rem;
+            font-size: 12px;
+            color: var(--white-color);
+        }
+
+        #imgCustomerProfile::file-selector-button {
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--white-color);
+            padding: 0.5em;
+            border: 2px solid var(--first-color);
+            border-radius: 3px;
+            background-color: var(--first-color);
+        }
     }
 }
