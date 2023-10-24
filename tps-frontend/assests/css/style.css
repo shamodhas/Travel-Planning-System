@@ -5,7 +5,7 @@
     --nav-width: 68px;
     --first-color: #4723D9;
     --first-color-light: #AFA5D9;
-    --white-color: #F7F6FB;
+    --white-color: #e2e2e2;
     --body-font: 'Nunito', sans-serif;
     --normal-font-size: 1rem;
     --z-fixed: 100
@@ -38,9 +38,15 @@ a {
     left: 0;
     display: flex;
     padding: 0 1rem;
-    background-color: var(--white-color);
+    background-color: #ffffff;
     z-index: var(--z-fixed);
-    transition: .5s
+    transition: .5s;
+    align-items: center;
+}
+.header .header-text{
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--first-color);
 }
 
 .header .btn-login{
