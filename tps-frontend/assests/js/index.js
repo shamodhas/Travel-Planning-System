@@ -34,7 +34,8 @@ $('.nav .nav_link').click(event => {
     navigate(text);
 })
 
-const navigate = (text)=>{
-    $('.body-container').css('display','none');
-    $('#'+text.toLowerCase()+'-section').css("display", "block");
+const navigate = (text) => {
+    $('.body-container').css('display', 'none');
+    $('#' + text.toLowerCase() + '-section').css("display", "block");
 }
+
