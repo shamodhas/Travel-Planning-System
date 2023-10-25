@@ -58,8 +58,7 @@ body {
     margin: auto 0 auto auto;
     width: 35px;
     height: 35px;
-    display: none;
-    /* flex */
+    display: flex;
     justify-content: center;
     border-radius: 50%;
     overflow: hidden;
@@ -198,13 +197,16 @@ body {
 
 /* end nav bar */
 
-#login-modal {
+#login-section {
     background: linear-gradient(90deg, #C7C5F4, var(--first-color));
     margin: 0;
     box-sizing: border-box;
     font-family: Raleway, sans-serif;
     padding: 0;
     overflow: hidden;
+    position: absolute;
+    width: 100%;
+    left: 0;
 
     .container {
         display: flex;

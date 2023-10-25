@@ -1,6 +1,9 @@
-
-document.addEventListener("DOMContentLoaded", function (event) {
-    navigate('dashboard')
+$(document).ready(function (event) {
+    init();
+    $('#btn-sign-out').hide();
+    $('#header_img').hide();
+    $('#btn-open-login').show();
+    guestRoleViewSet();
     const showNavbar = (toggleId, navId, bodyId, headerId) => {
         const toggle = document.getElementById(toggleId),
             nav = document.getElementById(navId),
@@ -27,7 +30,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
     linkColor.forEach(l => l.addEventListener('click', colorLink))
 });
 
-$('.nav .nav_link').click(event => {
+const init = () => {
+    $('#login-section').hide()
+    navigate('dashboard');
+}
+
+$('.nav .nav_list .nav_link').click(event => {
     event.preventDefault(); // Prevent the link from navigating
     var text = $(event.currentTarget).find('.nav_name').text();
     $('#header-text').text(text);
@@ -35,26 +43,70 @@ $('.nav .nav_link').click(event => {
 })
 
 const navigate = (text) => {
-    $('.body-container').css('display', 'none');
-    $('#' + text.toLowerCase() + '-section').css("display", "block");
+    $('.body-container').hide();
+    $('#' + text.toLowerCase() + '-section').show();
 }
 
-$('#btn-go-customer-reg').click(event=>{
-    event.preventDefault(); 
-    $('#login-form').css('display','none');
-    $('#regester-form').css('display','block');
+$('#btn-go-customer-reg').click(event => {
+    event.preventDefault();
+    $('#login-form').css('display', 'none');
+    $('#regester-form').css('display', 'block');
 })
-$('#btn-go-customer-login').click(event=>{
-    event.preventDefault(); 
-    $('#regester-form').css('display','none');
-    $('#login-form').css('display','block');
+$('#btn-go-login').click(event => {
+    event.preventDefault();
+    $('#regester-form').css('display', 'none');
+    $('#login-form').css('display', 'block');
 })
 
 
-// $('#btn-customer-login').click(event=>{
+$('#btn-sign-out').click(event => {
+    event.preventDefault();
+    $('#header').hide()
+    $('#nav-bar').hide()
+    $('.body-container').hide()
+    $('#login-section').show();
 
-// })
+    
+    $('#btn-sign-out').hide();
+    $('#header_img').hide();
+    $('#btn-open-login').show();
+})
+
+$('#btn-open-login').click(event => {
+    event.preventDefault();
+    $('#header').hide()
+    $('#nav-bar').hide()
+    $('.body-container').hide()
+    $('#login-section').show();
+})
 
 // $('#btn-customer-create').click(event=>{
-    
+
 // })
+
+const guestRoleViewSet = () => {
+    $('#btn-booking').hide();
+    $('#btn-customer').hide();
+    $('#btn-user').hide();
+}
+
+const customerRoleViewSet = () => {
+    // $('#btn-booking').hide();
+    $('#btn-customer').hide();
+    $('#btn-user').hide();
+    $('#btn-booking').show();
+}
+
+const userRoleViewSet = () => {
+    // $('#btn-booking').hide();
+    // $('#btn-customer').hide();
+    $('#btn-user').hide();
+    $('#btn-booking').show();
+    $('#btn-customer').show();
+}
+
+const adminRoleViewSet = () => {
+    $('#btn-booking').show();
+    $('#btn-customer').show();
+    $('#btn-user').show();
+}
