@@ -56,6 +56,14 @@ $('#btn-go-login').click(event => {
     event.preventDefault();
     $('#register-form').css('display', 'none');
     $('#login-form').css('display', 'block');
+    $('#txtCustomerName').val('');
+    $('#txtCustomerEmail').val('');
+    $('#txtCustomerNic').val('');
+    $('#txtCustomerAddress').val('');
+    $('#imgCustomerProfile').val('');
+    $('#txtCustomerUserName').val('');
+    $('#txtCustomerPassword').val('');
+    $('#txtCustomerRePassword').val('');
 })
 
 
@@ -66,7 +74,7 @@ $('#btn-sign-out').click(event => {
     $('.body-container').hide()
     $('#login-section').show();
 
-    
+
     $('#btn-sign-out').hide();
     $('#header_img').hide();
     $('#btn-open-login').show();

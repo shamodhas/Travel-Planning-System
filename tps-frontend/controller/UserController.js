@@ -2,6 +2,7 @@
 export class UserController {
     constructor() {
         $('#btn-login-now').click((event) => this.handleVerifyLogin(event));
+        $('#btn-customer-create').click((event) => this.handleSaveCustomerValidation(event));
 
         this.guestRoleViewSet();
     }
@@ -44,6 +45,47 @@ export class UserController {
 
         //     }
         // })
+    }
+    handleSaveCustomerValidation(event) {
+        event.preventDefault();
+
+        const name = $('#txtCustomerName').val();
+        const email = $('#txtCustomerEmail').val();
+        const nic = $('#txtCustomerNic').val();
+        const address = $('#txtCustomerAddress').val();
+        const profile = $('#imgCustomerProfile')[0].files[0];
+        const userName = $('#txtCustomerUserName').val();
+        const password = $('#txtCustomerPassword').val();
+        const rePassword = $('#txtCustomerRePassword').val();
+
+        // validation
+
+        var formData = new FormData();
+
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('nic', nic);
+        formData.append('address', address);
+        formData.append('profile', profile);
+        formData.append('userName', userName);
+        formData.append('password', password);
+
+        this.handleSaveCustomer(formData)
+    }
+    handleSaveCustomer(customer) {
+        $.ajax({
+            type: "POST",
+            url: "",
+            data: customer,
+            contentType: false,
+            processData: false,
+            success: (data) => {
+                alert('success')
+            },
+            error: (error) => {
+                alert(error)
+            }
+        });
     }
 
     guestRoleViewSet() {
