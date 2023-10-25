@@ -19,7 +19,7 @@
 </head>
 
 <body id="body-pd">
-    <header class="header" id="header">
+    <header id="header" class="header">
         <div id="header-text" class="header-text">Dashboard</div>
         <button id="btn-login" type="button" class="btn btn-login" data-toggle="modal"
             data-target="#login-modal">Login</button>
@@ -47,14 +47,21 @@
                             <i class="login__icon fas fa-lock"></i>
                             <input type="password" class="login__input" placeholder="Password">
                         </div>
+                        <div class="password-section">
+                            <div>
+                                <input id="is-remember-me" type="checkbox">
+                                <span>Remember Me</span>
+                            </div>
+                            <span id="btn-go-forget-password">forget password</span>
+                        </div>
                         <button id="btn-customer-login" class="button login__submit">
-                            <span class="button__text">Log In Now</span>
+                            <span >Log In Now</span>
                             <i class="button__icon fas fa-chevron-right"></i>
                         </button>
-                        <button id="btn-go-customer-reg" class="button login__submit">
-                            <span class="button__text">Regester Now</span>
-                            <i class="button__icon fas fa-chevron-right"></i>
-                        </button>
+                        <div class="btn-go-customer-reg">
+                            <p>Don't Have An Account ? </p>
+                            <span id="btn-go-customer-reg" style="color: #fff;font-weight: 700;">Regester Now</span>
+                        </div>
                     </form>
                     <form id="regester-form" style="display: none;" class="login">
                         <div class="login__field">
@@ -107,7 +114,7 @@
                         </button>
                         <button id="btn-go-customer-login" class="button login__submit">
                             <i class="button__icon fas fa-chevron-left" style="margin-left: 0;"></i>
-                            <span class="button__text" style="margin-left: auto;">Log In Now</span>
+                            <span class="button__text" style="margin-left: auto;">BACK to Login</span>
                         </button>
                     </form>
                 </div>

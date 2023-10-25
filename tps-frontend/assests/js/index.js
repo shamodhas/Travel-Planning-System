@@ -49,9 +49,7 @@ $('#btn-go-customer-login').click(event=>{
     $('#regester-form').css('display','none');
     $('#login-form').css('display','block');
 })
-$('#btn-login-close').click(event=>{
-    // location.reload();
-})
+
 
 // $('#btn-customer-login').click(event=>{
 
