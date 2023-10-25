@@ -50,11 +50,11 @@ const navigate = (text) => {
 $('#btn-go-customer-reg').click(event => {
     event.preventDefault();
     $('#login-form').css('display', 'none');
-    $('#regester-form').css('display', 'block');
+    $('#register-form').css('display', 'block');
 })
 $('#btn-go-login').click(event => {
     event.preventDefault();
-    $('#regester-form').css('display', 'none');
+    $('#register-form').css('display', 'none');
     $('#login-form').css('display', 'block');
 })
 
