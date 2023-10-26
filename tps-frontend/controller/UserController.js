@@ -39,6 +39,8 @@ export class UserController {
         $('#login-section').hide();
         $('#btn-open-login').hide();
         $('#dashboard-section').show();
+
+        // $('#header_img').prop('src',user.profile);
         $('#header_img').show();
         //     },
         //     error: (error) => {
@@ -53,24 +55,40 @@ export class UserController {
         const email = $('#txtCustomerEmail').val();
         const nic = $('#txtCustomerNic').val();
         const address = $('#txtCustomerAddress').val();
-        const profile = $('#imgCustomerProfile')[0].files[0];
+        const profileImg = document.getElementById('cropped-image').src;
         const userName = $('#txtCustomerUserName').val();
         const password = $('#txtCustomerPassword').val();
         const rePassword = $('#txtCustomerRePassword').val();
 
-        // validation
+        try {
+            var arr = profileImg.src.split(',');
+            var mime = arr[0].match(/:(.*?);/)[1];
+            var bstr = atob(arr[1]);
+            var n = bstr.length;
+            var u8arr = new Uint8Array(n);
 
-        var formData = new FormData();
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
 
-        formData.append('name', name);
-        formData.append('email', email);
-        formData.append('nic', nic);
-        formData.append('address', address);
-        formData.append('profile', profile);
-        formData.append('userName', userName);
-        formData.append('password', password);
+            const profile = new File([u8arr], 'image.jpg', { type: mime });
+            // validation
 
-        this.handleSaveCustomer(formData)
+            var formData = new FormData();
+
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('nic', nic);
+            formData.append('address', address);
+            formData.append('profile', profile);
+            formData.append('userName', userName);
+            formData.append('password', password);
+
+            this.handleSaveCustomer(formData);
+        } catch (e) {
+            alert('please select profile picture');
+            return;
+        }
     }
     handleSaveCustomer(customer) {
         $.ajax({

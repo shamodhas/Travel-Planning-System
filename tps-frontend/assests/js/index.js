@@ -3,7 +3,10 @@ $(document).ready(function (event) {
     $('#btn-sign-out').hide();
     $('#header_img').hide();
     $('#btn-open-login').show();
-    guestRoleViewSet();
+    $('#btn-booking').hide();
+    $('#btn-customer').hide();
+    $('#btn-user').hide();
+
     const showNavbar = (toggleId, navId, bodyId, headerId) => {
         const toggle = document.getElementById(toggleId),
             nav = document.getElementById(navId),
@@ -32,6 +35,7 @@ $(document).ready(function (event) {
 
 const init = () => {
     $('#login-section').hide()
+    // $('#customerImageChooser').hide()
     navigate('dashboard');
 }
 
@@ -51,11 +55,34 @@ $('#btn-go-customer-reg').click(event => {
     event.preventDefault();
     $('#login-form').css('display', 'none');
     $('#register-form').css('display', 'block');
+    $('#customerImageChooser').hide();
 })
+
+$('#goCustomerImageChooser').click(event => {
+    $('#customerImageChooser').show();
+})
+$('#cropped-image-done').click(event => {
+    if ($('#cropped-image').attr('src')) {
+        $('#customerImageChooser').hide();
+    } else {
+        alert('please select and crop image')
+    }
+})
+$('#cropped-image-close').click(event => {
+    if (cropper) {
+        cropper.destroy();
+    }
+    $('#customer-img-file-input').val('');
+    $('#customer-img-for-crop').attr('src', "");
+    $('#cropped-image').attr('src', "");
+    $('#customerImageChooser').hide();
+})
+
 $('#btn-go-login').click(event => {
     event.preventDefault();
     $('#register-form').css('display', 'none');
     $('#login-form').css('display', 'block');
+    $('#customerImageChooser').hide();
     $('#txtCustomerName').val('');
     $('#txtCustomerEmail').val('');
     $('#txtCustomerNic').val('');
@@ -72,49 +99,70 @@ $('#btn-sign-out').click(event => {
     $('#header').hide()
     $('#nav-bar').hide()
     $('.body-container').hide()
-    $('#login-section').show();
-
-
+    $('#customerImageChooser').hide();
     $('#btn-sign-out').hide();
     $('#header_img').hide();
+    $('#login-section').show();
     $('#btn-open-login').show();
 })
 
 $('#btn-open-login').click(event => {
     event.preventDefault();
+    $('#customerImageChooser').hide();
     $('#header').hide()
     $('#nav-bar').hide()
     $('.body-container').hide()
     $('#login-section').show();
 })
 
-// $('#btn-customer-create').click(event=>{
 
-// })
 
-const guestRoleViewSet = () => {
-    $('#btn-booking').hide();
-    $('#btn-customer').hide();
-    $('#btn-user').hide();
-}
+const image = document.getElementById('customer-img-for-crop');
+const croppedImage = document.getElementById('cropped-image');
+const croppedImageContainer = document.getElementById('cropped-image-container');
+let cropper;
+$('#customer-img-file-input').change(event => {
+    event.preventDefault();
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            image.src = e.target.result;
 
-const customerRoleViewSet = () => {
-    // $('#btn-booking').hide();
-    $('#btn-customer').hide();
-    $('#btn-user').hide();
-    $('#btn-booking').show();
-}
+            if (cropper) {
+                // Destroy the previous cropper instance
+                cropper.destroy();
+            }
 
-const userRoleViewSet = () => {
-    // $('#btn-booking').hide();
-    // $('#btn-customer').hide();
-    $('#btn-user').hide();
-    $('#btn-booking').show();
-    $('#btn-customer').show();
-}
+            // Initialize the Cropper
+            cropper = new Cropper(image, {
+                aspectRatio: 1,
+                viewMode: 1,
+            });
+        };
+        reader.readAsDataURL(selectedFile);
+    }
+})
+$('#crop-button').click(event => {
+    if (cropper) {
+        // Get the cropped data
+        const croppedData = cropper.getData();
 
-const adminRoleViewSet = () => {
-    $('#btn-booking').show();
-    $('#btn-customer').show();
-    $('#btn-user').show();
-}
+        // Create a canvas to draw the cropped image
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+
+        canvas.width = croppedData.width;
+        canvas.height = croppedData.height;
+
+        context.drawImage(image, croppedData.x, croppedData.y, croppedData.width, croppedData.height, 0, 0, croppedData.width, croppedData.height);
+
+        // Convert the canvas to a data URL
+        const croppedDataURL = canvas.toDataURL('image/jpeg');
+
+        // Display the cropped image
+        croppedImage.src = croppedDataURL;
+    } else {
+        alert('Please select an image and crop it before displaying the result.');
+    }
+})

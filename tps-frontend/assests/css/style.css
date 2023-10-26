@@ -15,7 +15,13 @@
 *,
 ::before,
 ::after {
-    box-sizing: border-box
+    box-sizing: border-box;
+}
+
+.btn-first {
+    color: var(--white-color) !important;
+    background-color: var(--first-color) !important;
+    font-weight: 700 !important;
 }
 
 body {
@@ -203,10 +209,10 @@ body {
     box-sizing: border-box;
     font-family: Raleway, sans-serif;
     padding: 0;
-    overflow: hidden;
     position: absolute;
     width: 100%;
     left: 0;
+    overflow-y: hidden;
 }
 
 #login-section .container {
@@ -371,6 +377,71 @@ body {
     display: flex;
 }
 
+#customerImageChooser,
+#customerImageChooser .row {
+    background-color: #ffffffc4;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+#customerImageChooser .card {
+    width: 40vw !important;
+}
+
+#customer-img-for-crop {
+    width: 20vw;
+}
+
+#customer-img-file-input {
+    width: 40vw;
+    margin-top: 1rem;
+    font-size: 12px;
+    color: var(--white-color);
+}
+
+#customer-img-file-input::file-selector-button {
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--white-color);
+    padding: 0.5em;
+    border: 2px solid var(--first-color);
+    border-radius: 3px;
+    background-color: var(--first-color);
+}
+
+#cropped-img-view {
+    width: 40vw;
+    height: 40vw;
+    padding: 3% 5%;
+}
+
+#cropped-img-view img {
+    width: 100%;
+    margin-bottom: 2%;
+}
+
+#cropped-img-view button {
+    width: 40%;
+    height: 13%;
+}
+
+@media only screen and (max-width : 575.5px) {
+    #customer-img-file-input {
+        width: 80vw;
+    }
+    #customerImageChooser .card{
+        width: 80vw !important;
+    }
+}
+
+
+
 #login-section .password-section {
     display: flex;
     justify-content: space-between;
@@ -408,28 +479,33 @@ body {
     width: 100%;
 }
 
-#login-section #register-form > div {
+#login-section #register-form>div {
     padding: 0;
     margin: 0 0 8px 0;
 }
 
-#login-section #register-form > .button {
+#login-section #register-form>.button {
     margin: 0 0 15px 0;
     padding: 10px;
 }
 
-#login-section #register-form #imgCustomerProfile {
-    margin-top: 1rem;
-    font-size: 12px;
+#login-section #register-form .login__field .btn {
     color: var(--white-color);
-}
-
-#login-section #register-form #imgCustomerProfile::file-selector-button {
+    background-color: var(--first-color);
     font-size: 12px;
     font-weight: bold;
-    color: var(--white-color);
-    padding: 0.5em;
-    border: 2px solid var(--first-color);
-    border-radius: 3px;
-    background-color: var(--first-color);
+}
+
+#login-section #register-form #customerImageChooser {
+    position: absolute;
+
+}
+
+
+
+
+.body-container {
+    margin-top: 64px;
+    width: 100%;
+    overflow-x: hidden;
 }
