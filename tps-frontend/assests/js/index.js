@@ -35,7 +35,7 @@ $(document).ready(function (event) {
 
 const init = () => {
     $('#login-section').hide()
-    // $('#customerImageChooser').hide()
+    $('#customerImageChooser').hide()
     navigate('dashboard');
 }
 
