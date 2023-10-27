@@ -691,3 +691,37 @@ body {
 .package__form__field{
   &:required,&:invalid { box-shadow:none; }
 }
+
+.hotel-card{
+    width: 100%;
+    margin: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(0,0,0,.125);
+}
+.hotel-card i{
+    color: var(--first-color);
+}
+.hotel-img{
+    width: 80%;
+}
+.hotel-name{
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+}
+.hotel-address{
+    color: #292929;
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+}
+.hotel-option{
+    color: #ada6e0;
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+}

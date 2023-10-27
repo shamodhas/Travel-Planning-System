@@ -30,11 +30,10 @@ public class PackageController {
 
     @GetMapping(value = "/public")
     ResponseEntity<?> getAll() {
-        System.out.println("awa");
         return ResponseEntity.ok(packageService.getAllPackage());
     }
 
-    @PostMapping(value = "/public",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> savePackage(@Valid @RequestBody PackageDTO packageDTO, Errors errors) {
         System.out.println(packageDTO);
         if (errors.hasErrors()) {
