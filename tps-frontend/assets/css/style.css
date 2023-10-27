@@ -586,7 +586,7 @@ body {
 }
 
 .package-card:hover:after {
-    content: "Book Now";
+    content: attr(package-card-hover-text);
 }
 
 .package-card .package-category {

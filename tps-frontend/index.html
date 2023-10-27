@@ -25,6 +25,7 @@
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/330px-User_icon_2.svg.png"
                 alt="profile image">
         </div>
+        <input type="hidden" id="userRole" value="">
     </header>
     <div id="login-section">
         <div class="container">
@@ -246,9 +247,11 @@
                 </div>
                 <div class="text-center" style="margin-top: 20px;">
                     <button id="btnSavePackage" class="btn btn-first" style="background-color: #2ecc71 !important;width: 20%;">Save</button>
-                    <button class="btn btn-first" style="background-color: #f39c12 !important;width: 20%;">Update</button>
-                    <button class="btn btn-first" style="background-color: #e74c3c !important;width: 20%;">Delete</button>
+                    <button id="btnUpdatePackage" class="btn btn-first" style="background-color: #f39c12 !important;width: 20%;">Update</button>
+                    <button id="btnDeletePackage" class="btn btn-first" style="background-color: #e74c3c !important;width: 20%;">Delete</button>
+                    <button id="btnResetPackage" class="btn btn-first" style="background-color: #c0392b !important;width: 20%;">Reset</button>
                 </div>
+                <input type="hidden" id="txtPackageId" value="">
             </form>
         </div>
         <div id="package-body">

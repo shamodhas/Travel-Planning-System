@@ -10,7 +10,7 @@ export class UserController {
     handleVerifyLogin(event) {
         event.preventDefault();
         // test for userName use as role no need pass to log
-        // use customerRoleViewSet,admin,user as username
+        // use customer,admin,user as username
         const userName = $('#txtLoginUsername').val().toUpperCase();
         const password = $('#txtLoginPassword').val();
 

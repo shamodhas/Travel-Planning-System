@@ -24,7 +24,7 @@ $(document).ready(function (event) {
         }
     }
     linkColor.forEach(l => l.addEventListener('click', colorLink))
-    document.getElementById("btn-package").click();
+    // document.getElementById("btn-package").click();
 
 });
 

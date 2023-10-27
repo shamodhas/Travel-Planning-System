@@ -26,6 +26,7 @@ export class DashBoardController {
                 response?.sort((a, b) => a.price - b.price);
                 response = response?.slice(0, 12);
                 $('#dash-package-body .row').append(response?.map(this.renderPackageCard).join(''));
+                $('.package-card').attr("package-card-hover-text","Book now");
             }
             ,
             error: (error) => {
