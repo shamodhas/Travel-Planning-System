@@ -1,12 +1,5 @@
 $(document).ready(function (event) {
     init();
-    $('#btn-sign-out').hide();
-    $('#header_img').hide();
-    $('#btn-open-login').show();
-    $('#btn-booking').hide();
-    $('#btn-customer').hide();
-    $('#btn-user').hide();
-
     const showNavbar = (toggleId, navId, bodyId, headerId) => {
         const toggle = document.getElementById(toggleId),
             nav = document.getElementById(navId),
@@ -34,9 +27,16 @@ $(document).ready(function (event) {
 });
 
 const init = () => {
-    $('#login-section').hide()
-    $('#customerImageChooser').hide()
+    $('#login-section').hide();
+    $('#customerImageChooser').hide();
+    $('#btn-sign-out').hide();
+    $('#header_img').hide();
+    $('#btn-booking').hide();
+    $('#btn-customer').hide();
+    $('#btn-user').hide();
     navigate('dashboard');
+    $('#btn-open-login').show();
+    // $('#btn-dashboard').click();
 }
 
 $('.nav .nav_list .nav_link').click(event => {

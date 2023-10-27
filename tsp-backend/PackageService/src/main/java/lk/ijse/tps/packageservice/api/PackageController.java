@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/package")
-@CrossOrigin("*")
 @RequiredArgsConstructor
 public class PackageController {
     private final PackageService packageService;
@@ -29,14 +28,17 @@ public class PackageController {
         return ResponseEntity.ok(packageService.getSelectedPackage(packageId));
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/public")
     ResponseEntity<?> getAll() {
+        System.out.println("awa");
         return ResponseEntity.ok(packageService.getAllPackage());
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/public",consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> savePackage(@Valid @RequestBody PackageDTO packageDTO, Errors errors) {
+        System.out.println(packageDTO);
         if (errors.hasErrors()) {
+            System.out.println(errors);
             throw new InvalidException(errors.getAllErrors().stream()
                     .map(DefaultMessageSourceResolvable::getDefaultMessage)
                     .toList().toString()

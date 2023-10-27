@@ -55,7 +55,7 @@ export class UserController {
         const email = $('#txtCustomerEmail').val();
         const nic = $('#txtCustomerNic').val();
         const address = $('#txtCustomerAddress').val();
-        const profileImg = document.getElementById('cropped-image').src;
+        const profileImg = document.getElementById('cropped-image');
         const userName = $('#txtCustomerUserName').val();
         const password = $('#txtCustomerPassword').val();
         const rePassword = $('#txtCustomerRePassword').val();
@@ -86,6 +86,7 @@ export class UserController {
 
             this.handleSaveCustomer(formData);
         } catch (e) {
+            console.log(e)
             alert('please select profile picture');
             return;
         }

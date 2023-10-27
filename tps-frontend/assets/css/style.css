@@ -509,3 +509,40 @@ body {
     width: 100%;
     overflow-x: hidden;
 }
+#dash-package-body .row{
+    justify-content: space-around;
+}
+.main-text{
+    text-align: center;
+    margin-top: 30px;
+    font-size: 25px;
+    font-weight: 700;
+    text-shadow: 0px 1px 1px black;
+}
+.main-text span{
+    color: var(--first-color);
+}
+.package-card{
+    text-align: center;
+    background-color: var(--first-color);
+}
+.package-card .package-category{
+    display: block;
+    font-size: 25px;
+    font-weight: 700;
+}
+.package-card .package-area{
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+}
+.package-card .package-date{
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+}
+.package-card .package-price{
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+}
