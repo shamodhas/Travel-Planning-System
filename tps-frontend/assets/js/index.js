@@ -36,7 +36,6 @@ const init = () => {
     $('#btn-user').hide();
     navigate('dashboard');
     $('#btn-open-login').show();
-    // $('#btn-dashboard').click();
 }
 
 $('.nav .nav_list .nav_link').click(event => {

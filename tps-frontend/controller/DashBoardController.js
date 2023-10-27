@@ -4,6 +4,10 @@ export class DashBoardController {
             event.preventDefault();
             this.handleLoadDashBoard();
         });
+        $('#see-more-prackage').click((event) => {
+            event.preventDefault();
+            $('#btn-package').click()
+        });
 
         this.handleLoadDashBoard();
     }
@@ -14,31 +18,18 @@ export class DashBoardController {
     }
 
     loadAllPackage() {
-        // $('#dash-package-body').
+        $('#dash-package-body .row').empty();
         $.ajax({
             type: "GET",
             url: "http://localhost:8090/package/api/v1/package/public",
             success: (response) => {
-                console.log(response)
-                $('#dash-package-body .row').append(
-                    '<div class="row">' +
-                    response?.map(
-                        (data) => {
-                            '<div class="package-card col-md-3">' +
-                                '<div class="package-category">Regular</div>' +
-                                '<div class="package-area">anuradhapura</div>' +
-                                '<div class="package-date">1 day</div>' +
-                                '<div class="package-price">500.00</div>' +
-                                '</div>'
-                        }
-                    )
-                    + '</div>'
-                );
-
+                response?.sort((a, b) => a.price - b.price);
+                response = response?.slice(0, 12);
+                $('#dash-package-body .row').append(response?.map(this.renderPackageCard).join(''));
             }
             ,
-
             error: (error) => {
+                $('#see-more-prackage').hide();
                 console.log(error)
             }
         })
@@ -63,6 +54,18 @@ export class DashBoardController {
         // });
 
     }
+    renderPackageCard(data, index) {
+        $('#see-more-prackage').show();
+        return `
+            <div class="package-card col-lg-3 col-md-5 col-sm-10">
+                <div class="package-category">${data.category}</div>
+                <div class="package-area">${data.area}</div>
+                <div class="package-date">No of day : ${data.averageNoOfDate}</div>
+                <div class="package-price">Price : LKR ${data.price}</div>
+            </div>
+        `;
+    }
+
     loadAllHotel() {
 
     }
