@@ -33,5 +33,5 @@ public class PackageDTO {
 
     @NotNull(message = "InValid average no of date")
     @Min(value = 0, message = "InValid average no of date")
-    private int averageNoOfDate;
+    private int averageNoOfDays;
 }

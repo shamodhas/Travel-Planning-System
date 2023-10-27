@@ -226,11 +226,34 @@
         </div>
     </div>
     <div id="package-section" class="body-container">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, iste nisi! Distinctio non, vero ullam
-            vitae
-            illum architecto voluptate impedit dolor quo. Tempora quod eveniet quisquam, maiores deleniti laudantium
-            temporibus?</p>
-        <h1>pckage</h1>
+        <div id="package-manage">
+            <form id="package-form">
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Category" id='txtPackageCategory' required />
+                    <label for="txtPackageCategory" class="package__form__label">Category</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Area" id='txtPackageArea' required />
+                    <label for="txtPackageArea" class="package__form__label">Area</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="number" class="package__form__field" placeholder="Price" id='txtPackagePrice' required />
+                    <label for="txtPackagePrice" class="package__form__label">Price</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="number" class="package__form__field" placeholder="No of Days" id='txtPackageDays' required />
+                    <label for="txtPackageDays" class="package__form__label">No of Days</label>
+                </div>
+                <div class="text-center" style="margin-top: 20px;">
+                    <button id="btnSavePackage" class="btn btn-first" style="background-color: #2ecc71 !important;width: 20%;">Save</button>
+                    <button class="btn btn-first" style="background-color: #f39c12 !important;width: 20%;">Update</button>
+                    <button class="btn btn-first" style="background-color: #e74c3c !important;width: 20%;">Delete</button>
+                </div>
+            </form>
+        </div>
+        <div id="package-body">
+            <div class="row"></div>
+        </div>
     </div>
     <div id="hotel-section" class="body-container">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, iste nisi! Distinctio non, vero ullam
@@ -290,6 +313,7 @@
     <script src="assets/js/index.js"></script>
     <script type="module" src="controller/UserController.js"></script>
     <script type="module" src="controller/DashBoardController.js"></script>
+    <script type="module" src="controller/PackageController.js"></script>
     <script>
 
     </script>

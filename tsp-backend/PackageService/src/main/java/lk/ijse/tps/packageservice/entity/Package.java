@@ -24,5 +24,5 @@ public class Package {
     private String category;
     private String area;
     private BigDecimal price;
-    private int averageNoOfDate;
+    private int averageNoOfDays;
 }

@@ -60,8 +60,9 @@ export class DashBoardController {
             <div class="package-card col-lg-3 col-md-5 col-sm-10">
                 <div class="package-category">${data.category}</div>
                 <div class="package-area">${data.area}</div>
-                <div class="package-date">No of day : ${data.averageNoOfDate}</div>
+                <div class="package-date">No of day : ${data.averageNoOfDays}</div>
                 <div class="package-price">Price : LKR ${data.price}</div>
+                <input type="hidden" class="package-id" value="${data.id}">
             </div>
         `;
     }

@@ -512,6 +512,7 @@ body {
     overflow-x: hidden;
 }
 
+#package-body .row,
 #dash-package-body .row {
     justify-content: space-around;
 }
@@ -546,9 +547,9 @@ body {
     cursor: pointer;
     width: 80% !important;
     margin: 25px 15px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
-/* 23203D */
-/* BBB5E5 */
+
 .package-card::before,
 .package-card::after {
     position: absolute;
@@ -615,4 +616,78 @@ body {
     display: block;
     font-size: 18px;
     font-weight: 600;
+}
+#package-manage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0;
+}
+#package-form{
+    padding: 25px;
+    margin: 30px 0;
+    width: 50%;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #FFF;
+}
+
+.package__form__group {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.package__form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 14px;
+  color: #000;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown ~ .package__form__label {
+    font-size: 13px;
+    cursor: text;
+    top: 20px;
+  }
+}
+
+.package__form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 11px;
+  color: #4d4d4d;
+}
+
+.package__form__field:focus {
+  ~ .package__form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 13px;
+    color: var(--first-color);
+    font-weight:700;    
+  }
+  padding-bottom: 6px;  
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, var(--first-color),#38ef7d);
+  border-image-slice: 1;
+}
+/* reset input */
+.package__form__field{
+  &:required,&:invalid { box-shadow:none; }
 }
