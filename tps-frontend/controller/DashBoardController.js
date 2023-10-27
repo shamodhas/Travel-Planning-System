@@ -6,7 +6,7 @@ export class DashBoardController {
         });
         $('#see-more-prackage').click((event) => {
             event.preventDefault();
-            $('#btn-package').click()
+            document.getElementById("btn-package").click();
         });
 
         this.handleLoadDashBoard();
