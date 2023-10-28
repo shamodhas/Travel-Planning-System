@@ -266,14 +266,45 @@
         </div>
     </div>
     <div id="hotel-section" class="body-container">
+        <div id="hotel-manage">
+            <div class="row">
+                <div class="col-lg-6">
+                    <form id="hotel-form">
+                        <div class="package__form__group field">
+                            <input type="text" class="package__form__field" placeholder="Category" id='txtPackageCategory'
+                                required />
+                            <label for="txtPackageCategory" class="package__form__label">Category</label>
+                        </div>
+                        <div class="text-center" style="margin-top: 20px;">
+                            <button id="btnSavePackage" class="btn btn-first"
+                                style="background-color: #2ecc71 !important;width: 20%;">Save</button>
+                            <button id="btnUpdatePackage" class="btn btn-first"
+                                style="background-color: #f39c12 !important;width: 20%;">Update</button>
+                            <button id="btnDeletePackage" class="btn btn-first"
+                                style="background-color: #e74c3c !important;width: 20%;">Delete</button>
+                            <button id="btnResetPackage" class="btn btn-first"
+                                style="background-color: #c0392b !important;width: 20%;">Reset</button>
+                        </div>
+                        <input type="hidden" id="txtPackageId" value="">
+                    </form>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col">
+                            hotel Id
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="hotel-body">
             <div class="row">
-                <div class="col-lg-3 col-md-5 col-sm-10">
+                <div class="col-lg-4 col-md-5 col-sm-6">
                     <div class="hotel-card">
                         <div class="inner">
-                            <span class="pricing">
+                            <span class="hotel-option-price">
                                 <span>
-                                   <small>LKR : </small> 2000.00
+                                    <small>LKR : </small> 2000.00
                                 </span>
                             </span>
                             <div class="hotel-category">
@@ -285,7 +316,6 @@
                                 <i class="fa-soil fas fa-star checked"></i>
                             </div>
                             <p class="hotel-option-type-capacity">Full day Double Room</p>
-                            <p>A/C Luxury</p>
                             <p class="hotel-name">Hotel Name</p>
                             <p class="hotel-address">Address</p>
                             <p class="info">
@@ -302,7 +332,7 @@
                                             </path>
                                         </svg>
                                     </span>
-                                    <span><strong>20</strong> team members</span>
+                                    <span><strong>2</strong> members</span>
                                 </li>
                                 <li>
                                     <span class="icon">
@@ -314,7 +344,7 @@
                                             </path>
                                         </svg>
                                     </span>
-                                    <span>Plan <strong>team meetings</strong></span>
+                                    <span><strong>A/C</strong> Luxury Room</span>
                                 </li>
                                 <li>
                                     <span class="icon">
@@ -326,7 +356,11 @@
                                             </path>
                                         </svg>
                                     </span>
-                                    <span>File sharing</span>
+                                    <span>
+                                        <a href="" class="hotel-more-about">
+                                            view more about hotel
+                                        </a>
+                                    </span>
                                 </li>
                             </ul>
                             <div class="action">
@@ -335,57 +369,6 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-5 col-sm-10">
-                    <div class="hotel-card">
-                        <input class="hotel-id" type="hidden" value="">
-                        <img class="hotel-img" src="assets/img27.jpeg">
-                        <div class="hotel-name">Name</div>
-                        <div class="hotel-address">Address</div>
-                        <div class="hotel-category">
-                            <!-- Category -->
-                            <i class="fa-soil fas fa-star checked"></i>
-                            <i class="fa-soil fas fa-star checked"></i>
-                            <i class="fa-soil fas fa-star checked"></i>
-                            <i class="fa-soil fas fa-star checked"></i>
-                            <i class="fa-soil fas fa-star checked"></i>
-                        </div>
-                        <!-- <div>Location</div> -->
-                        <!-- <div>Email</div> -->
-                        <!-- <div>Phone</div> -->
-                        <!-- <div>isPetAllowed</div> -->
-                        <!-- <div>cancelCriteria</div> -->
-                        <div class="hotel-option" style="display: flex;">
-                            <input class="hotelOptionId" type="hidden" value="">
-                            <div>option 1</div>
-                            <div>type</div>
-                            <div>capacity</div>
-                            <div>Price</div>
-                        </div>
-                        <div class="hotel-option">hotelOptions 2</div>
-                        <div class="hotel-option">hotelOptions 3</div>
-                        <div class="hotel-option">hotelOptions 4</div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-5 col-sm-10">
-                    <div class="hotel-card">
-                        <img class="hotel-img" src="assets/img27.jpeg">
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-5 col-sm-10">
-                    <div class="hotel-card">
-                        <img class="hotel-img" src="assets/img27.jpeg">
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-5 col-sm-10">
-                    <div class="hotel-card">
-                        <img class="hotel-img" src="assets/img27.jpeg">
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-5 col-sm-10">
-                    <div class="hotel-card">
-                        <img class="hotel-img" src="assets/img27.jpeg">
                     </div>
                 </div>
             </div>
