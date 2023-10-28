@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/hotelOption")
-@CrossOrigin("*")
+//@CrossOrigin("*")
 @RequiredArgsConstructor
 public class HotelOptionController {
     private final HotelService hotelService;
@@ -28,7 +28,7 @@ public class HotelOptionController {
         return ResponseEntity.ok(hotelService.getSelectedHotelOption(hotelOptionId));
     }
 
-    @GetMapping
+    @GetMapping("/public")
     ResponseEntity<?> getAllHotelOption() {
         return ResponseEntity.ok(hotelService.getAllHotelOption());
     }

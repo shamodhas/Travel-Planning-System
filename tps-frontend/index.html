@@ -250,13 +250,13 @@
                 </div>
                 <div class="text-center" style="margin-top: 20px;">
                     <button id="btnSavePackage" class="btn btn-first"
-                        style="background-color: #2ecc71 !important;width: 20%;">Save</button>
+                        style="background-color: #2ecc71 !important;">Save</button>
                     <button id="btnUpdatePackage" class="btn btn-first"
-                        style="background-color: #f39c12 !important;width: 20%;">Update</button>
+                        style="background-color: #f39c12 !important;">Update</button>
                     <button id="btnDeletePackage" class="btn btn-first"
-                        style="background-color: #e74c3c !important;width: 20%;">Delete</button>
+                        style="background-color: #e74c3c !important;">Delete</button>
                     <button id="btnResetPackage" class="btn btn-first"
-                        style="background-color: #c0392b !important;width: 20%;">Reset</button>
+                        style="background-color: #c0392b !important;">Reset</button>
                 </div>
                 <input type="hidden" id="txtPackageId" value="">
             </form>
@@ -270,30 +270,136 @@
             <div class="row">
                 <div class="col-lg-6">
                     <form id="hotel-form">
+                        <label class="form-header" style="color: #7d7d7d;">Manage Hotel</label>
                         <div class="package__form__group field">
-                            <input type="text" class="package__form__field" placeholder="Category" id='txtPackageCategory'
+                            <input type="text" class="package__form__field" placeholder="Name" id='txtHotelName'
                                 required />
-                            <label for="txtPackageCategory" class="package__form__label">Category</label>
+                            <label for="txtHotelName" class="package__form__label">Name</label>
                         </div>
-                        <div class="text-center" style="margin-top: 20px;">
-                            <button id="btnSavePackage" class="btn btn-first"
-                                style="background-color: #2ecc71 !important;width: 20%;">Save</button>
-                            <button id="btnUpdatePackage" class="btn btn-first"
-                                style="background-color: #f39c12 !important;width: 20%;">Update</button>
-                            <button id="btnDeletePackage" class="btn btn-first"
-                                style="background-color: #e74c3c !important;width: 20%;">Delete</button>
-                            <button id="btnResetPackage" class="btn btn-first"
-                                style="background-color: #c0392b !important;width: 20%;">Reset</button>
+                        <div class="package__form__group field">
+                            <select style="font-size: 12px;" class="form-select" id='txtHotelCategory'>
+                                <option selected>Select Category</option>
+                                <option value="2">Two Star</option>
+                                <option value="3">Tree Star</option>
+                                <option value="4">Four Star</option>
+                                <option value="5">Five Star</option>
+                            </select>
                         </div>
-                        <input type="hidden" id="txtPackageId" value="">
+                        <div class="package__form__group field">
+                            <input type="text" class="package__form__field" placeholder="Address" id='txtHotelAddress'
+                                required />
+                            <label for="txtHotelAddress" class="package__form__label">Address</label>
+                        </div>
+                        <div class="package__form__group field">
+                            <input type="text" class="package__form__field" placeholder="Location" id='txtHotelLocation'
+                                required />
+                            <label for="txtHotelLocation" class="package__form__label">Location</label>
+                        </div>
+                        <div class="package__form__group field">
+                            <input type="email" class="package__form__field" placeholder="Email" id='txtHotelEmail'
+                                required />
+                            <label for="txtHotelEmail" class="package__form__label">Email</label>
+                        </div>
+                        <div class="package__form__group field">
+                            <input type="tel" class="package__form__field" placeholder="Phone" id='txtHotelPhone'
+                                required />
+                            <label for="txtHotelPhone" class="package__form__label">Phone</label>
+                        </div>
+                        <div class="package__form__group field">
+                            <input type="checkbox" class="package__form__field" placeholder="Pet Allowed"
+                                id='txtHotelIsPetAllowed' required />
+                            <label for="txtHotelIsPetAllowed" class="package__form__label">Pet Allowed</label>
+                        </div>
+                        <div class="package__form__group field">
+                            <input type="text" class="package__form__field" placeholder="Cancel Criteria"
+                                id='txtHotelCancelCriteria' required />
+                            <label for="txtHotelCancelCriteria" class="package__form__label">Cancel Criteria</label>
+                        </div>
+                        <div class="hotel-action text-center" style="margin-top: 20px;">
+                            <button id="btnSaveHotel" class="btn btn-first"
+                                style="background-color: #2ecc71 !important;">Save</button>
+                            <button id="btnUpdateHotel" class="btn btn-first"
+                                style="background-color: #f39c12 !important;">Update</button>
+                            <button id="btnDeleteHotel" class="btn btn-first"
+                                style="background-color: #e74c3c !important;">Delete</button>
+                            <button id="btnResetHotel" class="btn btn-first"
+                                style="background-color: #c0392b !important;">Reset</button>
+                        </div>
+                        <input type="hidden" id="txtHotelId" value="">
                     </form>
                 </div>
                 <div class="col-lg-6">
-                    <div class="row">
-                        <div class="col">
-                            hotel Id
+                    <form id="hotel-option-form">
+                        <label class="form-header" style="color: #7869ff;">Manage Option</label>
+                        <div class="package__form__group field">
+                            <select style="font-size: 12px;" class="form-select" id='txtHotelNamewithAddress' >
+                                <option selected>Select Hotel</option>
+                                <option >Name - Address</option>
+                            </select>
                         </div>
-                    </div>
+                        <div class="package__form__group field">
+                            <select style="font-size: 12px;" class="form-select" id='txtHotelType' >
+                                <option selected>Select Type</option>
+                                <option value="Full">Full</option>
+                                <option value="Half">Half</option>
+                            </select>
+                        </div>
+                        <div class="package__form__group field">
+                            <select style="font-size: 12px;" class="form-select" id='txtHotelCapacity' >
+                                <option selected>Select Capacity</option>
+                                <option value="Double">Double</option>
+                                <option value="Triple">Triple</option>
+                            </select>
+                        </div>
+                        <div class="package__form__group field">
+                            <input type="number" class="package__form__field" placeholder="Price" id='txtHotelPrice'
+                                required />
+                            <label for="txtHotelPrice" class="package__form__label">Price</label>
+                        </div>
+
+                        <div class="hotel-action text-center" style="margin-top: 20px;">
+                            <button id="btnSaveHotelOption" class="btn btn-first"
+                                style="background-color: #2ecc71 !important;">Save</button>
+                            <button id="btnUpdateHotelOption" class="btn btn-first"
+                                style="background-color: #f39c12 !important;">Update</button>
+                            <button id="btnDeleteHotelOption" class="btn btn-first"
+                                style="background-color: #e74c3c !important;">Delete</button>
+                            <button id="btnResetHotelOption" class="btn btn-first"
+                                style="background-color: #c0392b !important;">Reset</button>
+                        </div>
+                        <input type="hidden" id="txtHotelOptionId" value="">
+                        <input type="hidden" id="txtOptionFormHotelId" value="">
+                    </form>
+                    <label id="lblHotelNameWithAddress">Hotel name with address</label>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="table-primary">
+                                <th scope="col">Type</th>
+                                <th scope="col">Capacity</th>
+                                <th scope="col">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody id="hotelOptionTableBody">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="table-primary">
+                                <th scope="col">Name</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Loaction</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Pet Allowed</th>
+                                <th scope="col">Cancel Criteria</th>
+                            </tr>
+                        </thead>
+                        <tbody id="hotelTableBody">
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

@@ -28,7 +28,7 @@ public class HotelController {
         return ResponseEntity.ok(hotelService.getSelectedHotel(hotelId));
     }
 
-    @GetMapping
+    @GetMapping("/public")
     ResponseEntity<?> getAllHotel() {
         return ResponseEntity.ok(hotelService.getAllHotel());
     }
@@ -41,6 +41,7 @@ public class HotelController {
                     .toList().toString()
             );
         }
+        System.out.println(hotelDTO);
         return ResponseEntity.ok(hotelService.saveHotel(hotelDTO));
     }
 

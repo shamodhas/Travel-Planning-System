@@ -26,22 +26,22 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
     @Override
     public GatewayFilter apply(Config config) {
         return ((exchange, chain) -> {
-            if (!exchange.getRequest().getURI().getPath().contains("/public")) {
-                if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
-                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"missing authorization header");
-                }
-                String authHeader = exchange.getRequest().getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
-                if (authHeader != null && authHeader.startsWith("Bearer ")) {
-                    authHeader = authHeader.substring(7);
-                }
-                try {
-                    // call auth and validation
-                    // template.getForObject("http://IDENTITY-SERVICE//validate?token" + authHeader, String.class);
-
-                } catch (Exception e) {
-                    throw new ResponseStatusException(HttpStatus.BAD_GATEWAY,"un authorized access to application");
-                }
-            }
+//            if (!exchange.getRequest().getURI().getPath().contains("/public")) {
+//                if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
+//                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"missing authorization header");
+//                }
+//                String authHeader = exchange.getRequest().getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
+//                if (authHeader != null && authHeader.startsWith("Bearer ")) {
+//                    authHeader = authHeader.substring(7);
+//                }
+//                try {
+//                    // call auth and validation
+//                    // template.getForObject("http://IDENTITY-SERVICE//validate?token" + authHeader, String.class);
+//
+//                } catch (Exception e) {
+//                    throw new ResponseStatusException(HttpStatus.BAD_GATEWAY,"un authorized access to application");
+//                }
+//            }
             return chain.filter(exchange);
         });
     }
