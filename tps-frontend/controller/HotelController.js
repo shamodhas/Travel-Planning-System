@@ -21,9 +21,8 @@ export class HotelController {
             event.preventDefault();
             this.handleHotelTableSelect(event);
         });
-        $('.hotel-card .button').click((event)=>{
+        $("#hotel-body .row").on("click", ".hotel-card .action a", (event) => {
             event.preventDefault();
-            alert()
         });
     }
     handleHotelTableSelect(event) {
