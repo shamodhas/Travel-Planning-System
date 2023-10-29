@@ -21,6 +21,10 @@ export class HotelController {
             event.preventDefault();
             this.handleHotelTableSelect(event);
         });
+        $('.hotel-card .button').click((event)=>{
+            event.preventDefault();
+            alert()
+        });
     }
     handleHotelTableSelect(event) {
         const selectedRow = $(event.currentTarget);
@@ -123,80 +127,85 @@ export class HotelController {
     }
     handleLoadAllHotelCard(hotels) {
         $('#hotel-body .row').empty();
-        $('#hotel-body .row').append(`
-            <div class="col-lg-4 col-md-5 col-sm-6">
-                <div class="hotel-card">
-                    <div class="inner">
-                        <span class="hotel-option-price">
-                            <span>
-                                <small>LKR : </small> 2000.00
-                            </span>
+        hotels?.map((hotel) => {
+            $('#hotel-body .row').append(hotel.hotelOptions?.map(
+                (hotelOption) => this.renderHotelCard(hotelOption, hotel)
+            ).join(''));
+        })
+    }
+    renderHotelCard(hotelOption, hotel) {
+        return `
+        <div class="col-lg-4 col-md-5 col-sm-6">
+            <div class="hotel-card" data-hotel-id=${hotel.hotelId} data-hotel-option-id=${hotelOption.hotelOptionId}>
+                <div class="inner">
+                    <span class="hotel-option-price">
+                        <span>
+                            <small>LKR : </small> 
+                            ${hotelOption.price}
                         </span>
-                        <div class="hotel-category">
-                            <!-- Category -->
-                            <i class="fa-soil fas fa-star checked"></i>
-                            <i class="fa-soil fas fa-star checked"></i>
-                            <i class="fa-soil fas fa-star checked"></i>
-                            <i class="fa-soil fas fa-star checked"></i>
-                            <i class="fa-soil fas fa-star checked"></i>
-                        </div>
-                        <p class="hotel-option-type-capacity">Full day Double Room</p>
-                        <p class="hotel-name">Hotel Name</p>
-                        <p class="hotel-address">Address</p>
-                        <p class="info">
+                    </span>
+                    <div class="hotel-category">
+                        ${('<i class="fas fa-star checked"></i>').repeat(hotel.category)}   
+                    </div>
+                    <p class="hotel-option-type-capacity">
+                        ${hotelOption.type} day ${hotelOption.capacity} Room
+                    </p>
+                    <p class="hotel-name">${hotel.name}</p>
+                    <p class="hotel-address">${hotel.address}</p>
+                    <p class="info">
 
-                        </p>
-                        <ul class="features">
-                            <li>
-                                <span class="icon">
-                                    <svg height="24" width="24" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M0 0h24v24H0z" fill="none"></path>
-                                        <path fill="currentColor"
-                                            d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z">
-                                        </path>
-                                    </svg>
-                                </span>
-                                <span><strong>2</strong> members</span>
-                            </li>
-                            <li>
-                                <span class="icon">
-                                    <svg height="24" width="24" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M0 0h24v24H0z" fill="none"></path>
-                                        <path fill="currentColor"
-                                            d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z">
-                                        </path>
-                                    </svg>
-                                </span>
-                                <span><strong>A/C</strong> Luxury Room</span>
-                            </li>
-                            <li>
-                                <span class="icon">
-                                    <svg height="24" width="24" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M0 0h24v24H0z" fill="none"></path>
-                                        <path fill="currentColor"
-                                            d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z">
-                                        </path>
-                                    </svg>
-                                </span>
-                                <span>
-                                    <a href="" class="hotel-more-about">
-                                        view more about hotel
-                                    </a>
-                                </span>
-                            </li>
-                        </ul>
-                        <div class="action">
-                            <a class="button" href="#">
-                                Book Now
-                            </a>
-                        </div>
+                    </p>
+                    <ul class="features">
+                        <li>
+                            <span class="icon">
+                                <svg height="24" width="24" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path fill="currentColor"
+                                        d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z">
+                                    </path>
+                                </svg>
+                            </span>
+                            <span><strong>${hotelOption.capacity == "Double" ? 2 : 3}</strong> members can live</span>
+                        </li>
+                        <li>
+                            <span class="icon">
+                                <svg height="24" width="24" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path fill="currentColor"
+                                        d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z">
+                                    </path>
+                                </svg>
+                            </span>
+                            <span><strong>A/C</strong> Luxury Room</span>
+                        </li>
+                        <li>
+                            <span class="icon">
+                                <svg height="24" width="24" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path fill="currentColor"
+                                        d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z">
+                                    </path>
+                                </svg>
+                            </span>
+                            <span>
+                                <a href="" class="hotel-more-about">
+                                    view more about hotel
+                                </a>
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="action">
+                        <a class="button" href="">
+                            Book Now
+                        </a>
                     </div>
                 </div>
             </div>
-        `);
+        </div>
+    `
     }
     handleViewHotelDetails() {
 
