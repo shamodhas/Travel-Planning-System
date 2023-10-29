@@ -74,7 +74,7 @@ export class PackageController {
         })
 
     }
-    renderPackageCard(data, index) {
+    renderPackageCard(data) {
         return `
             <div class="package-card col-lg-3 col-md-5 col-sm-10">
                 <div class="package-category">${data.category}</div>

@@ -5,6 +5,7 @@ import lk.ijse.tps.tps.hotelservice.dto.HotelOptionDTO;
 import lk.ijse.tps.tps.hotelservice.entity.Hotel;
 import lk.ijse.tps.tps.hotelservice.entity.HotelOption;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,8 +18,15 @@ import org.springframework.stereotype.Component;
 public class DataTypeConvertor {
     private final ModelMapper modelMapper;
 
+    PropertyMap<HotelOption, HotelOptionDTO> hotelOptionMap = new PropertyMap<HotelOption, HotelOptionDTO>() {
+        protected void configure() {
+            map(source.getHotel().getHotelId(), destination.getHotelId());
+        }
+    };
+
     public DataTypeConvertor(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
+        this.modelMapper.addMappings(hotelOptionMap);
     }
 
     public HotelDTO getHotelDTO(Hotel hotel){

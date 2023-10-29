@@ -332,31 +332,28 @@
                     <form id="hotel-option-form">
                         <label class="form-header" style="color: #7869ff;">Manage Option</label>
                         <div class="package__form__group field">
-                            <select style="font-size: 12px;" class="form-select" id='txtHotelNamewithAddress' >
-                                <option selected>Select Hotel</option>
-                                <option >Name - Address</option>
+                            <select style="font-size: 12px;" class="form-select" id='txtHotelNamewithAddress'>
                             </select>
                         </div>
                         <div class="package__form__group field">
-                            <select style="font-size: 12px;" class="form-select" id='txtHotelType' >
+                            <select style="font-size: 12px;" class="form-select" id='txtHotelOptionType'>
                                 <option selected>Select Type</option>
                                 <option value="Full">Full</option>
                                 <option value="Half">Half</option>
                             </select>
                         </div>
                         <div class="package__form__group field">
-                            <select style="font-size: 12px;" class="form-select" id='txtHotelCapacity' >
+                            <select style="font-size: 12px;" class="form-select" id='txtHotelOptionCapacity'>
                                 <option selected>Select Capacity</option>
                                 <option value="Double">Double</option>
                                 <option value="Triple">Triple</option>
                             </select>
                         </div>
                         <div class="package__form__group field">
-                            <input type="number" class="package__form__field" placeholder="Price" id='txtHotelPrice'
+                            <input type="number" class="package__form__field" placeholder="Price" id='txtHotelOptionPrice'
                                 required />
-                            <label for="txtHotelPrice" class="package__form__label">Price</label>
+                            <label for="txtHotelOptionPrice" class="package__form__label">Price</label>
                         </div>
-
                         <div class="hotel-action text-center" style="margin-top: 20px;">
                             <button id="btnSaveHotelOption" class="btn btn-first"
                                 style="background-color: #2ecc71 !important;">Save</button>
@@ -397,7 +394,7 @@
                                 <th scope="col">Cancel Criteria</th>
                             </tr>
                         </thead>
-                        <tbody id="hotelTableBody">
+                        <tbody id="tblHotelBody">
                         </tbody>
                     </table>
                 </div>
@@ -405,78 +402,6 @@
         </div>
         <div id="hotel-body">
             <div class="row">
-                <div class="col-lg-4 col-md-5 col-sm-6">
-                    <div class="hotel-card">
-                        <div class="inner">
-                            <span class="hotel-option-price">
-                                <span>
-                                    <small>LKR : </small> 2000.00
-                                </span>
-                            </span>
-                            <div class="hotel-category">
-                                <!-- Category -->
-                                <i class="fa-soil fas fa-star checked"></i>
-                                <i class="fa-soil fas fa-star checked"></i>
-                                <i class="fa-soil fas fa-star checked"></i>
-                                <i class="fa-soil fas fa-star checked"></i>
-                                <i class="fa-soil fas fa-star checked"></i>
-                            </div>
-                            <p class="hotel-option-type-capacity">Full day Double Room</p>
-                            <p class="hotel-name">Hotel Name</p>
-                            <p class="hotel-address">Address</p>
-                            <p class="info">
-
-                            </p>
-                            <ul class="features">
-                                <li>
-                                    <span class="icon">
-                                        <svg height="24" width="24" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M0 0h24v24H0z" fill="none"></path>
-                                            <path fill="currentColor"
-                                                d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z">
-                                            </path>
-                                        </svg>
-                                    </span>
-                                    <span><strong>2</strong> members</span>
-                                </li>
-                                <li>
-                                    <span class="icon">
-                                        <svg height="24" width="24" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M0 0h24v24H0z" fill="none"></path>
-                                            <path fill="currentColor"
-                                                d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z">
-                                            </path>
-                                        </svg>
-                                    </span>
-                                    <span><strong>A/C</strong> Luxury Room</span>
-                                </li>
-                                <li>
-                                    <span class="icon">
-                                        <svg height="24" width="24" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M0 0h24v24H0z" fill="none"></path>
-                                            <path fill="currentColor"
-                                                d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z">
-                                            </path>
-                                        </svg>
-                                    </span>
-                                    <span>
-                                        <a href="" class="hotel-more-about">
-                                            view more about hotel
-                                        </a>
-                                    </span>
-                                </li>
-                            </ul>
-                            <div class="action">
-                                <a class="button" href="#">
-                                    Book Now
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

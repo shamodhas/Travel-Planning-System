@@ -34,26 +34,6 @@ export class DashBoardController {
                 console.log(error)
             }
         })
-
-        // const obj = {
-        //     category:"ex 13 category",
-        //     area:"ex area",
-        //     price: 500.00,
-        //     averageNoOfDate: 1,
-        // }
-        // $.ajax({
-        //     type: "POST",
-        //     url: "http://localhost:8090/package/api/v1/package/public",
-        //     data: JSON.stringify(obj),
-        //     contentType: "application/json",
-        //     success: (data) => {
-        //         console.log(data)
-        //     },
-        //     error: (error) => {
-        //         console.log(error)
-        //     }
-        // });
-
     }
     renderPackageCard(data, index) {
         $('#see-more-prackage').show();
