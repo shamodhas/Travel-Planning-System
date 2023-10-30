@@ -1,11 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&display=swap');
+
 
 :root {
     --header-height: 3rem;
     --nav-width: 68px;
     --first-color: #776BCC;
     --first-color-light: #AFA5D9;
+    --star-color:#ffe234;
     --white-color: #fff;
     --body-font: 'Nunito', sans-serif;
     --normal-font-size: 1rem;
@@ -748,7 +751,7 @@ body {
 }
 
 .hotel-card .hotel-category {
-    color: #ffe234;
+    color: var(--star-color);
     margin-top: -20px;
 }
 
@@ -878,15 +881,97 @@ body {
     width: fit-content;
 }
 
-.table{
+.table {
     font-size: 12px;
     font-weight: bold;
 }
-.table tbody{
+
+.table tbody {
     font-size: 11px;
     font-weight: bold;
 }
-#lblHotelNameWithAddress{
+
+#lblHotelNameWithAddress {
     font-size: 16px;
     font-weight: 700;
+}
+
+#hotel-details-view {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(90deg, #c7c5f4db, #766bcce0);
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+}
+
+#hotel-details-view .row>div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+}
+
+.hotel-details-card {
+    position: absolute;
+    width: 50%;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: #969696;
+    background-color: #f4f2ff;
+}
+
+#close-hotel-details-view .bx {
+    color: #ff0000;
+    font-size: 2rem;
+    background-color: #e4e4e4;
+    border-radius: 0 15px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#close-hotel-details-view .bx:hover {
+    font-weight: 900;
+    color: #ffffff;
+    background-color: #ff0000;
+}
+
+.hotel-details-name {
+    font-size: 36px;
+    font-weight: 900;
+    font-family: 'Agbalumo', cursive;
+    color: var(--first-color);
+}
+.hotel-details-address{
+    font-size: 24px;
+    font-weight: 900;
+    font-family: 'Agbalumo', cursive;
+}
+.hotel-details-category{
+    font-size: 20px;
+    color: var(--star-color);
+}
+.hotel-details-location{
+    font-weight: 700;
+    font-size: 16px;
+}
+.hotel-details-email{
+    font-weight: 700;
+    font-size: 16px;
+}
+.hotel-details-phone{
+    font-weight: 700;
+    font-size: 16px;
+}
+.hotel-details-pet{
+    font-weight: 700;
+    font-size: 16px;
+}
+.hotel-details-criteria{
+    font-weight: 700;
+    font-size: 16px;
 }

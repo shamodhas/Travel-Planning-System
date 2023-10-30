@@ -4,7 +4,7 @@ export class DashBoardController {
             event.preventDefault();
             this.handleLoadDashBoard();
         });
-        $('#see-more-prackage').click((event) => {
+        $('#see-more-package').click((event) => {
             event.preventDefault();
             document.getElementById("btn-package").click();
         });
@@ -30,7 +30,6 @@ export class DashBoardController {
             }
             ,
             error: (error) => {
-                $('#see-more-prackage').hide();
                 console.log(error)
             }
         })

@@ -23,9 +23,11 @@ $(document).ready(function (event) {
             this.classList.add('active')
         }
     }
-    linkColor.forEach(l => l.addEventListener('click', colorLink))
-    document.getElementById("btn-hotel").click();
+    linkColor.forEach(l => l.addEventListener('click', colorLink));
 
+    document.getElementById("btn-hotel").click();
+    // $('#hotel-details-view').show();
+    // $('html, body').css({ 'overflow-y': 'hidden' });
 });
 
 const init = () => {
