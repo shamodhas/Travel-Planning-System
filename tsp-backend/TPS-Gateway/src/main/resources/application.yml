@@ -1,50 +1,57 @@
 spring:
- cloud:
-   gateway:
-     routes:
-       - id: adminService
-         uri: http://localhost:8083/admin
-         predicates:
-           - Path=/admin/**
-         filters:
-           - AuthenticationFilter
+  cloud:
+    gateway:
+      routes:
+        - id: adminService
+          uri: http://localhost:8083/admin
+          predicates:
+            - Path=/admin/**
+          filters:
+            - AuthenticationFilter
 
-       - id: bookingService
-         uri: http://localhost:8084/booking
-         predicates:
-           - Path=/booking/**
-         filters:
-           - AuthenticationFilter
+        - id: bookingService
+          uri: http://localhost:8084/booking
+          predicates:
+            - Path=/booking/**
+          filters:
+            - AuthenticationFilter
 
-       - id: guideService
-         uri: http://localhost:8085/guide
-         predicates:
-           - Path=/guide/**
-         filters:
-           - AuthenticationFilter
+        - id: guideService
+          uri: http://localhost:8085/guide
+          predicates:
+            - Path=/guide/**
+          filters:
+            - AuthenticationFilter
 
-       - id: hotelService
-         uri: http://localhost:8086/hotel
-         predicates:
-           - Path=/hotel/**
-         filters:
-           - AuthenticationFilter
+        - id: hotelService
+          uri: http://localhost:8086/hotel
+          predicates:
+            - Path=/hotel/**
+          filters:
+            - AuthenticationFilter
 
-       - id: packageService
-         uri: http://localhost:8087/package
-         predicates:
-           - Path=/package/**
-         filters:
-           - AuthenticationFilter
+        - id: packageService
+          uri: http://localhost:8087/package
+          predicates:
+            - Path=/package/**
+          filters:
+            - AuthenticationFilter
 
-       - id: userService
-         uri: http://localhost:8088/user
-         predicates:
-           - Path=/user/**
-         filters:
-           - AuthenticationFilter
+        - id: vehicleService
+          uri: http://localhost:8089/vehicle
+          predicates:
+            - Path=/vehicle/**
+          filters:
+            - AuthenticationFilter
 
-       - id: authService
-         uri: http://localhost:8082/auth
-         predicates:
-           - Path=/auth/**
+        - id: userService
+          uri: http://localhost:8088/user
+          predicates:
+            - Path=/user/**
+          filters:
+            - AuthenticationFilter
+
+        - id: authService
+          uri: http://localhost:8082/auth
+          predicates:
+            - Path=/auth/**

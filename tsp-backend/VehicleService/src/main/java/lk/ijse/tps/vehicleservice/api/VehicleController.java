@@ -18,7 +18,6 @@ import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("api/v1/vehicle")
-@CrossOrigin("*")
 @RequiredArgsConstructor
 public class VehicleController {
     private final VehicleService vehicleService;
@@ -55,6 +54,7 @@ public class VehicleController {
             @RequestPart byte[] driverLicenseBackImage,
             @RequestPart String phone
     ) {
+        System.out.println(vehicleLicenseNumber);
         if (vehicleLicenseNumber == null)
             throw new InvalidException("InValid vehicle license number");
         if (brand == null)

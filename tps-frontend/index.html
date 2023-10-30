@@ -230,9 +230,13 @@
         <div id="package-manage">
             <form id="package-form">
                 <div class="package__form__group field">
-                    <input type="text" class="package__form__field" placeholder="Category" id='txtPackageCategory'
-                        required />
-                    <label for="txtPackageCategory" class="package__form__label">Category</label>
+                    <select style="font-size: 12px;" class="form-select" id='txtPackageCategory'>
+                        <option selected value="">Select Category</option>
+                        <option value="Regular">Regular</option>
+                        <option value="Mid-level">Mid-level</option>
+                        <option value="Luxury">Luxury</option>
+                        <option value="Super Luxury">Super Luxury</option>
+                    </select>
                 </div>
                 <div class="package__form__group field">
                     <input type="text" class="package__form__field" placeholder="Area" id='txtPackageArea' required />
@@ -350,8 +354,8 @@
                             </select>
                         </div>
                         <div class="package__form__group field">
-                            <input type="number" class="package__form__field" placeholder="Price" id='txtHotelOptionPrice'
-                                required />
+                            <input type="number" class="package__form__field" placeholder="Price"
+                                id='txtHotelOptionPrice' required />
                             <label for="txtHotelOptionPrice" class="package__form__label">Price</label>
                         </div>
                         <div class="hotel-action text-center" style="margin-top: 20px;">
@@ -429,11 +433,150 @@
         </div>
     </div>
     <div id="vehicle-section" class="body-container">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, iste nisi! Distinctio non, vero ullam
-            vitae
-            illum architecto voluptate impedit dolor quo. Tempora quod eveniet quisquam, maiores deleniti laudantium
-            temporibus?</p>
-        <h1>vehicle</h1>
+        <div id="vehicle-manage">
+            <form id="vehicle-form">
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Vehicle License Number"
+                        id='txtVehicleLicenseNumber' required />
+                    <label for="txtVehicleLicenseNumber" class="package__form__label">Vehicle License Number</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Brand" id='txtVehicleBrand' required />
+                    <label for="txtVehicleBrand" class="package__form__label">Brand</label>
+                </div>
+                <div class="package__form__group field">
+                    <select style="font-size: 12px;" class="form-select" id='txtVehicleCategory'>
+                        <option value="" selected>Select Category</option>
+                        <option value="Economy">Economy</option>
+                        <option value="Mid-Range">Mid-Range</option>
+                        <option value="Luxury">Luxury</option>
+                        <option value="Super Luxury">Super Luxury</option>
+                    </select>
+                </div>
+                <div class="package__form__group field">
+                    <select style="font-size: 12px;" class="form-select" id='txtVehicleFuelType'>
+                        <option value="" selected>Select Fuel Type</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="Petrol">Petrol</option>
+                    </select>
+                </div>
+                <div class="package__form__group field">
+                    <input type="checkbox" class="package__form__field" placeholder="Hybrid" id='txtVehicleIsHybrid'
+                        required />
+                    <label for="txtVehicleIsHybrid" class="package__form__label">Hybrid</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="number" class="package__form__field" placeholder="Fuel Usage Per KM"
+                        id='txtVehicleFuelUsagePerKM' required />
+                    <label for="txtVehicleFuelUsagePerKM" class="package__form__label">
+                        Fuel Usage <small>(Per KM)</small></label>
+                </div>
+                <br>
+                <div class="package__form__group field">
+                    <input type="file" class="file__input" accept="image/*" id='txtVehicleFrontImage' />
+                    <label for="txtVehicleFrontImage" class="package__form__label file__input__label">Front
+                        Image</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="file" class="file__input" accept="image/*" id='txtVehicleRearImage' />
+                    <label for="txtVehicleRearImage" class="package__form__label file__input__label">Rear Image</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="file" class="file__input" accept="image/*" id='txtVehicleSideImage' />
+                    <label for="txtVehicleSideImage" class="package__form__label file__input__label">Side Image</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="file" class="file__input" accept="image/*" id='txtVehicleFrontInteriorImage' />
+                    <label for="txtVehicleFrontInteriorImage" class="package__form__label file__input__label">Front
+                        Interior Image</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="file" class="file__input" accept="image/*" id='txtVehicleRearInteriorImage' />
+                    <label for="txtVehicleRearInteriorImage" class="package__form__label file__input__label">Rear
+                        Interior Image</label>
+                </div>
+                <br>
+                <div class="package__form__group field">
+                    <input type="number" class="package__form__field" placeholder="Price Per KM"
+                        id='txtVehiclePricePerKM' required />
+                    <label for="txtVehiclePricePerKM" class="package__form__label">Price Per KM</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="number" class="package__form__field" placeholder="Capacity" id='txtVehicleCapacity'
+                        required />
+                    <label for="txtVehicleCapacity" class="package__form__label">Capacity</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Type" id='txtVehicleType' required />
+                    <label for="txtVehicleType" class="package__form__label">Type</label>
+                </div>
+                <div class="package__form__group field">
+                    <select style="font-size: 12px;" class="form-select" id='txtVehicleTransmission'>
+                        <option value="" selected>Select Transmission Type</option>
+                        <option value="Auto">Auto</option>
+                        <option value="Manual">Manual</option>
+                    </select>
+                </div>
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Driver Name" id='txtVehicleDriverName'
+                        required />
+                    <label for="txtVehicleDriverName" class="package__form__label">Driver Name</label>
+                </div>
+                <br>
+                <div class="package__form__group field">
+                    <input type="file" class="file__input" accept="image/*" id='txtVehicleDriverLicenseFrontImage' />
+                    <label for="txtVehicleDriverLicenseFrontImage"
+                        class="package__form__label file__input__label">Driver License Front Image
+                    </label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="file" class="file__input" accept="image/*" id='txtVehicleDriverLicenseBackImage' />
+                    <label for="txtVehicleDriverLicenseBackImage" class="package__form__label file__input__label">Driver
+                        License Back Image
+                    </label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Phone Number" id='txtVehiclePhone'
+                        required />
+                    <label for="txtVehiclePhone" class="package__form__label">Phone Number</label>
+                </div>
+                <div class="text-center" style="margin-top: 20px;">
+                    <button id="btnSaveVehicle" class="btn btn-first"
+                        style="background-color: #2ecc71 !important;">Save</button>
+                    <button id="btnUpdateVehicle" class="btn btn-first"
+                        style="background-color: #f39c12 !important;">Update</button>
+                    <button id="btnDeleteVehicle" class="btn btn-first"
+                        style="background-color: #e74c3c !important;">Delete</button>
+                    <button id="btnResetVehicle" class="btn btn-first"
+                        style="background-color: #c0392b !important;">Reset</button>
+                </div>
+                <input type="hidden" id="txtVehicleId" value="">
+            </form>
+        </div>
+        <div id="vehicle-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            image
+                        </div>
+                        <div class="col-lg-6">
+                            details
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            image
+                        </div>
+                        <div class="col-lg-6">
+                            details
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="guide-section" class="body-container">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, iste nisi! Distinctio non, vero ullam
@@ -481,6 +624,7 @@
     <script type="module" src="controller/DashBoardController.js"></script>
     <script type="module" src="controller/PackageController.js"></script>
     <script type="module" src="controller/HotelController.js"></script>
+    <script type="module" src="controller/VehicleController.js"></script>
     <script>
 
     </script>

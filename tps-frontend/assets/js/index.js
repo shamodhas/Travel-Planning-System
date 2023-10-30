@@ -25,9 +25,7 @@ $(document).ready(function (event) {
     }
     linkColor.forEach(l => l.addEventListener('click', colorLink));
 
-    document.getElementById("btn-hotel").click();
-    // $('#hotel-details-view').show();
-    // $('html, body').css({ 'overflow-y': 'hidden' });
+    document.getElementById("btn-vehicle").click();
 });
 
 const init = () => {

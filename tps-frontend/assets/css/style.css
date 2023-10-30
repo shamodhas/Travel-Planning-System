@@ -406,7 +406,6 @@ body {
     width: 40vw;
     margin-top: 1rem;
     font-size: 12px;
-    color: var(--white-color);
 }
 
 #customer-img-file-input::file-selector-button {
@@ -974,4 +973,38 @@ body {
 .hotel-details-criteria{
     font-weight: 700;
     font-size: 16px;
+}
+#vehicle-manage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+#vehicle-form {
+    padding: 25px;
+    margin: 30px 0;
+    width: 80%;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #FFF;
+}
+
+
+.file__input {
+    margin-top: 1rem;
+    font-size: 12px;
+}
+
+.file__input::file-selector-button {
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--white-color);
+    padding: 0.5em;
+    border: 2px solid var(--first-color);
+    border-radius: 3px;
+    background-color: var(--first-color);
+}
+.file__input__label{
+    font-size: 13px;
 }
