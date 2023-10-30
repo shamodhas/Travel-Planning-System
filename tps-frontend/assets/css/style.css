@@ -1008,3 +1008,28 @@ body {
 .file__input__label{
     font-size: 13px;
 }
+
+.vehicle_card img{
+    width: 100%;
+}
+#vehicle-body .row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.vehicle_card{
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 5px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.vehicle_image_action i{
+    font-size: 25px;
+}
+.vehicle_image_action{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    
+}
