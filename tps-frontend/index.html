@@ -576,7 +576,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button id="btn_vehicle_edit" type="button" data-bs-dismiss="modal" class="btn btn-warning">Edit</button>
+                        <button id="btn_vehicle_edit" type="button" data-bs-dismiss="modal"
+                            class="btn btn-warning">Edit</button>
                     </div>
                 </div>
             </div>
@@ -587,11 +588,88 @@
         </div>
     </div>
     <div id="guide-section" class="body-container">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, iste nisi! Distinctio non, vero ullam
-            vitae
-            illum architecto voluptate impedit dolor quo. Tempora quod eveniet quisquam, maiores deleniti laudantium
-            temporibus?</p>
-        <h1>Guide</h1>
+        <div id="guide-manage">
+            <form id="guide-form">
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Name" id='txtGuideName' required />
+                    <label for="txtGuideName" class="package__form__label">Name</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Address" id='txtGuideAddress'
+                        required />
+                    <label for="txtGuideAddress" class="package__form__label">Address</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Nic" id='txtGuideNic' required />
+                    <label for="txtGuideNic" class="package__form__label">Nic</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Phone" id='txtGuidePhone' required />
+                    <label for="txtGuidePhone" class="package__form__label">Phone</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="number" class="package__form__field" placeholder="Price Per Day"
+                        id='txtGuidePricePerDay' required />
+                    <label for="txtGuidePricePerDay" class="package__form__label">Price Per Day</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="file" class="file__input" accept="image/*" id='txtGuideProfile' />
+                    <label for="txtGuideProfile" class="package__form__label file__input__label">Profile</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="file" class="file__input" accept="image/*" id='txtGuideIdCardFront' />
+                    <label for="txtGuideIdCardFront" class="package__form__label file__input__label">Id Card
+                        Front</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="file" class="file__input" accept="image/*" id='txtGuideIdCardBack' />
+                    <label for="txtGuideIdCardBack" class="package__form__label file__input__label">Id Card Back</label>
+                </div>
+
+                <div class="text-center" style="margin-top: 20px;">
+                    <button id="btnSaveGuide" class="btn btn-first"
+                        style="background-color: #2ecc71 !important;">Save</button>
+                    <button id="btnUpdateGuide" class="btn btn-first"
+                        style="background-color: #f39c12 !important;">Update</button>
+                    <button id="btnDeleteGuide" class="btn btn-first"
+                        style="background-color: #e74c3c !important;">Delete</button>
+                    <button id="btnResetGuide" class="btn btn-first"
+                        style="background-color: #c0392b !important;">Reset</button>
+                </div>
+                <input type="hidden" id="txtGuideId" value="">
+            </form>
+        </div>
+        <div class="modal fade" id="guideDetailsModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog text-center">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="vehicle_details_heder">Guide details</div>
+                                <div id="guide_details_body"></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="vehicle_details_heder">Nic details</div>
+                                <div id="guide_nic_details_body"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button id="btn_vehicle_edit" type="button" data-bs-dismiss="modal"
+                            class="btn btn-warning">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="guide-body">
+            <div class="row" style="margin-bottom: 20px;">
+            </div>
+        </div>
     </div>
     <div id="booking-section" class="body-container">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, iste nisi! Distinctio non, vero ullam
@@ -633,6 +711,7 @@
     <script type="module" src="controller/PackageController.js"></script>
     <script type="module" src="controller/HotelController.js"></script>
     <script type="module" src="controller/VehicleController.js"></script>
+    <script type="module" src="controller/GuideController.js"></script>
     <script>
 
     </script>

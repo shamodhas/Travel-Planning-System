@@ -18,7 +18,6 @@ import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("api/v1/guide")
-@CrossOrigin("*")
 @RequiredArgsConstructor
 public class GuideController {
     private final GuideService guideService;

@@ -270,7 +270,7 @@ export class VehicleController {
                             Book Now
                         </a>
                         <div  class="vehicle_phone">${vehicle.phone}</div>
-                        <a href=""  data-bs-toggle="modal" data-bs-target="#vehicleDetailsModal" class="vehicle_view_more">
+                        <a href="" data-bs-toggle="modal" data-bs-target="#vehicleDetailsModal" class="vehicle_view_more">
                             view more details
                         </a>
                         <hr style="margin-bottom: 5px;">
