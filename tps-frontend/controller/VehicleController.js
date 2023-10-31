@@ -12,6 +12,10 @@ export class VehicleController {
             event.preventDefault();
             this.reset();
         });
+        $('#vehicle_view_more').click((event) => {
+            event.preventDefault();
+            console.log("dsfe")
+        });
     }
     handleValidateVehicle() {
         const vehicleLicenseNumber = $('#txtVehicleLicenseNumber').val();

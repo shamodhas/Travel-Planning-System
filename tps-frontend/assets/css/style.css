@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 @import url('https://fonts.googleapis.com/css2?family=Agbalumo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&display=swap');
 
 
 :root {
@@ -8,7 +9,7 @@
     --nav-width: 68px;
     --first-color: #776BCC;
     --first-color-light: #AFA5D9;
-    --star-color:#ffe234;
+    --star-color: #ffe234;
     --white-color: #fff;
     --body-font: 'Nunito', sans-serif;
     --normal-font-size: 1rem;
@@ -945,35 +946,43 @@ body {
     font-family: 'Agbalumo', cursive;
     color: var(--first-color);
 }
-.hotel-details-address{
+
+.hotel-details-address {
     font-size: 24px;
     font-weight: 900;
     font-family: 'Agbalumo', cursive;
 }
-.hotel-details-category{
+
+.hotel-details-category {
     font-size: 20px;
     color: var(--star-color);
 }
-.hotel-details-location{
+
+.hotel-details-location {
     font-weight: 700;
     font-size: 16px;
 }
-.hotel-details-email{
+
+.hotel-details-email {
     font-weight: 700;
     font-size: 16px;
 }
-.hotel-details-phone{
+
+.hotel-details-phone {
     font-weight: 700;
     font-size: 16px;
 }
-.hotel-details-pet{
+
+.hotel-details-pet {
     font-weight: 700;
     font-size: 16px;
 }
-.hotel-details-criteria{
+
+.hotel-details-criteria {
     font-weight: 700;
     font-size: 16px;
 }
+
 #vehicle-manage {
     display: flex;
     align-items: center;
@@ -1005,31 +1014,85 @@ body {
     border-radius: 3px;
     background-color: var(--first-color);
 }
-.file__input__label{
+
+.file__input__label {
     font-size: 13px;
 }
 
-.vehicle_card img{
+.vehicle_card img {
     width: 100%;
 }
-#vehicle-body .row{
+
+#vehicle-body .row {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.vehicle_card{
+
+.vehicle_card {
     background-color: #ffffff;
     padding: 20px;
     margin: 5px;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.vehicle_image_action i{
+
+.vehicle_image_action i {
     font-size: 25px;
 }
-.vehicle_image_action{
+
+.vehicle_image_action {
     margin-top: 10px;
     display: flex;
     justify-content: space-around;
-    
+}
+
+.vehicle_container {
+    text-align: center;
+}
+
+.vehicle_brand {
+    font-family: 'Agbalumo', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: #8882bf;
+}
+
+.vehicle_category_isHybrid_transmission_type,
+.vehicle_fuelType {
+    font-size: 14px;
+    font-weight: 700;
+    color: #a2a2a2;
+}
+.btn_vehicle_action{
+    margin-top: 10px;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+}
+.vehicle_price{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+.vehicle_card_bottom .row > div:nth-child(1),
+.vehicle_card_bottom .row > div:nth-child(2),
+.vehicle_card_bottom .row > div:nth-child(3){
+    font-weight: bold;
+    font-size: 11x;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #887d7d;
+}
+
+.vehicle_card_bottom .row > div:nth-child(4),
+.vehicle_card_bottom .row > div:nth-child(5),
+.vehicle_card_bottom .row > div:nth-child(6){
+    font-weight: bold;
+    font-size: 14x;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #2a2a2a;
+}
+
+.vehicle_view_more{
+    font-size: 12px;
+    font-weight: bold;
 }
