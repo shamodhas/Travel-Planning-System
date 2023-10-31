@@ -24,8 +24,69 @@ export class VehicleController {
             event.preventDefault();
             this.handleLoadMoreVehicleDetails(event);
         });
+        $('#btn_vehicle_edit').click((event) => {
+            event.preventDefault();
+            this.handleVehicleSelect($(event.target.closest('#vehicleDetailsModal')).find('#more_details_vehicle_id').val());
+        });
+
     }
-    handleLoadMoreVehicleDetails(event){
+    handleVehicleSelect(vehicleId) {
+        if(vehicleId){
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:8090/vehicle/api/v1/vehicle/" + vehicleId,
+                success: (vehicle) => {
+                    this.setVehicleFormFields(vehicle);
+                }
+                ,
+                error: (error) => {
+                    console.log(error)
+                }
+            })
+        }else{
+            alert("Wrong selection");
+        }
+    }
+    setVehicleFormFields(vehicle){
+        $('#txtVehicleId').val(vehicle.vehicleId);
+        $('#txtVehicleLicenseNumber').val(vehicle.vehicleLicenseNumber);
+        $('#txtVehicleBrand').val(vehicle.brand);
+        $('#txtVehicleCategory').val(vehicle.category);
+        $('#txtVehicleFuelType').val(vehicle.fuelType);
+        $('#txtVehicleIsHybrid:checked').prop('checked', vehicle.isHybrid);
+        $('#txtVehicleFuelUsagePerKM').val(vehicle.fuelUsagePerKM);
+        $('#txtVehiclePricePerKM').val(vehicle.pricePerKM);
+        $('#txtVehicleCapacity').val(vehicle.capacity);
+        $('#txtVehicleType').val(vehicle.type);
+        $('#txtVehicleTransmission').val(vehicle.transmission);
+        $('#txtVehicleDriverName').val(vehicle.driverName);
+        $('#txtVehiclePhone').val(vehicle.phone);
+        
+        // $('#txtVehicleFrontImage').val(this.imageToFile(vehicle.vehicleFrontImage));
+        // $('#txtVehicleRearImage').val(vehicle.vehicleFrontImage);
+        // $('#txtVehicleSideImage').val(vehicle.vehicleFrontImage);
+        // $('#txtVehicleFrontInteriorImage').val(vehicle.vehicleFrontImage);
+        // $('#txtVehicleRearInteriorImage').val(vehicle.vehicleFrontImage);
+
+        // $('#txtVehicleDriverLicenseFrontImage').val(vehicle.vehicleFrontImage);
+        // $('#txtVehicleDriverLicenseBackImage').val(vehicle.vehicleFrontImage);
+    }
+    // imageToFile(imageByte){
+    //     // data:image/jpeg;base64, ${vehicle.driverLicenseBackImage}
+    //     imageByte = "data:image/jpeg;base64, "+ imageByte;
+    //     var arr = imageByte.split(',');
+    //     var mime = arr[0].match(/:(.*?);/)[1];
+    //     var bstr = atob(arr[1]);
+    //     var n = bstr.length;
+    //     var u8arr = new Uint8Array(n);
+
+    //     while (n--) {
+    //       u8arr[n] = bstr.charCodeAt(n);
+    //     }
+
+    //     return new File([u8arr], 'image.jpg', { type: mime });
+    // }
+    handleLoadMoreVehicleDetails(event) {
         const vehicleId = $(event.target.closest('.vehicle_card')).find('.vehicle_id').val();
 
         $('#vehicle_details_body').empty();
@@ -36,11 +97,12 @@ export class VehicleController {
             url: "http://localhost:8090/vehicle/api/v1/vehicle/" + vehicleId,
             success: (vehicle) => {
                 $('#vehicle_details_body').append(`
+                    <input id="more_details_vehicle_id" type="hidden" value="${vehicle.vehicleId}">
                     <div class="vehicle_details_body">Vehicle License Number : ${vehicle.vehicleLicenseNumber.toUpperCase()}</div>
                     <div class="vehicle_details_body">Brand : ${vehicle.brand.toUpperCase()}</div>
                     <div class="vehicle_details_body">Category : ${vehicle.category}</div>
                     <div class="vehicle_details_body">Fuel Type : ${vehicle.fuelType}</div>
-                    <div class="vehicle_details_body">Is Hybrid : ${vehicle.isHybrid?"Hybrid":"No Hybrid"}</div>
+                    <div class="vehicle_details_body">Is Hybrid : ${vehicle.isHybrid ? "Hybrid" : "No Hybrid"}</div>
                     <div class="vehicle_details_body">Fuel Usage Per KM : ${vehicle.fuelUsagePerKM} km/l</div>
                     <div class="vehicle_details_body">Price Per KM : LKR ${vehicle.pricePerKM}</div>
                     <div class="vehicle_details_body">Capacity : ${vehicle.capacity} seat</div>
