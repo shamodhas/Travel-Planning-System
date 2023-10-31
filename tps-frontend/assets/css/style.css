@@ -1229,3 +1229,26 @@ body {
     padding: 1% ;
     width: 80% ;
 }
+
+
+#addNewBooking {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+#booking-form {
+    padding: 25px;
+    margin: 30px 0;
+    width: 98%;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #FFF;
+}
+
+.vehicle_booking{
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
+}
