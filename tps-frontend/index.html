@@ -553,59 +553,37 @@
                 <input type="hidden" id="txtVehicleId" value="">
             </form>
         </div>
-        <div class="modal fade" id="vehicleDetailsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+        <!-- only admins -->
+        <div class="modal fade" id="vehicleDetailsModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog text-center">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <div class="row">
-                    <div class="col-lg-6">
-                        <div class="vehicle_details_heder">Vehicle details</div>
-                        <div></div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="vehicle_details_heder">Driver details</div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="vehicle_details_heder">Vehicle details</div>
+                                <div id="vehicle_details_body"></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="vehicle_details_heder">Driver details</div>
+                                <div id="vehicle_driver_details_body"></div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-warning">Edit</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-warning">Edit</button>
-                </div>
-              </div>
             </div>
-          </div>
+        </div>
         <div id="vehicle-body">
             <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="vehicle_card">
-                        <img src="assets/img27.jpeg">
-                        <div class="vehicle_image_action">
-                            <a class="vehicle_image_pre" href="">
-                                <i class='bx bxs-left-arrow'></i>
-                            </a>
-                            <a class="vehicle_image_next" href="">
-                                <i class='bx bxs-right-arrow'></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="vehicle_card">
-                        <img src="assets/img27.jpeg">
-                        <div class="vehicle_image_action">
-                            <a class="vehicle_image_pre" href="">
-                                <i class='bx bxs-left-arrow'></i>
-                            </a>
-                            <a class="vehicle_image_next" href="">
-                                <i class='bx bxs-right-arrow'></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
+                <!-- <div class="col-lg-4 col-md-6">
                     <div class="vehicle_card">
                         <input class="vehicle_id" type="hidden" value="H001">
                         <img src="assets/img27.jpeg">
@@ -632,7 +610,8 @@
                             </div>
                             <a href="" class="btn btn_vehicle_action btn-primary ">
                                 Book Now
-                            </a><br>
+                            </a>
+                            <div  class="vehicle_phone">0782395978</div>
                             <a href=""  data-bs-toggle="modal" data-bs-target="#vehicleDetailsModal" class="vehicle_view_more">
                                 view more details
                             </a>
@@ -661,7 +640,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

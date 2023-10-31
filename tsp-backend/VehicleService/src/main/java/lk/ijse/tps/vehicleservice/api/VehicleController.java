@@ -27,7 +27,7 @@ public class VehicleController {
         return ResponseEntity.ok(vehicleService.getSelectedVehicle(vehicleId));
     }
 
-    @GetMapping
+    @GetMapping("/public")
     ResponseEntity<?> getAllVehicle() {
         return ResponseEntity.ok(vehicleService.getAllVehicle());
     }

@@ -1077,6 +1077,13 @@ body {
     font-weight: bold;
 }
 
+.vehicle_phone{
+    margin: 5px 0 0 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+
 .vehicle_card_bottom .row>div:nth-child(1),
 .vehicle_card_bottom .row>div:nth-child(2),
 .vehicle_card_bottom .row>div:nth-child(3) {
@@ -1096,6 +1103,7 @@ body {
 }
 
 .vehicle_view_more {
+    margin: 0;
     font-size: 12px;
     font-weight: bold;
 }
@@ -1117,4 +1125,16 @@ body {
     font-weight: 700;
     font-family: 'Agbalumo', sans-serif;
     margin-bottom: 10px;
+}
+.vehicle_details_body,
+.vehicle_driver_details_body{
+    font-size: 16px;
+    font-weight: 700;
+    text-align: left;
+    padding-left: 10%;
+}
+
+.vehicle_driver_details_body img{
+    padding: 1%;
+    width: 80%;
 }
