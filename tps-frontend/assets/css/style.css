@@ -1064,35 +1064,57 @@ body {
     font-weight: 700;
     color: #a2a2a2;
 }
-.btn_vehicle_action{
+
+.btn_vehicle_action {
     margin-top: 10px;
     font-size: 12px !important;
     font-weight: 700 !important;
 }
-.vehicle_price{
+
+.vehicle_price {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 16px;
     font-weight: bold;
 }
-.vehicle_card_bottom .row > div:nth-child(1),
-.vehicle_card_bottom .row > div:nth-child(2),
-.vehicle_card_bottom .row > div:nth-child(3){
+
+.vehicle_card_bottom .row>div:nth-child(1),
+.vehicle_card_bottom .row>div:nth-child(2),
+.vehicle_card_bottom .row>div:nth-child(3) {
     font-weight: bold;
     font-size: 11x;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: #887d7d;
 }
 
-.vehicle_card_bottom .row > div:nth-child(4),
-.vehicle_card_bottom .row > div:nth-child(5),
-.vehicle_card_bottom .row > div:nth-child(6){
+.vehicle_card_bottom .row>div:nth-child(4),
+.vehicle_card_bottom .row>div:nth-child(5),
+.vehicle_card_bottom .row>div:nth-child(6) {
     font-weight: bold;
     font-size: 14x;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: #2a2a2a;
 }
 
-.vehicle_view_more{
+.vehicle_view_more {
     font-size: 12px;
     font-weight: bold;
+}
+#vehicleDetailsModal .modal-dialog{
+    margin: 10%;
+    
+}
+#vehicleDetailsModal .modal-content{
+    width: 80vw !important;
+}
+#vehicleDetailsModal .row > div:first-child{
+    border-right: 2px solid #000;
+}
+#vehicleDetailsModal .row > div:nth-child(2){
+    border-left: 2px solid #000;
+}
+.vehicle_details_heder{
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Agbalumo', sans-serif;
+    margin-bottom: 10px;
 }

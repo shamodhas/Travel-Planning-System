@@ -27,6 +27,7 @@ $(document).ready(function (event) {
 
     document.getElementById("btn-vehicle").click();
     $('#vehicle-manage').hide();
+    
 });
 
 const init = () => {

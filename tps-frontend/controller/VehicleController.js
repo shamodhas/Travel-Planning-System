@@ -12,7 +12,7 @@ export class VehicleController {
             event.preventDefault();
             this.reset();
         });
-        $('#vehicle_view_more').click((event) => {
+        $('.vehicle_view_more').click((event) => {
             event.preventDefault();
             console.log("dsfe")
         });
