@@ -706,10 +706,12 @@
                             <select style="font-size: 12px;" class="form-select" id='selectBookingVehicle'>
                                 <option value="" selected>Select Vehicle</option>
                             </select>
+                            <div id="vehicleDetailsCard">
+                            </div>
                         </div>
                         <div class="vehicle_booking">
                             <div class="package__form__group field" style="width: 50%;">
-                                <input type="text" class="package__form__field" placeholder="Distance"
+                                <input type="number" class="package__form__field" placeholder="Distance"
                                     id='txtBookingVehicleDistance' required />
                                 <label for="txtBookingVehicleDistance" class="package__form__label">Distance</label>
                             </div>
@@ -720,20 +722,27 @@
                         </div>
                         <div style="margin-top: 25px;">
                             <table class="table table-bordered">
-                                <tr class="table-secondary">
-                                    <th scope="col">License Number</th>
-                                    <th scope="col">Front Image</th>
-                                    <th scope="col">Brand</th>
-                                    <th scope="col">Distance</th>
-                                    <th scope="col">Price Per km</th>
-                                </tr>
+                                <thead>
+                                    <tr class="table-secondary">
+                                        <th class="col-lg-2">License Number</th>
+                                        <th class="col-lg-3">Front Image</th>
+                                        <th class="col-lg-2">Brand</th>
+                                        <th class="col-lg-2">Distance</th>
+                                        <th class="col-lg-2">Price Per km</th>
+                                        <th class="col-lg-1">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="vehicle_cart">
+                                    <!-- <tr>
+                                        <td class="col-lg-2">dscsd</td>
+                                        <td class="col-lg-3"><img src="assets/img27.jpeg" width="100%"></td>
+                                        <td class="col-lg-2">dscsd</td>
+                                        <td class="col-lg-2">dscsd</td>
+                                        <td class="col-lg-2">dscsd</td>
+                                        <td class="col-lg-1">dscsd</td>
+                                    </tr> -->
+                                </tbody>
                             </table>
-                            <tbody>
-                                <tr>
-                                    <input class="bookingVehicleId" type="hidden" value="">
-                                    <td></td>
-                                </tr>
-                            </tbody>
                         </div>
                     </div>
                     <div class="col-lg-6">

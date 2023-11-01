@@ -1320,3 +1320,13 @@ body {
 #packageDetailsCard{
     margin-top: 25px;
 }
+#hotelOptionDetailsCard{
+    margin-top: 25px;
+}
+#vehicleDetailsCard{
+    margin-top: 25px;
+}
+#vehicle_cart .bx{
+    font-size: 50px;
+    color: #ff0000;
+}

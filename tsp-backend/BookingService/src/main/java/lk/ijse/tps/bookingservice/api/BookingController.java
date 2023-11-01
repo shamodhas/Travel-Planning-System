@@ -21,7 +21,6 @@ import java.time.LocalDate;
 
 @RestController
 @RequestMapping("api/v1/booking")
-@CrossOrigin("*")
 @RequiredArgsConstructor
 public class BookingController {
     private final BookingService bookingService;
@@ -87,6 +86,7 @@ public class BookingController {
             );
         }
         bookingDTO.setBookingId(bookingId);
+        bookingDTO.getVehicleBookings().forEach(vehicleBookingDTO -> vehicleBookingDTO.setBookingId(bookingId));
         bookingService.updateBooking(bookingDTO);
         return ResponseEntity.ok("Booking updated");
     }

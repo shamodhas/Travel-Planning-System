@@ -44,6 +44,9 @@ public class BookingServiceImpl implements BookingService {
         // call guide service findById() guide id can null
         // call hotel option service findById() can null
         // call vehicle service findById() list can null
+        String finalBookingId = bookingId;
+        bookingDTO.setBookingId(finalBookingId);
+        bookingDTO.getVehicleBookings().forEach(vehicleBookingDTO->vehicleBookingDTO.setBookingId(finalBookingId));
         return convertor.getBookingDTO(bookingDao.save(convertor.getBooking(bookingDTO)));
     }
 
