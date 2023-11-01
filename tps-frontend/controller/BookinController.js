@@ -7,21 +7,38 @@ export class BookingController {
         $('#addToCart').click(event => this.handleAddVehicleToCart(event));
         $('#selectBookingPackage').change((event) => { this.handleBookingSelectPackage(event) })
         $('#selectBookingGuide').change((event) => { this.handleBookingSelectGuide(event) })
+        $('.guide_remove').click((event) => { this.handleBookingSelectGuideRemove(event) })
+        $("#guide-body .row").on("click", ".guide_card .guide_more_about", (event) => {
+            event.preventDefault();
+            this.handleLoadMoreGuideDetails(event);
+        });
+    }
+    handleBookingSelectGuideRemove(event){
+        event.preventDefault();
+        alert()
+        // $('#selectBookingGuide').val('');
     }
     handleBookingSelectGuide(event) {
         event.preventDefault();
-        $('#guidePrice').empty();
-        $('#guidePhone').empty();
-        $('#guideProfile').empty();
+        $('#guideDetailsCard').empty();
         const optionElm = $(event.target).find('option:selected');
         const guideId = optionElm.val();
         if (guideId) {
             const price = optionElm.data('price');
             const phone = optionElm.data('phone');
             const profile = optionElm.data('profile');
-            $('#guidePrice').append(`Price per day : <small>LKR </small>${price}`);
-            $('#guidePhone').append(`Phone : ${phone}`);
-            $('#guideProfile').append(`<img src="data:image/jpeg;base64, ${profile}">`);
+            const name = optionElm.data('name');
+            const address = optionElm.data('address');
+            $('#guideDetailsCard').append(`
+                <div class="guide_card">
+                    <img class="guide_profile" src="data:image/jpeg;base64, ${profile}" alt="guide profile img" style="width:100%">
+                    <div class="guide_name">${name}</div>
+                    <div class="guide_address">${address}</div>
+                    <div class="guide_phone">${phone}</div>
+                    <div class="guide_price"><small>LKR : </small>${price} per day</div>
+                    <button class="guide_remove">Remove</button>
+                </div>
+            `);
         }
     }
     handleBookingSelectPackage(event) {
@@ -122,7 +139,7 @@ export class BookingController {
     }
     renderBookingGuideSelectOptions(guide) {
         return `
-            <option value=${guide.guideId} data-price=${guide.pricePerDay} data-phone=${guide.phone} data-profile=${guide.profile}>${guide.name} - ${guide.address}</option>
+            <option value=${guide.guideId} data-price=${guide.pricePerDay} data-phone=${guide.phone} data-profile=${guide.profile} data-name=${guide.name} data-address=${guide.address}>${guide.name} - ${guide.address}</option>
         `;
     }
     handlePackageLoad() {

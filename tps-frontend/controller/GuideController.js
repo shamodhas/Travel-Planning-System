@@ -148,6 +148,7 @@ export class GuideController {
         return `
             <div class="col-lg-3">
                 <div class="guide_card">
+                    <input id="more_details_guide_id" type="hidden" value="${guide.guideId}">
                     <img class="guide_profile" src="data:image/jpeg;base64, ${guide.profile}" alt="guide profile img" style="width:100%">
                     <input id="guide_id" type="hidden" value="${guide.guideId}">
                     <div class="guide_name">${guide.name}</div>

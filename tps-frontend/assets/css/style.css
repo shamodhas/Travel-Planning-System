@@ -1144,7 +1144,7 @@ body {
     width: 80%;
 }
 
-#guide-section .guide_card {
+.guide_card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 300px;
     margin: auto;
@@ -1152,15 +1152,15 @@ body {
     font-family: arial;
 }
 
-#guide-section .guide_name {
+.guide_name {
     font-size: 22px;
     font-weight: 700;
     font-family: 'Agbalumo', sans-serif;
 }
 
-#guide-section .guide_address,
-#guide-section .guide_phone,
-#guide-section .guide_price {
+.guide_address,
+.guide_phone,
+.guide_price {
     font-weight: 700;
     color: grey;
     font-size: 16px;
@@ -1226,8 +1226,8 @@ body {
 }
 
 #guide_nic_details_body img {
-    padding: 1% ;
-    width: 80% ;
+    padding: 1%;
+    width: 80%;
 }
 
 
@@ -1247,37 +1247,65 @@ body {
     background-color: #FFF;
 }
 
-.vehicle_booking{
+.vehicle_booking {
     display: flex;
     justify-content: space-around;
     align-items: end;
 }
-.booking_total{
+
+.booking_total {
     margin-top: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 22px;
     font-weight: 700;
     color: var(--first-color);
 }
-.booking_sub_total{
+
+.booking_sub_total {
     margin-top: 5px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 22px;
     font-weight: 700;
     color: #36a016;
 }
+
 .booking_place {
     margin-top: 10px;
 }
-.booking_place .btn{
+
+.booking_place .btn {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 16px;
     font-weight: 700;
     background-color: #2533ae;
 }
-.booking_lable{
+
+.booking_lable {
     font-size: 14px;
 }
-.booking_lable img{
+
+.booking_lable img {
     width: 40%;
+}
+
+#guideDetailsCard .guide_card{
+    
+    width: 600px !important;
+}
+
+ .guide_remove {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #eb0a0a;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+.guide_remove:hover {
+    opacity: 0.7;
 }
