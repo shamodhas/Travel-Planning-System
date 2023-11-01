@@ -675,88 +675,98 @@
     <div id="booking-section" class="body-container">
         <div id="addNewBooking">
             <div id="booking-form">
-                <div class="package__form__group field">
-                    <select style="font-size: 12px;" class="form-select" id='selectBookingPackage'>
-                        <option value="" selected>Select Package</option>
-                    </select>
-                </div>
-                <div class="package__form__group field">
-                    <select style="font-size: 12px;" class="form-select" id='selectBookingGuide'>
-                        <option value="" selected>Select Guide</option>
-                    </select>
-                </div>
-                <div class="package__form__group field">
-                    <select style="font-size: 12px;" class="form-select" id='selectBookingHotelOption'>
-                        <option value="" selected>Select Hotel</option>
-                    </select>
-                </div>
-                <div class="package__form__group field">
-                    <small style="font-size: 11px;font-weight: 700;">You can select multiple vehicle</small>
-                    <select style="font-size: 12px;" class="form-select" id='selectBookingHotelOption'>
-                        <option value="" selected>Select Vehicle</option>
-                    </select>
-                </div>
-                <div class="vehicle_booking">
-                    <div class="package__form__group field" style="width: 50%;">
-                        <input type="text" class="package__form__field" placeholder="Distance"
-                            id='txtBookingVehicleDistance' required />
-                        <label for="txtBookingVehicleDistance" class="package__form__label">Distance</label>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="package__form__group field">
+                            <select style="font-size: 12px;" class="form-select" id='selectBookingPackage'>
+                                <option value="" selected>Select Package</option>
+                            </select>
+                        </div>
+                        <div class="package__form__group field">
+                            <small style="font-size: 11px;">( Optional )</small>
+                            <select style="font-size: 12px;" class="form-select" id='selectBookingGuide'>
+                                <option value="" selected>Select Guide</option>
+                            </select>
+                        </div>
+                        <div class="package__form__group field">
+                            <small style="font-size: 11px;">( Optional )</small>
+                            <select style="font-size: 12px;" class="form-select" id='selectBookingHotelOption'>
+                            </select>
+                        </div>
+                        <div class="package__form__group field">
+                            <small style="font-size: 11px;">( Optional )</small>
+                            <small style="font-size: 11px;font-weight: 700;">You can add multiple vehicle</small>
+                            <select style="font-size: 12px;" class="form-select" id='selectBookingVehicle'>
+                                <option value="" selected>Select Vehicle</option>
+                            </select>
+                        </div>
+                        <div class="vehicle_booking">
+                            <div class="package__form__group field" style="width: 50%;">
+                                <input type="text" class="package__form__field" placeholder="Distance"
+                                    id='txtBookingVehicleDistance' required />
+                                <label for="txtBookingVehicleDistance" class="package__form__label">Distance</label>
+                            </div>
+                            <div>
+                                <button id="addToCart" class="btn btn-first" style="font-size: 12px;">Add to cart</button>
+                            </div>
+                        </div>
+                        <div style="margin-top: 25px;">
+                            <table class="table table-bordered">
+                                <tr class="table-secondary">
+                                    <th scope="col">License Number</th>
+                                    <th scope="col">Front Image</th>
+                                    <th scope="col">Brand</th>
+                                    <th scope="col">Distance</th>
+                                    <th scope="col">Price Per km</th>
+                                </tr>
+                            </table>
+                            <tbody>
+                                <tr>
+                                    <input class="bookingVehicleId" type="hidden" value="">
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </div>
                     </div>
-                    <div>
-                        <button class="btn btn-first" style="font-size: 12px;">Add to cart</button>
+                    <div class="col-lg-6">
+                        <div class="package__form__group field">
+                            <input type="number" class="package__form__field" placeholder="No Of Children"
+                                id='txtBookingNoOfChildren' required />
+                            <label for="txtBookingNoOfChildren" class="package__form__label">No Of Children</label>
+                        </div>
+                        <div class="package__form__group field">
+                            <input type="number" class="package__form__field" placeholder="No Of Adults"
+                                id='txtBookingNoOfAdults' required />
+                            <label for="txtBookingNoOfAdults" class="package__form__label">No Of Adults</label>
+                        </div>
+                        <div class="package__form__group field">
+                            <input type="date" class="package__form__field" placeholder="Start Date"
+                                id='txtBookingStartDate' required />
+                            <label for="txtBookingStartDate" class="package__form__label">Start Date</label>
+                        </div>
+                        <div class="package__form__group field">
+                            <input type="date" class="package__form__field" placeholder="End Date"
+                                id='txtBookingEndDate' required />
+                            <label for="txtBookingEndDate" class="package__form__label">End Date</label>
+                        </div>
+                        <div class="package__form__group field">
+                            <input type="number" class="package__form__field" placeholder="Down Payment"
+                                id='txtBookingDownPayment' required />
+                            <label for="txtBookingDownPayment" class="package__form__label">Down Payment</label>
+                        </div>
+                        <div class="booking_total text-center">
+                            Total : 500
+                        </div>
+                        <div class="booking_sub_total text-center">
+                            Sub Total : 500
+                        </div>
+                        <div class="booking_place text-center">
+                            <button class="btn btn-primary">
+                                Book Now
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div style="margin-top: 25px;">
-                    <table class="table table-bordered">
-                        <tr class="table-secondary">
-                            <th scope="col">License Number</th>
-                            <th scope="col">Brand</th>
-                            <th scope="col">Distance</th>
-                            <th scope="col">Price Per km</th>
-                        </tr>
-                    </table>
-                    <tbody>
-                        <tr>
-                            <input class="bookingVehicleId" type="hidden" value="">
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </div>
-                <div class="package__form__group field">
-                    <input type="number" class="package__form__field" placeholder="No Of Children" id='txtBookingNoOfChildren'
-                        required />
-                    <label for="txtBookingNoOfChildren" class="package__form__label">No Of Children</label>
-                </div>
-                <div class="package__form__group field">
-                    <input type="number" class="package__form__field" placeholder="No Of Adults" id='txtBookingNoOfAdults'
-                        required />
-                    <label for="txtBookingNoOfAdults" class="package__form__label">No Of Adults</label>
-                </div>
-                <div class="package__form__group field">
-                    <input type="date" class="package__form__field" placeholder="Start Date" id='txtBookingStartDate'
-                        required />
-                    <label for="txtBookingStartDate" class="package__form__label">Start Date</label>
-                </div>
-                <div class="package__form__group field">
-                    <input type="date" class="package__form__field" placeholder="End Date" id='txtBookingEndDate'
-                        required />
-                    <label for="txtBookingEndDate" class="package__form__label">End Date</label>
-                </div>
-                <div class="package__form__group field">
-                    <input type="number" class="package__form__field" placeholder="Down Payment" id='txtBookingDownPayment'
-                        required />
-                    <label for="txtBookingDownPayment" class="package__form__label">Down Payment</label>
-                </div>
-                <div>
-                    total
-                </div>
-                <div>
-                    sub total
-                </div>
-                <div>
-                    place booking
-                </div>
-
             </div>
         </div>
         <!-- if you are customer -->
@@ -799,6 +809,7 @@
     <script type="module" src="controller/HotelController.js"></script>
     <script type="module" src="controller/VehicleController.js"></script>
     <script type="module" src="controller/GuideController.js"></script>
+    <script type="module" src="controller/BookinController.js"></script>
     <script>
 
     </script>

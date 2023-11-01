@@ -103,7 +103,7 @@ export class PackageController {
     handleSavePackage(aPackage) {
         $.ajax({
             type: "POST",
-            url: "http://localhost:8090/package/api/v1/package/public",
+            url: "http://localhost:8090/package/api/v1/package",
             data: JSON.stringify(aPackage),
             contentType: "application/json",
             success: (data) => {

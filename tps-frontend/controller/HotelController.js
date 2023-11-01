@@ -204,7 +204,7 @@ export class HotelController {
             error: (error) => {
                 console.log(error)
             }
-        })
+        });
     }
     handleLoadAllHotelSelectBox(hotels) {
         $('#txtHotelNamewithAddress').empty();
