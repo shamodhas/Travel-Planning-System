@@ -11,13 +11,110 @@ export class BookingController {
         $("#hotelOptionDetailsCard").on("click", "#hotel_remove", (event) => this.handleBookingSelectHotelRemove(event));
         $("#vehicleDetailsCard").on("click", ".booking_vehicle_image_next", event => this.handleLoadNextVehicleImage(event));
         $("#vehicleDetailsCard").on("click", ".booking_vehicle_image_pre", (event) => this.handleLoadPrevVehicleImage(event));
-        $("#vehicle_cart").on("click", ".remove_vehicle", (event) => this.handleLoadSelectVehicleCartRow(event));
+        $("#vehicle_cart").on("click", ".remove_vehicle", (event) => this.handleLoadSelectVehicleRemove(event));
+        $('#txtBookingDownPayment').on("input", (event) => this.handleDownPayment(event));
+        $('#add_book').click((event) => this.handleAddBooking(event));
     }
-    handleLoadSelectVehicleCartRow(event) {
+    handlePreBookingTableLoad() {
+
+    }
+    handleAddBooking(event) {
+        const customerId = $('#userId').val();
+        const packageId = $('#selectBookingPackage').val();
+        const guideId = $('#selectBookingGuide').val();
+        const hotelOptionId = $('#selectBookingHotelOption').val();
+        const noOfChildren = $('#txtBookingNoOfChildren').val();
+        const noOfAdults = $('#txtBookingNoOfAdults').val();
+        const startDate = $('#txtBookingStartDate').val();
+        const endDate = $('#txtBookingEndDate').val();
+        const status = 'PENDING';// PENDING, ACTIVE, END 
+        const downPayment = $('#txtBookingDownPayment').val();
+        const date = (new Date()).toISOString();
+        const vehicleBookings = [];
+
+        const rows = $('#vehicle_cart').find('tr');
+        for (let i = 0; i < rows.length; i++) {
+            const column = $(rows[i]).find('td');
+            const vehicleId = $(rows[i]).data('vehicle-id');
+            const distance = $(column[3]).text();
+            const pricePerKM = $(column[4]).text();
+
+            const vehicleBooking = {
+                vehicleId,
+                distance,
+                pricePerKM
+            }
+            vehicleBookings.push(vehicleBooking);
+        }
+
+        // validation
+
+        this.saveBookig({
+            customerId,
+            packageId,
+            guideId,
+            hotelOptionId,
+            vehicleBookings,
+            noOfChildren,
+            noOfAdults,
+            date,
+            startDate,
+            endDate,
+            status,
+            downPayment
+        });
+    }
+    saveBookig(booking) {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8090/booking/api/v1/booking",
+            data: JSON.stringify(booking),
+            contentType: "application/json",
+            success: (data) => {
+                this.reset();
+                alert('booking added')
+            },
+            error: (error) => {
+                console.log(error)
+            }
+        });
+    }
+    reset() {
+        this.handlePackageLoad();
+        this.handleGuideLoad();
+        this.handleHotelLoad();
+        this.handleVehicleLoad();
+        this.handlePreBookingTableLoad();
+        $('#packageDetailsCard').empty();
+        $('#guideDetailsCard').empty();
+        $('#hotelOptionDetailsCard').empty();
+        $('#vehicleDetailsCard').empty();
+        $('#vehicle_cart').empty();
+        $('#txtBookingNoOfChildren').val('');
+        $('#txtBookingNoOfAdults').val('');
+        $('#txtBookingStartDate').val('');
+        $('#txtBookingEndDate').val('');
+        $('#txtBookingDownPayment').val('');
+        $('#total').val(0);
+        $('#subTotal').val(0);
+    }
+    handleDownPayment(event) {
+        event.preventDefault();
+        const total = $('#total').text();
+        if (total == 0) {
+            alert('please fill top fields');
+        } else {
+            $('#subTotal').text(parseFloat(total) - ($(event.target).val()));
+        }
+    }
+    handleLoadSelectVehicleRemove(event) {
         event.preventDefault();
         const vehicleId = $(event.target.closest('tr')).data('vehicle-id');
+        const pricePerKM = $(event.target.closest('tr')).data('price');
+        const distance = $(event.target.closest('tr')).data('distance');
         $('#selectBookingVehicle option[value="' + vehicleId + '"]').prop('disabled', false);
         $(event.target.closest('tr')).remove();
+        $('#total').text(parseFloat($('#total').text()) - (pricePerKM * distance));
     }
     handleAddVehicleToCart(event) {
         event.preventDefault();
@@ -32,7 +129,7 @@ export class BookingController {
                 const pricePerKM = optionElm.data('price_per_km');
                 $('#vehicle_cart').append(
                     `
-                    <tr data-vehicle-id="${vehicleId}">
+                    <tr data-vehicle-id="${vehicleId}" data-price="${pricePerKM}" data-distance="${distance}">
                         <td class="col-lg-2">${vehicleLicenseNumber.toUpperCase()}</td>
                         <td class="col-lg-3"><img src="data:image/jpeg;base64, ${vehicleFrontImage}" width="100%"></td>
                         <td class="col-lg-2">${brand.toUpperCase()}</td>
@@ -46,6 +143,7 @@ export class BookingController {
                     </tr>
                     `
                 );
+                $('#total').text(parseFloat($('#total').text()) + (pricePerKM * distance));
                 $('#selectBookingVehicle').prop('selectedIndex', 0);
                 $('#txtBookingVehicleDistance').val('');
                 $('#vehicleDetailsCard').empty();
@@ -168,21 +266,37 @@ export class BookingController {
     }
     handleBookingSelectHotelRemove(event) {
         event.preventDefault();
+        const prevPrice = $('#hotelOptionDetailsCard .hotel-card').data('price');
+        if (prevPrice) {
+            $('#total').text(parseFloat($('#total').text()) - (prevPrice));
+        }
         $('#selectBookingHotelOption').prop('selectedIndex', 0);
         $('#hotelOptionDetailsCard').empty();
     }
     handleBookingSelectPackageRemove(event) {
         event.preventDefault();
+        const prevPrice = $('#packageDetailsCard .guide_card').data('price');
+        if (prevPrice) {
+            $('#total').text(parseFloat($('#total').text()) - (prevPrice));
+        }
         $('#selectBookingPackage').prop('selectedIndex', 0);
         $('#packageDetailsCard').empty();
     }
     handleBookingSelectGuideRemove(event) {
         event.preventDefault();
+        const prevPrice = $('#guideDetailsCard .guide_card').data('price');
+        if (prevPrice) {
+            $('#total').text(parseFloat($('#total').text()) - (prevPrice));
+        }
         $('#selectBookingGuide').prop('selectedIndex', 0);
         $('#guideDetailsCard').empty();
     }
     handleBookingSelectHotelOption(event) {
         event.preventDefault();
+        const prevPrice = $('#hotelOptionDetailsCard .hotel-card').data('price');
+        if (prevPrice) {
+            $('#total').text(parseFloat($('#total').text()) - (prevPrice));
+        }
         $('#hotelOptionDetailsCard').empty();
         const optionElm = $(event.target).find('option:selected');
         const hotelOptionId = optionElm.val();
@@ -195,8 +309,7 @@ export class BookingController {
             const address = optionElm.data('address');
             const isPetAllowed = optionElm.data('isPetAllowed');
             $('#hotelOptionDetailsCard').append(`
-            
-                <div class="hotel-card">
+                <div class="hotel-card" data-price="${price}">
                     <div class="inner">
                         <span class="hotel-option-price">
                             <span>
@@ -261,10 +374,15 @@ export class BookingController {
                     </div>
             </div>
         `);
+            $('#total').text(parseFloat($('#total').text()) + (price));
         }
     }
     handleBookingSelectGuide(event) {
         event.preventDefault();
+        const prevPrice = $('#guideDetailsCard .guide_card').data('price');
+        if (prevPrice) {
+            $('#total').text(parseFloat($('#total').text()) - (prevPrice));
+        }
         $('#guideDetailsCard').empty();
         const optionElm = $(event.target).find('option:selected');
         const guideId = optionElm.val();
@@ -275,7 +393,7 @@ export class BookingController {
             const name = optionElm.data('name');
             const address = optionElm.data('address');
             $('#guideDetailsCard').append(`
-                <div class="guide_card">
+                <div class="guide_card" data-price="${price}">
                     <img class="guide_profile" src="data:image/jpeg;base64, ${profile}" alt="guide profile img" style="width:100%">
                     <div class="guide_name">${name}</div>
                     <div class="guide_address">${address}</div>
@@ -284,10 +402,15 @@ export class BookingController {
                     <button class="guide_remove">Remove</button>
                 </div>
             `);
+            $('#total').text(parseFloat($('#total').text()) + (price));
         }
     }
     handleBookingSelectPackage(event) {
         event.preventDefault();
+        const prevPrice = $('#packageDetailsCard .guide_card').data('price');
+        if (prevPrice) {
+            $('#total').text(parseFloat($('#total').text()) - (prevPrice));
+        }
         $('#packageDetailsCard').empty();
         const optionElm = $(event.target).find('option:selected');
         const packageId = optionElm.val();
@@ -297,7 +420,7 @@ export class BookingController {
             const days = optionElm.data('days');
             const price = optionElm.data('package-price');
             $('#packageDetailsCard').append(`
-                <div class="guide_card">
+                <div class="guide_card" data-price="${price}">
                     <div class="guide_name">${area}</div>
                     <div class="guide_address">${category}</div>
                     <div class="guide_phone">${days} days</div>
@@ -305,6 +428,7 @@ export class BookingController {
                     <button class="package_remove">Remove</button>
                 </div>
             `);
+            $('#total').text(parseFloat($('#total').text()) + (price));
         }
     }
     handleAllBooking(event) {
@@ -314,9 +438,6 @@ export class BookingController {
         this.handleHotelLoad();
         this.handleVehicleLoad();
         this.handlePreBookingTableLoad();
-    }
-    handlePreBookingTableLoad() {
-
     }
     handleVehicleLoad() {
         $('#selectBookingVehicle').empty();

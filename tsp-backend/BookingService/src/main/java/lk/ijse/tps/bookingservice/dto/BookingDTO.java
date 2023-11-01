@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -28,7 +29,7 @@ public class BookingDTO {
     private List<VehicleBookingDTO> vehicleBookings;
     private int noOfChildren;
     private int noOfAdults;
-    private LocalDate date;
+    private LocalDateTime date;
     private LocalDate startDate;
     private LocalDate endDate;
     private Status status;

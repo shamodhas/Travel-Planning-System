@@ -733,14 +733,6 @@
                                     </tr>
                                 </thead>
                                 <tbody id="vehicle_cart">
-                                    <!-- <tr>
-                                        <td class="col-lg-2">dscsd</td>
-                                        <td class="col-lg-3"><img src="assets/img27.jpeg" width="100%"></td>
-                                        <td class="col-lg-2">dscsd</td>
-                                        <td class="col-lg-2">dscsd</td>
-                                        <td class="col-lg-2">dscsd</td>
-                                        <td class="col-lg-1">dscsd</td>
-                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -772,13 +764,13 @@
                             <label for="txtBookingDownPayment" class="package__form__label">Down Payment</label>
                         </div>
                         <div class="booking_total text-center">
-                            Total : 500
+                            Total : <span id="total">0</span>
                         </div>
                         <div class="booking_sub_total text-center">
-                            Sub Total : 500
+                            Sub Total : <span id="subTotal">0</span>
                         </div>
                         <div class="booking_place text-center">
-                            <button class="btn btn-primary">
+                            <button id="add_book" class="btn btn-primary">
                                 Book Now
                             </button>
                         </div>
