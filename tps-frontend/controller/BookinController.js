@@ -7,16 +7,18 @@ export class BookingController {
         $('#addToCart').click(event => this.handleAddVehicleToCart(event));
         $('#selectBookingPackage').change((event) => { this.handleBookingSelectPackage(event) })
         $('#selectBookingGuide').change((event) => { this.handleBookingSelectGuide(event) })
-        $('.guide_remove').click((event) => { this.handleBookingSelectGuideRemove(event) })
-        $("#guide-body .row").on("click", ".guide_card .guide_more_about", (event) => {
-            event.preventDefault();
-            this.handleLoadMoreGuideDetails(event);
-        });
+        $("#guideDetailsCard").on("click", ".guide_remove", (event) => this.handleBookingSelectGuideRemove(event));
+        $("#packageDetailsCard").on("click", ".package_remove", (event) => this.handleBookingSelectPackageRemove(event));
     }
-    handleBookingSelectGuideRemove(event){
+    handleBookingSelectPackageRemove(event){
         event.preventDefault();
-        alert()
-        // $('#selectBookingGuide').val('');
+        $('#selectBookingPackage').prop('selectedIndex', 0);
+        $('#packageDetailsCard').empty();
+    }
+    handleBookingSelectGuideRemove(event) {
+        event.preventDefault();
+        $('#selectBookingGuide').prop('selectedIndex', 0);
+        $('#guideDetailsCard').empty();
     }
     handleBookingSelectGuide(event) {
         event.preventDefault();
@@ -43,12 +45,23 @@ export class BookingController {
     }
     handleBookingSelectPackage(event) {
         event.preventDefault();
-        $('#packagePrice').empty();
+        $('#packageDetailsCard').empty();
         const optionElm = $(event.target).find('option:selected');
         const packageId = optionElm.val();
         if (packageId) {
+            const category = optionElm.data('category');
+            const area = optionElm.data('area');
+            const days = optionElm.data('days');
             const price = optionElm.data('package-price');
-            $('#packagePrice').append(`Price : <small>LKR </small>${price}`);
+            $('#packageDetailsCard').append(`
+                <div class="guide_card">
+                    <div class="guide_name">${area}</div>
+                    <div class="guide_address">${category}</div>
+                    <div class="guide_phone">${days} days</div>
+                    <div class="guide_price"><small>LKR : </small>${price} per day</div>
+                    <button class="package_remove">Remove</button>
+                </div>
+            `);
         }
     }
     handleAddVehicleToCart(event) {
@@ -56,7 +69,6 @@ export class BookingController {
 
     }
     handleAllBooking(event) {
-        // get all booking
         this.handlePackageLoad();
         this.handleGuideLoad();
         this.handleHotelLoad();
@@ -139,7 +151,7 @@ export class BookingController {
     }
     renderBookingGuideSelectOptions(guide) {
         return `
-            <option value=${guide.guideId} data-price=${guide.pricePerDay} data-phone=${guide.phone} data-profile=${guide.profile} data-name=${guide.name} data-address=${guide.address}>${guide.name} - ${guide.address}</option>
+            <option value="${guide.guideId}" data-price="${guide.pricePerDay}" data-phone=${guide.phone} data-profile="${guide.profile}" data-name="${guide.name}" data-address="${guide.address}">${guide.name} - ${guide.address}</option>
         `;
     }
     handlePackageLoad() {
@@ -163,7 +175,7 @@ export class BookingController {
     }
     renderBookingPackageSelectOptions(aPackage) {
         return `
-            <option value=${aPackage.packageId} data-package-price=${aPackage.price}>${aPackage.category} Package ${aPackage.area} ${aPackage.averageNoOfDays} days</option>
+            <option value="${aPackage.packageId}" data-category="${aPackage.category}" data-area="${aPackage.area}" data-days="${aPackage.averageNoOfDays}" data-package-price="${aPackage.price}">${aPackage.category} Package ${aPackage.area} ${aPackage.averageNoOfDays} days</option>
         `;
     }
 

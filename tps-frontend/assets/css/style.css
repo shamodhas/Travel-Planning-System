@@ -1288,12 +1288,18 @@ body {
     width: 40%;
 }
 
-#guideDetailsCard .guide_card{
-    
+#guideDetailsCard .guide_card {
+
     width: 600px !important;
 }
+#packagePrice{
+    text-align: center;
+}
+#packagePrice .bx {
+    font-size: 50px;
+}
 
- .guide_remove {
+.guide_remove,.package_remove {
     border: none;
     outline: 0;
     display: inline-block;
@@ -1306,6 +1312,11 @@ body {
     font-size: 18px;
 }
 
-.guide_remove:hover {
+.guide_remove:hover,
+.package_remove:hover {
     opacity: 0.7;
+}
+
+#packageDetailsCard{
+    margin-top: 25px;
 }
