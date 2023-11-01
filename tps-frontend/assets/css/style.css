@@ -1275,3 +1275,9 @@ body {
     font-weight: 700;
     background-color: #2533ae;
 }
+.booking_lable{
+    font-size: 14px;
+}
+.booking_lable img{
+    width: 40%;
+}

@@ -5,6 +5,34 @@ export class BookingController {
             this.handleAllBooking(event);
         });
         $('#addToCart').click(event => this.handleAddVehicleToCart(event));
+        $('#selectBookingPackage').change((event) => { this.handleBookingSelectPackage(event) })
+        $('#selectBookingGuide').change((event) => { this.handleBookingSelectGuide(event) })
+    }
+    handleBookingSelectGuide(event) {
+        event.preventDefault();
+        $('#guidePrice').empty();
+        $('#guidePhone').empty();
+        $('#guideProfile').empty();
+        const optionElm = $(event.target).find('option:selected');
+        const guideId = optionElm.val();
+        if (guideId) {
+            const price = optionElm.data('price');
+            const phone = optionElm.data('phone');
+            const profile = optionElm.data('profile');
+            $('#guidePrice').append(`Price per day : <small>LKR </small>${price}`);
+            $('#guidePhone').append(`Phone : ${phone}`);
+            $('#guideProfile').append(`<img src="data:image/jpeg;base64, ${profile}">`);
+        }
+    }
+    handleBookingSelectPackage(event) {
+        event.preventDefault();
+        $('#packagePrice').empty();
+        const optionElm = $(event.target).find('option:selected');
+        const packageId = optionElm.val();
+        if (packageId) {
+            const price = optionElm.data('package-price');
+            $('#packagePrice').append(`Price : <small>LKR </small>${price}`);
+        }
     }
     handleAddVehicleToCart(event) {
         event.preventDefault();
@@ -39,10 +67,10 @@ export class BookingController {
     renderBookingVehicleSelectOptions(vehicle) {
         return `
             <option value="${vehicle.vehicleId}">
-                ${vehicle.category.charAt(0).toUpperCase()+vehicle.category.slice(1)} - 
+                ${vehicle.category.charAt(0).toUpperCase() + vehicle.category.slice(1)} - 
                 ${vehicle.brand.toUpperCase()} 
                 ${vehicle.transmission.charAt(0).toUpperCase() + vehicle.transmission.slice(1)} 
-                ${vehicle.type.charAt(0).toUpperCase()+vehicle.type.slice(1)}
+                ${vehicle.type.charAt(0).toUpperCase() + vehicle.type.slice(1)}
             </option>
         `;
     }
@@ -94,7 +122,7 @@ export class BookingController {
     }
     renderBookingGuideSelectOptions(guide) {
         return `
-            <option value="${guide.guideId}">${guide.name} - ${guide.address}</option>
+            <option value=${guide.guideId} data-price=${guide.pricePerDay} data-phone=${guide.phone} data-profile=${guide.profile}>${guide.name} - ${guide.address}</option>
         `;
     }
     handlePackageLoad() {
@@ -118,7 +146,7 @@ export class BookingController {
     }
     renderBookingPackageSelectOptions(aPackage) {
         return `
-            <option value="${aPackage.packageId}">${aPackage.category} Package ${aPackage.area} ${aPackage.averageNoOfDays} days</option>
+            <option value=${aPackage.packageId} data-package-price=${aPackage.price}>${aPackage.category} Package ${aPackage.area} ${aPackage.averageNoOfDays} days</option>
         `;
     }
 
