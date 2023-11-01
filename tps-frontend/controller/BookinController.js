@@ -16,7 +16,25 @@ export class BookingController {
         $('#add_book').click((event) => this.handleAddBooking(event));
     }
     handlePreBookingTableLoad() {
-
+        const userRole = $('#userRole').val();
+        const customerId = $('#userId').val();
+        if (userRole == "CUSTOMER") {
+            if(customerId){
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:8090/booking/api/v1/booking/" + customerId,
+                    success: (bookings) => {
+                        
+                    }
+                    ,
+                    error: (error) => {
+                        console.log(error)
+                    }
+                });
+            }else{
+                alert('please relogin')
+            }
+        }
     }
     handleAddBooking(event) {
         const customerId = $('#userId').val();

@@ -25,7 +25,7 @@ $(document).ready(function (event) {
     }
     linkColor.forEach(l => l.addEventListener('click', colorLink));
 
-    document.getElementById("btn-booking").click();
+    document.getElementById("btn-user").click();
     // $('#vehicle-manage').hide();
     
 });
@@ -97,17 +97,17 @@ $('#btn-go-login').click(event => {
 })
 
 
-$('#btn-sign-out').click(event => {
-    event.preventDefault();
-    $('#header').hide()
-    $('#nav-bar').hide()
-    $('.body-container').hide()
-    $('#customerImageChooser').hide();
-    $('#btn-sign-out').hide();
-    $('#header_img').hide();
-    $('#login-section').show();
-    $('#btn-open-login').show();
-})
+// $('#btn-sign-out').click(event => {
+//     event.preventDefault();
+//     $('#header').hide()
+//     $('#nav-bar').hide()
+//     $('.body-container').hide()
+//     $('#customerImageChooser').hide();
+//     $('#btn-sign-out').hide();
+//     $('#header_img').hide();
+//     $('#login-section').show();
+//     $('#btn-open-login').show();
+// })
 
 $('#btn-open-login').click(event => {
     event.preventDefault();

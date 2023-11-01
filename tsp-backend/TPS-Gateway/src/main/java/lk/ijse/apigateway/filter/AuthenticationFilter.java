@@ -27,6 +27,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
     public GatewayFilter apply(Config config) {
         return ((exchange, chain) -> {
 //            if (!exchange.getRequest().getURI().getPath().contains("/public")) {
+            // check role and
 //                if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
 //                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"missing authorization header");
 //                }

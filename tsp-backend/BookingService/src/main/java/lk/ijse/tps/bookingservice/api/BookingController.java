@@ -69,14 +69,13 @@ public class BookingController {
     @PostMapping
     ResponseEntity<?> saveBooking(@Valid @RequestBody BookingDTO bookingDTO, Errors errors) {
         System.out.println(bookingDTO);
-//        if (errors.hasErrors()) {
-//            throw new InvalidException(errors.getAllErrors().stream()
-//                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
-//                    .toList().toString()
-//            );
-//        }
-//        return ResponseEntity.ok(bookingService.addBooking(bookingDTO));
-        return null;
+        if (errors.hasErrors()) {
+            throw new InvalidException(errors.getAllErrors().stream()
+                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                    .toList().toString()
+            );
+        }
+        return ResponseEntity.ok(bookingService.addBooking(bookingDTO));
     }
 
     @PutMapping("{bookingId}")
