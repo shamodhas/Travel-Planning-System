@@ -1,6 +1,5 @@
 package lk.ijse.authservice.api;
 
-import jakarta.annotation.security.PermitAll;
 import lk.ijse.authservice.dto.AuthRequestDTO;
 import lk.ijse.authservice.dto.UserDTO;
 import lk.ijse.authservice.dto.util.UserRole;
@@ -11,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.regex.Pattern;
@@ -40,17 +38,12 @@ public class AuthController {
         System.out.println("awa");
         return "hari";
     }
-//    @PostMapping("/get")
-//    String getP(){
-//        System.out.println("post");
-//        return "hari post";
-//    }
+
     @PostMapping("/token")
-    public String getToken(@RequestBody AuthRequestDTO authRequestDTO) {
-        System.out.println(authRequestDTO);
+    public ResponseEntity<?> getToken(@RequestBody AuthRequestDTO authRequestDTO) {
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequestDTO.getUsername(), authRequestDTO.getPassword()));
         if (authenticate.isAuthenticated()) {
-            return authService.generateToken(authRequestDTO.getUsername());
+            return ResponseEntity.ok(authService.generateToken(authRequestDTO.getUsername()));
         } else {
             throw new RuntimeException("invalid access");
         }

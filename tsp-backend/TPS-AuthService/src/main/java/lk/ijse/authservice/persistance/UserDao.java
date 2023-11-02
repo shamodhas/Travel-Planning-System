@@ -1,6 +1,5 @@
 package lk.ijse.authservice.persistance;
 
-import com.fasterxml.jackson.databind.introspect.AnnotationCollector;
 import lk.ijse.authservice.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 

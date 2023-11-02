@@ -1,8 +1,5 @@
 package lk.ijse.authservice.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 import lk.ijse.authservice.dto.util.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

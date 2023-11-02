@@ -5,9 +5,9 @@ import lk.ijse.authservice.dto.util.UserRole;
 import lk.ijse.authservice.exception.DuplicateException;
 import lk.ijse.authservice.persistance.UserDao;
 import lk.ijse.authservice.service.AuthService;
+import lk.ijse.authservice.service.JwtService;
 import lk.ijse.authservice.util.DataTypeConvertor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,7 +41,7 @@ public class AuthServiceImpl implements AuthService {
                 userId = String.format("C%S", UUID.randomUUID());
             } while (userDao.findById(userId).isPresent());
             userDTO.setUserId(userId);
-        }else if (userDTO.getUserRole().equals(UserRole.USER) || userDTO.getUserRole().equals(UserRole.ADMIN)){
+        } else if (userDTO.getUserRole().equals(UserRole.USER) || userDTO.getUserRole().equals(UserRole.ADMIN)) {
             String userId;
             do {
                 userId = String.format("U%S", UUID.randomUUID());
@@ -62,6 +62,5 @@ public class AuthServiceImpl implements AuthService {
     public void validateToken(String token) {
         jwtService.validateToken(token);
     }
-
 
 }

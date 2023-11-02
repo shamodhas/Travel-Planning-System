@@ -1,5 +1,8 @@
 package lk.ijse.authservice.config;
 
+import lk.ijse.authservice.filter.JwtAuthFilter;
+import lk.ijse.authservice.service.impl.CustomUserDetailsService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -8,45 +11,44 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static org.springframework.security.config.Customizer.withDefaults;
+
+/**
+ * Created By shamodha_s_rathnamalala
+ * Date : 11/2/2023
+ * Time : 5:19 PM
+ */
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class AuthConfig {
+    private final JwtAuthFilter jwtAuthFilter;
 
     @Bean
     public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService();
     }
 
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-//        return httpSecurity
-//                .authorizeRequests(auth ->
-//                    auth.antMatchers("/api/v1/auth/register","/api/v1/auth/get","/token", "/validate").permitAll()
-//                )
-//                .build();
-        httpSecurity.csrf().disable();
-        httpSecurity
-                .authorizeRequests(authorizeRequests ->
-                        authorizeRequests
-                                .requestMatchers("/api/v1/auth/register","/api/v1/auth/token", "/api/v1/auth/validate").permitAll()
-                                .anyRequest().authenticated()
-                )
-                .httpBasic(withDefaults());
-        return httpSecurity.build();
-//
-//                .csrf().disable()
-//                .authorizeHttpRequests()
-//                .requestMatchers("/auth/register", "/auth/token", "/auth/validate").permitAll()
-//                .and()
-//                .build();
+        return httpSecurity.csrf().disable()
+                .sessionManagement(httpSecuritySessionManagementConfigurer ->{
+                    httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                })
+                .authenticationProvider(authenticationProvider())
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .authorizeHttpRequests((auth) -> {
+                            auth.requestMatchers("/api/v1/auth/register", "/api/v1/auth/token", "/api/v1/auth/validate").permitAll();
+                            auth.requestMatchers("/api/v1/auth/**").authenticated();
+                        }
+                ).build();
     }
 
     @Bean
