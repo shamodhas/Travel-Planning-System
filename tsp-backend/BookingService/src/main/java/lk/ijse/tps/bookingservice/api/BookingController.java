@@ -31,7 +31,7 @@ public class BookingController {
         return ResponseEntity.ok(bookingService.getSelectedBooking(bookingId));
     }
 
-    @GetMapping("{customerId:^[C][A-Fa-f0-9\\\\-]{36}}")
+    @GetMapping("{customerId:^[U][A-Fa-f0-9\\\\-]{36}}")
     ResponseEntity<?> getAllBookingByCustomer(@PathVariable String customerId) {
         return ResponseEntity.ok(bookingService.getAllBookingByCustomerId(customerId));
     }

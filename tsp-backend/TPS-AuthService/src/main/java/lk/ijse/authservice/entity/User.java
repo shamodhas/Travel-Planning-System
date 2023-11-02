@@ -52,7 +52,7 @@ public class User implements UserDetails {
     private String address;//
 
     @Column(columnDefinition = "TEXT")
-    private String userName;//
+    private String username;//
 
     @Column(columnDefinition = "TEXT")
     private String userRole;//
@@ -65,7 +65,7 @@ public class User implements UserDetails {
     private String password;//
 
     public User(User user) {
-        this.userName = user.getUsername();
+        this.username = user.getUsername();
         this.password = user.getPassword();
     }
 
@@ -82,7 +82,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userName;
+        return username;
     }
 
     @Override

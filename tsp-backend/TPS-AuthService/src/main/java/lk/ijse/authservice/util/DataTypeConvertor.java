@@ -27,7 +27,7 @@ public class DataTypeConvertor {
         UserDTO userDTO = modelMapper.map(user, UserDTO.class);
         try {
             if (user.getUserRole().equalsIgnoreCase("CUSTOMER")) {
-
+                userDTO.setProfile(decodeImage(user.getProfile()));
             } else if (user.getUserRole().equalsIgnoreCase("USER") || user.getUserRole().equalsIgnoreCase("ADMIN")) {
                 userDTO.setNicFrontImage(decodeImage(user.getNicFrontImage()));
                 userDTO.setNicBackImage(decodeImage(user.getNicBackImage()));
@@ -42,7 +42,7 @@ public class DataTypeConvertor {
         User user = modelMapper.map(userDTO, User.class);
         try {
             if (userDTO.getUserRole().equals(UserRole.CUSTOMER)) {
-
+                user.setProfile(encodeImage(userDTO.getProfile()));
             } else if (userDTO.getUserRole().equals(UserRole.USER) || userDTO.getUserRole().equals(UserRole.ADMIN)) {
                 user.setNicFrontImage(encodeImage(userDTO.getNicFrontImage()));
                 user.setNicBackImage(encodeImage(userDTO.getNicBackImage()));

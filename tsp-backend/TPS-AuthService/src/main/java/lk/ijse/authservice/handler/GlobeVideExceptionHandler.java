@@ -1,9 +1,9 @@
-package lk.ijse.tps.userservice.handler;
+package lk.ijse.authservice.handler;
 
-import lk.ijse.tps.userservice.exception.DuplicateException;
-import lk.ijse.tps.userservice.exception.InUseException;
-import lk.ijse.tps.userservice.exception.InvalidException;
-import lk.ijse.tps.userservice.exception.NotFoundException;
+import lk.ijse.authservice.exception.DuplicateException;
+import lk.ijse.authservice.exception.InUseException;
+import lk.ijse.authservice.exception.InvalidException;
+import lk.ijse.authservice.exception.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,18 +19,18 @@ public class GlobeVideExceptionHandler {
 
     @ExceptionHandler(DuplicateException.class)
     public ResponseEntity<?> handleDuplicateException(Exception exception) {
-        return ResponseEntity.badRequest().body("Duplicate case\n "+exception.getMessage());
+        return ResponseEntity.badRequest().body(exception.getMessage());
     }
     @ExceptionHandler(InUseException.class)
     public ResponseEntity<?> handleInUseException(Exception exception) {
-        return ResponseEntity.badRequest().body("In use case\n "+exception.getMessage());
+        return ResponseEntity.badRequest().body(exception.getMessage());
     }
     @ExceptionHandler(InvalidException.class)
     public ResponseEntity<?> handleInValidException(Exception exception) {
-        return ResponseEntity.badRequest().body("In valid case\n "+exception.getMessage());
+        return ResponseEntity.badRequest().body(exception.getMessage());
     }
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<?> handleNotFountException(Exception exception) {
-        return ResponseEntity.badRequest().body("Not found case\n "+exception.getMessage());
+        return ResponseEntity.badRequest().body(exception.getMessage());
     }
 }

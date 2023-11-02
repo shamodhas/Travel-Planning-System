@@ -22,7 +22,7 @@ public class UserDTO {
     private String nic;
     private String email;
     private String address;
-    private String userName;
+    private String username;
     private String password;
     private UserRole userRole;
     // customer

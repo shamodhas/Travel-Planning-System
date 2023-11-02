@@ -2,6 +2,8 @@ package lk.ijse.authservice.service;
 
 import lk.ijse.authservice.dto.UserDTO;
 
+import java.util.List;
+
 /**
  * Created By shamodha_s_rathnamalala
  * Date : 11/2/2023
@@ -14,4 +16,14 @@ public interface AuthService {
     String generateToken(String userName);
 
     void validateToken(String token);
+
+    List<UserDTO> getAllUser();
+
+    UserDTO getSelectedUser(String userId);
+
+    UserDTO getSelectedUserByUserName(String userName);
+
+    void updateUser(UserDTO userDTO);
+
+    void deleteUser(String userId);
 }

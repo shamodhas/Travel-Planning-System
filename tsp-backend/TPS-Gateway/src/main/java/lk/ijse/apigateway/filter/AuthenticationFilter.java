@@ -5,7 +5,10 @@ import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -26,25 +29,30 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
     @Override
     public GatewayFilter apply(Config config) {
         return ((exchange, chain) -> {
-//            if (!exchange.getRequest().getURI().getPath().contains("/public")) {
-//            // check role and
-//                if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
-//                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"missing authorization header");
-//                }
-//                String authHeader = exchange.getRequest().getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
-//                if (authHeader != null && authHeader.startsWith("Bearer ")) {
-//                    authHeader = authHeader.substring(7);
-//                }
-//                try {
-//                    // call auth and validation
-//                    // template.getForObject("http://IDENTITY-SERVICE//validate?token" + authHeader, String.class);
-//
-//                } catch (Exception e) {
-//                    throw new ResponseStatusException(HttpStatus.BAD_GATEWAY,"un authorized access to application");
-//                }
-//            }
+            System.out.println("awa");
+            if (validateIsSecured(exchange.getRequest())) {
+                if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
+                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "missing authorization header");
+                }
+                String authHeader = exchange.getRequest().getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
+                if (authHeader != null && authHeader.startsWith("Bearer ")) {
+                    authHeader = authHeader.substring(7);
+                }
+                try {
+                    RestTemplate restTemplate = new RestTemplate();
+                    restTemplate.getForObject("http://localhost:8082/auth/api/v1/auth/validate?token=" + authHeader, String.class);
+                } catch (Exception e) {
+                    throw new ResponseStatusException(HttpStatus.BAD_GATEWAY, "un authorized access to application");
+                }
+            }
             return chain.filter(exchange);
         });
+    }
+
+    private boolean validateIsSecured(ServerHttpRequest request) {
+        if (request.getURI().getPath().contains("/public"))
+            return false;
+        return true;
     }
 
     public static class Config {
