@@ -18,7 +18,6 @@ import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("api/v1/customer")
-@CrossOrigin("*")
 @RequiredArgsConstructor
 public class CustomerController {
     private final CustomerService customerService;
@@ -38,7 +37,7 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.getAllCustomer());
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = ("/public"),consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> saveCustomer(
             @RequestPart String name,
             @RequestPart String email,

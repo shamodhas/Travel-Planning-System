@@ -19,10 +19,12 @@ import org.springframework.web.multipart.MultipartFile;
 public class CustomerDTO {
     private String customerId;
     private String name;
-    private String email;
     private String nic;
+    private String email;
     private String address;
-    private byte[] profile;
     private String userName;
     private String password;
+//    private UserRole userRole;
+
+    private byte[] profile;
 }

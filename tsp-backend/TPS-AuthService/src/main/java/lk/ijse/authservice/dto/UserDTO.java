@@ -3,6 +3,11 @@ package lk.ijse.authservice.dto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import lk.ijse.authservice.dto.util.UserRole;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Created By shamodha_s_rathnamalala
@@ -10,18 +15,23 @@ import jakarta.persistence.Lob;
  * Time : 2:01 AM
  */
 
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
 public class UserDTO {
-    private String userId;//
-    private String name;//
-    private String nic;//
+    private String userId;
+    private String name;
+    private String nic;
+    private String email;
+    private String address;
+    private String userName;
+    private String password;
+    private UserRole userRole;
+    // customer
+    private byte[] profile;
+    // user
     private byte[] nicFrontImage;
     private byte[] nicBackImage;
-    private String email;//
     private String phone;
-    private String address;//
-    private String userName;//
-    private String userRole;//
-    private String profile;// cus only
-    private String password;//
 }
