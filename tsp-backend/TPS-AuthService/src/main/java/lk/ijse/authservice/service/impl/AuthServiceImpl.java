@@ -1,5 +1,6 @@
 package lk.ijse.authservice.service.impl;
 
+import lk.ijse.authservice.dto.AuthResponseDTO;
 import lk.ijse.authservice.dto.UserBookingDTO;
 import lk.ijse.authservice.dto.UserDTO;
 import lk.ijse.authservice.entity.User;
@@ -60,6 +61,13 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public String generateToken(String username) {
         return jwtService.generateToken(username);
+    }
+
+    @Override
+    public AuthResponseDTO generateValidUser(String userName) {
+        User user = userDao.findByUsername(userName).orElseThrow(() -> new NotFoundException("user not found"));
+        String token = generateToken(userName);
+        return new AuthResponseDTO(user.getUserId(),user.getUsername(),user.getUserRole(),token);
     }
 
     @Override

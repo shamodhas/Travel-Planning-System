@@ -51,10 +51,10 @@ public class AuthController {
 
     @PostMapping("/token")
     public ResponseEntity<?> getToken(@RequestBody AuthRequestDTO authRequestDTO) {
-        System.out.println(authRequestDTO);
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequestDTO.getUsername(), authRequestDTO.getPassword()));
         if (authenticate.isAuthenticated()) {
-            return ResponseEntity.ok(userService.generateToken(authRequestDTO.getUsername()));
+            return ResponseEntity.ok(userService.generateValidUser(authRequestDTO.getUsername()));
+//            return ResponseEntity.ok(userService.generateToken(authRequestDTO.getUsername()));
         } else {
             throw new RuntimeException("invalid access");
         }

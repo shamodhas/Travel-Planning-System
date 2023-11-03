@@ -25,7 +25,7 @@ $(document).ready(function (event) {
     }
     linkColor.forEach(l => l.addEventListener('click', colorLink));
 
-    document.getElementById("btn-user").click();
+    // document.getElementById("btn-user").click();
     // $('#vehicle-manage').hide();
     
 });

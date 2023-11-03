@@ -11,42 +11,69 @@ export class UserController {
         event.preventDefault();
         // test for userName use as role no need pass to log
         // use customer,admin,user as username
-        const userName = $('#txtLoginUsername').val().toUpperCase();
+        const username = $('#txtLoginUsername').val();
         const password = $('#txtLoginPassword').val();
-
-        // $.ajax({
-        //     type: "GET",
-        //     url: "",
-        //     success: (response) => {
-        // const user = JSON.parse(response);
-        const userRole = userName//user.userRole
-        if (userRole == 'CUSTOMER') {
-            this.customerRoleViewSet();
-        } else if (userRole == 'USER') {
-            this.userRoleViewSet();
-        } else if (userRole == 'ADMIN') {
-            this.adminRoleViewSet();
-        } else {
-            alert('username or password wrong');
-            return;
+        console.log(username)
+        console.log(password)
+        const user = {
+            username,
+            password
         }
-        $('#txtLoginUsername').val('')
-        $('#txtLoginPassword').val('')
-        $('#isRememberMe').prop('checked', false);
-        $('#btn-sign-out').show();
-        $('#header').show();
-        $('#nav-bar').show();
-        $('#login-section').hide();
-        $('#btn-open-login').hide();
-        $('#dashboard-section').show();
 
-        // $('#header_img').prop('src',user.profile);
-        $('#header_img').show();
-        //     },
-        //     error: (error) => {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8090/auth/api/v1/auth/token",
+            data: JSON.stringify(user),
+            contentType: "application/json",
+            success: (response) => {
+                console.log(response)
+                localStorage.setItem('jwt', response.token);
+                // const userDetails = this.getUSerDetails(username,response);
+                // const user = JSON.parse(response);
+                // const userRole = userName//user.userRole
+                if (response.userRole == 'CUSTOMER') {
+                    this.customerRoleViewSet();
+                } else if (response.userRole == 'USER') {
+                    this.userRoleViewSet();
+                } else if (response.userRole == 'ADMIN') {
+                    this.adminRoleViewSet();
+                } else {
+                    alert('username or password wrong');
+                    return;
+                }
+                $('#txtLoginUsername').val('')
+                $('#txtLoginPassword').val('')
+                $('#isRememberMe').prop('checked', false);
+                $('#btn-sign-out').show();
+                $('#header').show();
+                $('#nav-bar').show();
+                $('#login-section').hide();
+                $('#btn-open-login').hide();
+                $('#dashboard-section').show();
 
-        //     }
-        // })
+                // $('#header_img').prop('src',user.profile);
+                $('#header_img').show();
+            },
+            error: (error) => {
+
+            }
+        })
+    }
+    getUSerDetails(username,token) {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8090/auth/api/v1/auth/" + username,
+            headers: {
+                'Authorization': 'Bearer '+token
+            },
+            success: (user) => {
+                console.log(user)
+            }
+            ,
+            error: (error) => {
+                console.log(error)
+            }
+        })
     }
     handleSaveCustomerValidation(event) {
         event.preventDefault();

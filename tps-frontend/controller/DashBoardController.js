@@ -21,12 +21,18 @@ export class DashBoardController {
         $('#dash-package-body .row').empty();
         $.ajax({
             type: "GET",
+            // beforeSend: function (xhr) {
+            //     xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzaGFtb2RoYSIsImlhdCI6MTY5OTA0MDkxMCwiZXhwIjoxNjk5MDQ0NTEwfQ.1mHKAOEdq5hzIdeU75kbI5T8ZZzQlmP5rzBGl5nAJH8');
+            // },
+            // headers: {
+            //     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzaGFtb2RoYSIsImlhdCI6MTY5OTA0MDkxMCwiZXhwIjoxNjk5MDQ0NTEwfQ.1mHKAOEdq5hzIdeU75kbI5T8ZZzQlmP5rzBGl5nAJH8'
+            // },
             url: "http://localhost:8090/package/api/v1/package/public",
             success: (response) => {
                 response?.sort((a, b) => a.price - b.price);
                 response = response?.slice(0, 12);
                 $('#dash-package-body .row').append(response?.map(this.renderPackageCard).join(''));
-                $('.package-card').attr("package-card-hover-text","Book now");
+                $('.package-card').attr("package-card-hover-text", "Book now");
             }
             ,
             error: (error) => {
