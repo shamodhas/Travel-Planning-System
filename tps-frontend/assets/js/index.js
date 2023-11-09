@@ -1,4 +1,5 @@
 $(document).ready(function (event) {
+    localStorage.setItem('token', "");
     init();
     const showNavbar = (toggleId, navId, bodyId, headerId) => {
         const toggle = document.getElementById(toggleId),
@@ -27,7 +28,7 @@ $(document).ready(function (event) {
 
     // document.getElementById("btn-user").click();
     // $('#vehicle-manage').hide();
-    
+
 });
 
 const init = () => {
@@ -46,8 +47,36 @@ $('.nav .nav_list .nav_link').click(event => {
     event.preventDefault(); // Prevent the link from navigating
     var text = $(event.currentTarget).find('.nav_name').text();
     $('#header-text').text(text);
+    initPages();
     navigate(text);
 })
+
+
+const initPages = () => {
+    const role = $('#userRole').val();
+    console.log(role)
+    if (role == 'CUSTOMER') {
+        $('#package-manage').hide();
+        $('#hotel-manage').hide();
+        $('#vehicle-manage').hide();
+        $('#guide-manage').hide();
+    } else if (role == 'USER') {
+        $('#package-manage').show();
+        $('#hotel-manage').show();
+        $('#vehicle-manage').show();
+        $('#guide-manage').show();
+    } else if (role == 'ADMIN') {
+        $('#package-manage').show();
+        $('#hotel-manage').show();
+        $('#vehicle-manage').show();
+        $('#guide-manage').show();
+    } else {
+        $('#package-manage').hide();
+        $('#hotel-manage').hide();
+        $('#vehicle-manage').hide();
+        $('#guide-manage').hide();
+    }
+}
 
 const navigate = (text) => {
     $('.body-container').hide();
@@ -64,6 +93,8 @@ $('#btn-go-customer-reg').click(event => {
 $('#goCustomerImageChooser').click(event => {
     $('#customerImageChooser').show();
 })
+
+
 $('#cropped-image-done').click(event => {
     if ($('#cropped-image').attr('src')) {
         $('#customerImageChooser').hide();
@@ -122,7 +153,7 @@ $('#btn-open-login').click(event => {
 
 const image = document.getElementById('customer-img-for-crop');
 const croppedImage = document.getElementById('cropped-image');
-const croppedImageContainer = document.getElementById('cropped-image-container');
+// const croppedImageContainer = document.getElementById('cropped-image-container');
 let cropper;
 $('#customer-img-file-input').change(event => {
     event.preventDefault();
@@ -168,4 +199,71 @@ $('#crop-button').click(event => {
     } else {
         alert('Please select an image and crop it before displaying the result.');
     }
+})
+
+//---------user 
+
+const customerImage = document.getElementById('manage-customer-img-for-crop');
+const customerCroppedImage = document.getElementById('manage-cropped-image');
+// const croppedImageContainer = document.getElementById('cropped-image-container');
+let customerCropper;
+$('#manage-customer-img-file-input').change(event => {
+    event.preventDefault();
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            customerImage.src = e.target.result;
+
+            if (customerCropper) {
+                // Destroy the previous cropper instance
+                customerCropper.destroy();
+            }
+
+            // Initialize the Cropper
+            customerCropper = new Cropper(customerImage, {
+                aspectRatio: 1,
+                viewMode: 1,
+            });
+        };
+        reader.readAsDataURL(selectedFile);
+    }
+})
+$('#manage-crop-button').click(event => {
+    if (customerCropper) {
+        // Get the cropped data
+        const croppedData = customerCropper.getData();
+
+        // Create a canvas to draw the cropped image
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+
+        canvas.width = croppedData.width;
+        canvas.height = croppedData.height;
+
+        context.drawImage(customerImage, croppedData.x, croppedData.y, croppedData.width, croppedData.height, 0, 0, croppedData.width, croppedData.height);
+
+        // Convert the canvas to a data URL
+        const croppedDataURL = canvas.toDataURL('image/jpeg');
+
+        // Display the cropped image
+        customerCroppedImage.src = croppedDataURL;
+    } else {
+        alert('Please select an image and crop it before displaying the result.');
+    }
+})
+
+
+$('#manage-cropped-image-done').click(event => {
+    if (!$('#manage-cropped-image').attr('src')) {
+        alert('please select and crop image')
+    }
+})
+$('#manage-cropped-image-close').click(event => {
+    if (customerCropper) {
+        customerCropper.destroy();
+    }
+    $('#customer-img-file-input').val('');
+    $('#customer-img-for-crop').attr('src', "");
+    $('#cropped-image').attr('src', "");
 })

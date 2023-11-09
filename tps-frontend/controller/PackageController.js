@@ -52,8 +52,6 @@ export class PackageController {
         });
     }
     handleLoadAllPackage() {
-        $('#userRole').val('ADMIN');// temp
-        
         let userRole = $('#userRole').val();
         $('#package-body .row').empty();
         $.ajax({
@@ -104,6 +102,9 @@ export class PackageController {
         $.ajax({
             type: "POST",
             url: "http://localhost:8090/package/api/v1/package",
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            },
             data: JSON.stringify(aPackage),
             contentType: "application/json",
             success: (data) => {
@@ -142,6 +143,9 @@ export class PackageController {
             $.ajax({
                 type: "PUT",
                 url: "http://localhost:8090/package/api/v1/package/" + packageId,
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem('token')
+                },
                 data: JSON.stringify(aPackage),
                 contentType: "application/json",
                 success: (response) => {
@@ -164,6 +168,9 @@ export class PackageController {
             $.ajax({
                 type: "DELETE",
                 url: "http://localhost:8090/package/api/v1/package/" + packageId,
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem('token')
+                },
                 success: (response) => {
                     this.handleLoadAllPackage()
                     this.reset();

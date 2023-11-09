@@ -21,12 +21,6 @@ export class DashBoardController {
         $('#dash-package-body .row').empty();
         $.ajax({
             type: "GET",
-            // beforeSend: function (xhr) {
-            //     xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzaGFtb2RoYSIsImlhdCI6MTY5OTA0MDkxMCwiZXhwIjoxNjk5MDQ0NTEwfQ.1mHKAOEdq5hzIdeU75kbI5T8ZZzQlmP5rzBGl5nAJH8');
-            // },
-            // headers: {
-            //     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzaGFtb2RoYSIsImlhdCI6MTY5OTA0MDkxMCwiZXhwIjoxNjk5MDQ0NTEwfQ.1mHKAOEdq5hzIdeU75kbI5T8ZZzQlmP5rzBGl5nAJH8'
-            // },
             url: "http://localhost:8090/package/api/v1/package/public",
             success: (response) => {
                 response?.sort((a, b) => a.price - b.price);

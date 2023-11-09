@@ -5,6 +5,7 @@ import lk.ijse.tps.bookingservice.entity.Booking;
 import lk.ijse.tps.bookingservice.entity.VehicleBooking;
 import lk.ijse.tps.bookingservice.entity.VehicleBookingPk;
 import lk.ijse.tps.bookingservice.exception.InUseException;
+import lk.ijse.tps.bookingservice.exception.InvalidException;
 import lk.ijse.tps.bookingservice.exception.NotFoundException;
 import lk.ijse.tps.bookingservice.persistance.BookingDao;
 import lk.ijse.tps.bookingservice.persistance.VehicleBookingDao;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -58,6 +60,12 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public void updateBooking(BookingDTO bookingDTO) {
         bookingDao.findById(bookingDTO.getBookingId()).orElseThrow(() -> new NotFoundException("Booking not found"));
+
+        LocalDateTime date = bookingDTO.getDate();
+        LocalDateTime now = LocalDateTime.now();
+        if (!date.plusDays(2).isBefore(now)){
+            throw new InvalidException("Booking not valid to update");
+        }
         // call customer service findById() not null
         // call package service findById() not null
         // call guide service findById() guide id can null

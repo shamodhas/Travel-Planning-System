@@ -1,8 +1,11 @@
 export class HotelController {
     constructor() {
         this.hotels = [];
+
+        this.init();
         $('#btn-hotel').click((event) => {
             event.preventDefault();
+            this.init();
             this.handleHotelDetailsViewHide();
             this.handleLoadAllHotel();
         });
@@ -47,6 +50,18 @@ export class HotelController {
             this.resetHotelOption();
         })
     }
+    init() {
+        const role = $('#userRole').val();
+        if (role == 'CUSTOMER') {
+            $('#hotel-manage').hide();
+        } else if (role == 'USER') {
+            $('#hotel-manage').show();
+        } else if (role == 'ADMIN') {
+            $('#hotel-manage').show();
+        } else {
+            $('#hotel-manage').hide();
+        }
+    }
     hadleValidateHotelOption() {
         const hotelId = $('#txtHotelNamewithAddress').val();
         const type = $('#txtHotelOptionType').val();
@@ -64,6 +79,9 @@ export class HotelController {
         $.ajax({
             type: "POST",
             url: "http://localhost:8090/hotel/api/v1/hotelOption",
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            },
             data: JSON.stringify(hotelOption),
             contentType: "application/json",
             success: (data) => {
@@ -106,6 +124,9 @@ export class HotelController {
         $.ajax({
             type: "GET",
             url: "http://localhost:8090/hotel/api/v1/hotel/" + hotelId,
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            },
             success: (response) => {
                 if (response) {
                     $('.hotel-details-name').text(response.name);
@@ -168,6 +189,9 @@ export class HotelController {
         $.ajax({
             type: "GET",
             url: "http://localhost:8090/hotel/api/v1/hotel/" + hotelId,
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            },
             success: (response) => {
                 $('#hotelOptionTableBody').append(response.hotelOptions?.map(this.renderHotelOptionRow).join(''));
                 window.scrollTo({
@@ -357,6 +381,9 @@ export class HotelController {
         $.ajax({
             type: "POST",
             url: "http://localhost:8090/hotel/api/v1/hotel",
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            },
             data: JSON.stringify(hotel),
             contentType: "application/json",
             success: (data) => {

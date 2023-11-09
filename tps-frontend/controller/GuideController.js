@@ -26,6 +26,9 @@ export class GuideController {
             $.ajax({
                 type: "GET",
                 url: "http://localhost:8090/guide/api/v1/guide/" + guideId,
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem('token')
+                },
                 success: (guide) => {
                     this.setGuideFormFields(guide);
                 }
@@ -59,6 +62,9 @@ export class GuideController {
         $.ajax({
             type: "GET",
             url: "http://localhost:8090/guide/api/v1/guide/" + guideId,
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            },
             success: (guide) => {
                 $('#guide_details_body').append(`
                     <input id="more_details_guide_id" type="hidden" value="${guide.guideId}">
@@ -114,6 +120,9 @@ export class GuideController {
             type: "POST",
             url: "http://localhost:8090/guide/api/v1/guide",
             data: guide,
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            },
             contentType: false,
             processData: false,
             success: (data) => {

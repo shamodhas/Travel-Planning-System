@@ -677,6 +677,12 @@
             <div id="booking-form">
                 <div class="row">
                     <div class="col-lg-6">
+                        <div id="bookingCustomer" class="package__form__group field">
+                            <small style="font-size: 11px;">Customer</small>
+                            <select style="font-size: 12px;" class="form-select" id='selectBookingCustomer'>
+                                <option value="" selected>Select Package</option>
+                            </select>
+                        </div>
                         <div class="package__form__group field">
                             <small style="font-size: 11px;">Package</small>
                             <select style="font-size: 12px;" class="form-select" id='selectBookingPackage'>
@@ -780,23 +786,224 @@
         </div>
         <!-- if you are customer -->
         <div id="booking-body">
-            <div class="row">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="table-secondary text-center">
+                        <th class="col-lg-1">Package</th>
+                        <th class="col-lg-1">Guide</th>
+                        <th class="col-lg-1">Hotel Option</th>
+                        <th class="col-lg-1">Vehicle </th>
+                        <th class="col-lg-1">Children</th>
+                        <th class="col-lg-1">Adults</th>
+                        <th class="col-lg-1">Date</th>
+                        <th class="col-lg-1">Start Date</th>
+                        <th class="col-lg-1">End Date</th>
+                        <th class="col-lg-1">Status</th>
+                        <th class="col-lg-1">Down pyment</th>
+                        <th class="col-lg-1">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="bookin_table_body">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal fade" id="textModal" tabindex="-1" aria-labelledby="textModal" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div id="manageCustomerImageChooser">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <input type="file" id="manage-customer-img-file-input" class="form-control mb-3"
+                                    accept="image/*">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="image-container">
+                                            <img src="" id="manage-customer-img-for-crop" class="img-fluid"
+                                                draggable="false">
+                                        </div>
+                                        <button id="manage-crop-button" class="btn btn-first btn-block mt-3">Crop
+                                            Image</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div id="manage-cropped-img-view">
+                                    <img id="manage-cropped-image" src="">
+                                    <div style="justify-content: space-around;display: flex;">
+                                        <button id="manage-cropped-image-done" data-bs-dismiss="modal"
+                                            class="btn btn-first">Done</button>
+                                        <button id="manage-cropped-image-close" data-bs-dismiss="modal"
+                                            class="btn btn-first">Cose</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div id="customer-section" class="body-container">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, iste nisi! Distinctio non, vero ullam
-            vitae
-            illum architecto voluptate impedit dolor quo. Tempora quod eveniet quisquam, maiores deleniti laudantium
-            temporibus?</p>
-        <h1>customer</h1>
+        <div id="customer-manage">
+            <form id="customer-form">
+                <input type="hidden" id="txtManageCustomerId" value="">
+                <input type="hidden" id="txtManageCustomerProfile" value="">
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Name" id='txtManageCustomerName'
+                        required />
+                    <label for="txtManageCustomerName" class="package__form__label">Name</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Nic" id='txtManageCustomerNic'
+                        required />
+                    <label for="txtManageCustomerNic" class="package__form__label">Nic</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Email" id='txtManageCustomerEmail'
+                        required />
+                    <label for="txtManageCustomerEmail" class="package__form__label">Email</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Address" id='txtManageCustomerAddress'
+                        required />
+                    <label for="txtManageCustomerAddress" class="package__form__label">Address</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Username"
+                        id='txtManageCustomerUsername' required />
+                    <label for="txtManageCustomerUsername" class="package__form__label">Username</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Password"
+                        id='txtManageCustomerPassword' required />
+                    <label for="txtManageCustomerPassword" class="package__form__label">Password</label>
+                </div>
+                <div class="login__field">
+                    <label for="goManageCustomerImageChooser" class="form-label"
+                        style="margin: 15px 0 0 0;">Profile</label>
+                    <button id="goManageCustomerImageChooser" data-bs-toggle="modal" data-bs-target="#textModal"
+                        type="button" class="btn" style="padding: 0;margin: 0;">
+                        Choose file
+                    </button>
+                </div>
+                <div class="text-center" style="margin-top: 20px;">
+                    <button id="btnSaveCustomer" class="btn btn-first"
+                        style="background-color: #2ecc71 !important;">Save</button>
+                    <button id="btnUpdateCustomer" class="btn btn-first"
+                        style="background-color: #f39c12 !important;">Update</button>
+                    <button id="btnDeleteCustomer" class="btn btn-first"
+                        style="background-color: #e74c3c !important;">Delete</button>
+                    <button id="btnResetCustomer" class="btn btn-first"
+                        style="background-color: #c0392b !important;">Reset</button>
+                </div>
+                <input type="hidden" id="txtCustomerId" value="">
+            </form>
+        </div>
+        <div id="customer-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="table-secondary text-center">
+                        <th class="col-lg-2">Name</th>
+                        <th class="col-lg-2">Nic</th>
+                        <th class="col-lg-2">email</th>
+                        <th class="col-lg-2">address</th>
+                        <th class="col-lg-1">userName</th>
+                        <th class="col-lg-2">Profile</th>
+                        <th class="col-lg-1">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="customer_table_body">
+                </tbody>
+            </table>
+        </div>
     </div>
     <div id="user-section" class="body-container">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, iste nisi! Distinctio non, vero ullam
-            vitae
-            illum architecto voluptate impedit dolor quo. Tempora quod eveniet quisquam, maiores deleniti laudantium
-            temporibus?</p>
-        <h1>User</h1>
+        <div id="user-manage">
+            <form id="user-form">
+                <input type="hidden" id="txtManageUserId" value="">
+                <input type="hidden" id="imgNicFront" value="">
+                <input type="hidden" id="imgNicBack" value="">
+                
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Name" id='txtUserName' required />
+                    <label for="txtUserName" class="package__form__label">Name</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Nic" id='txtUserNic'
+                        required />
+                    <label for="txtUserNic" class="package__form__label">Nic</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Email" id='txtUserEmail'
+                        required />
+                    <label for="txtUserEmail" class="package__form__label">Email</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Address" id='txtUserAddress'
+                        required />
+                    <label for="txtUserAddress" class="package__form__label">Address</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Username"
+                        id='txtUserUsername' required />
+                    <label for="txtUserUsername" class="package__form__label">Username</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Password"
+                        id='txtUserPassword' required />
+                    <label for="txtUserPassword" class="package__form__label">Password</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="text" class="package__form__field" placeholder="Phone"
+                        id='txtUserPhone' required />
+                    <label for="txtUserPhone" class="package__form__label">Phone</label>
+                </div>
+
+                <div class="package__form__group field">
+                    <input type="file" class="file__input" accept="image/*" id='txtUSerNicFront' />
+                    <label for="txtUSerNicFront" class="package__form__label file__input__label">Nic Front
+                        Image</label>
+                </div>
+                <div class="package__form__group field">
+                    <input type="file" class="file__input" accept="image/*" id='txtUSerNicBack' />
+                    <label for="txtUSerNicBack" class="package__form__label file__input__label">Nic Back
+                        Image</label>
+                </div>
+
+                <div class="text-center" style="margin-top: 20px;">
+                    <button id="btnSaveUser" class="btn btn-first"
+                        style="background-color: #2ecc71 !important;">Save</button>
+                    <button id="btnUpdateUser" class="btn btn-first"
+                        style="background-color: #f39c12 !important;">Update</button>
+                    <button id="btnDeleteUser" class="btn btn-first"
+                        style="background-color: #e74c3c !important;">Delete</button>
+                    <button id="btnResetUser" class="btn btn-first"
+                        style="background-color: #c0392b !important;">Reset</button>
+                </div>
+            </form>
+        </div>
+        <div id="user-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="table-secondary text-center">
+                        <th class="col-lg-2">Name</th>
+                        <th class="col-lg-1">Nic</th>
+                        <th class="col-lg-2">email</th>
+                        <th class="col-lg-2">address</th>
+                        <th class="col-lg-1">userName</th>
+                        <th class="col-lg-1">Phone</th>
+                        <th class="col-lg-1">Nic front</th>
+                        <th class="col-lg-1">Nic back</th>
+                        <th class="col-lg-1">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="user_table_body">
+                    
+                </tbody>
+            </table>
+        </div>
     </div>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
@@ -812,13 +1019,15 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="assets/js/index.js"></script>
-    <script type="module" src="controller/UserController.js"></script>
+    <script type="module" src="controller/LoginController.js"></script>
     <script type="module" src="controller/DashBoardController.js"></script>
     <script type="module" src="controller/PackageController.js"></script>
     <script type="module" src="controller/HotelController.js"></script>
     <script type="module" src="controller/VehicleController.js"></script>
     <script type="module" src="controller/GuideController.js"></script>
     <script type="module" src="controller/BookinController.js"></script>
+    <script type="module" src="controller/CustomerController.js"></script>
+    <script type="module" src="controller/UserController.js"></script>
     <script>
 
     </script>

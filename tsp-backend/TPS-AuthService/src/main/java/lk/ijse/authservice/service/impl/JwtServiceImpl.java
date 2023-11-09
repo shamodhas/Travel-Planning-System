@@ -42,7 +42,7 @@ public class JwtServiceImpl implements JwtService {
                 .setClaims(claims)
                 .setSubject(userName)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 120))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
     }
 
@@ -57,9 +57,9 @@ public class JwtServiceImpl implements JwtService {
     }
 
     @Override
-    public <T> T extractClaim(String token, Function<Claims, T> claimResolover) {
+    public <T> T extractClaim(String token, Function<Claims, T> claimResolver) {
         final Claims claims = extractAllClaims(token);
-        return claimResolover.apply(claims);
+        return claimResolver.apply(claims);
     }
 
     private Claims extractAllClaims(String token) {

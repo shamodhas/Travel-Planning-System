@@ -1,43 +1,128 @@
 export class BookingController {
     constructor() {
-        $('#btn-booking').click((event) => this.handleAllBooking(event));
+        $('#btn-booking').click((event) => this.init(event));
         $('#addToCart').click(event => this.handleAddVehicleToCart(event));
         $('#selectBookingPackage').change((event) => { this.handleBookingSelectPackage(event) })
         $('#selectBookingGuide').change((event) => { this.handleBookingSelectGuide(event) })
         $('#selectBookingHotelOption').change((event) => { this.handleBookingSelectHotelOption(event) })
         $('#selectBookingVehicle').change((event) => { this.handleBookingSelectVehicle(event) })
+        $('#selectBookingCustomer').change((event) => { this.handleBookingCustomerSelect(event) })
         $("#guideDetailsCard").on("click", ".guide_remove", (event) => this.handleBookingSelectGuideRemove(event));
         $("#packageDetailsCard").on("click", ".package_remove", (event) => this.handleBookingSelectPackageRemove(event));
         $("#hotelOptionDetailsCard").on("click", "#hotel_remove", (event) => this.handleBookingSelectHotelRemove(event));
         $("#vehicleDetailsCard").on("click", ".booking_vehicle_image_next", event => this.handleLoadNextVehicleImage(event));
         $("#vehicleDetailsCard").on("click", ".booking_vehicle_image_pre", (event) => this.handleLoadPrevVehicleImage(event));
         $("#vehicle_cart").on("click", ".remove_vehicle", (event) => this.handleLoadSelectVehicleRemove(event));
+        $("#bookin_table_body").on("click", ".editBookingCustomer", (event) => this.handleEditBooking(event));
         $('#txtBookingDownPayment').on("input", (event) => this.handleDownPayment(event));
         $('#add_book').click((event) => this.handleAddBooking(event));
+    }
+    handleEditBooking(event){
+        event.preventDefault();
+        const customerId = $(event.target.closest('tr')).data('customer-id');
+        
+    }
+    handleBookingCustomerSelect(event) {
+        const customerId = $('#selectBookingCustomer').val();
+        if(customerId){
+            $('#bookin_table_body').empty();
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8090/booking/api/v1/booking/" + customerId,
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            },
+            success: (bookings) => {
+                bookings?.map(booking => {
+                    $('#bookin_table_body').append(`
+                                <tr data-customer-id="${booking.bookingId}" class="table-secondary text-center">
+                                    <td class="col-lg-1">${booking.packageId}</td>
+                                    <td class="col-lg-1">${booking.guideId}</td>
+                                    <td class="col-lg-1">${booking.hotelOptionId}</td>
+                                    <td class="col-lg-1">${booking.vehicleBookings?.map(v => {
+                        v.vehicleId + " / "
+                    })}</td>
+                                    <td class="col-lg-1">${booking.noOfChildren}</td>
+                                    <td class="col-lg-1">${booking.noOfAdults}</td>
+                                    <td class="col-lg-1">${booking.date}</td>
+                                    <td class="col-lg-1">${booking.startDate}</td>
+                                    <td class="col-lg-1">${booking.endDate}</td>
+                                    <td class="col-lg-1">${booking.status}</td>
+                                    <td class="col-lg-1">${booking.downPayment}</td>
+                                    <td class="col-lg-1">
+                                        <a class="deleteBookingUser" href="" >
+                                            <i style="width: 50px;" class='bx bx-edit'></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            `);
+                })
+            }
+            ,
+            error: (error) => {
+                console.log(error)
+            }
+        });
+        }else{
+            $('#bookin_table_body').empty();
+        }
     }
     handlePreBookingTableLoad() {
         const userRole = $('#userRole').val();
         const customerId = $('#userId').val();
-        if (userRole == "CUSTOMER") {
-            if(customerId){
-                $.ajax({
-                    type: "GET",
-                    url: "http://localhost:8090/booking/api/v1/booking/" + customerId,
-                    success: (bookings) => {
-                        
-                    }
-                    ,
-                    error: (error) => {
-                        console.log(error)
-                    }
-                });
-            }else{
-                alert('please relogin')
+
+        $('#bookin_table_body').empty();
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8090/booking/api/v1/booking/" + customerId,
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            },
+            success: (bookings) => {
+                bookings?.map(booking => {
+                    $('#bookin_table_body').append(`
+                                <tr data-customer-id="${booking.bookingId}" class="table-secondary text-center">
+                                    <td class="col-lg-1">${booking.packageId}</td>
+                                    <td class="col-lg-1">${booking.guideId}</td>
+                                    <td class="col-lg-1">${booking.hotelOptionId}</td>
+                                    <td class="col-lg-1">${booking.vehicleBookings?.map(v => {
+                        v.vehicleId + " / "
+                    })}</td>
+                                    <td class="col-lg-1">${booking.noOfChildren}</td>
+                                    <td class="col-lg-1">${booking.noOfAdults}</td>
+                                    <td class="col-lg-1">${booking.date}</td>
+                                    <td class="col-lg-1">${booking.startDate}</td>
+                                    <td class="col-lg-1">${booking.endDate}</td>
+                                    <td class="col-lg-1">${booking.status}</td>
+                                    <td class="col-lg-1">${booking.downPayment}</td>
+                                    <td class="col-lg-1">
+                                        <a class="editBookingCustomer" href="" >
+                                            <i class='bx bx-x'></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            `);
+                })
             }
-        }
+            ,
+            error: (error) => {
+                console.log(error)
+            }
+        });
     }
     handleAddBooking(event) {
-        const customerId = $('#userId').val();
+        let customerId;
+        const role = $('#userRole').val();
+        if (role == 'CUSTOMER') {
+            customerId = $('#userId').val();
+        } else {
+            customerId = $('#selectBookingCustomer').val();
+            if (!customerId) {
+                alert('please select customer')
+                return;
+            }
+        }
+
         const packageId = $('#selectBookingPackage').val();
         const guideId = $('#selectBookingGuide').val();
         const hotelOptionId = $('#selectBookingHotelOption').val();
@@ -86,6 +171,9 @@ export class BookingController {
         $.ajax({
             type: "POST",
             url: "http://localhost:8090/booking/api/v1/booking",
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            },
             data: JSON.stringify(booking),
             contentType: "application/json",
             success: (data) => {
@@ -449,13 +537,42 @@ export class BookingController {
             $('#total').text(parseFloat($('#total').text()) + (price));
         }
     }
-    handleAllBooking(event) {
+    init(event) {
         event.preventDefault();
         this.handlePackageLoad();
         this.handleGuideLoad();
         this.handleHotelLoad();
         this.handleVehicleLoad();
-        this.handlePreBookingTableLoad();
+        const role = $('#userRole').val();
+        if (role == 'CUSTOMER') {
+            $('#bookingCustomer').hide();
+            this.handlePreBookingTableLoad();
+        } else {
+            $('#bookingCustomer').show();
+            this.handleLoadCustomers();
+        }
+    }
+    handleLoadCustomers() {
+        $('#selectBookingCustomer').empty();
+        $('#selectBookingCustomer').append(`<option value="" selected>Select Customer</option>`);
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8090/auth/api/v1/auth/customer",
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            },
+            success: (customers) => {
+                customers?.map(customer => $('#selectBookingCustomer').append(
+                    `
+                    <option value="${customer.userId}">${customer.name} - ${customer.nic}</option>
+                    `
+                ));
+            }
+            ,
+            error: (error) => {
+                console.log(error)
+            }
+        })
     }
     handleVehicleLoad() {
         $('#selectBookingVehicle').empty();

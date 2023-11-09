@@ -14,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * Created By shamodha_s_rathnamalala
@@ -39,14 +40,19 @@ public class AuthController {
         return ResponseEntity.ok(userService.getSelectedUser(userId));
     }
 
-    @GetMapping("{userName:^[a-z]{5,15}$}")
-    ResponseEntity<?> getSelectedUserByUserName(@PathVariable String userName) {
-        return ResponseEntity.ok(userService.getSelectedUserByUserName(userName));
+//    @GetMapping("{username:^[a-z]{5,15}$}")
+//    ResponseEntity<?> getSelectedUserByUserName(@PathVariable String username) {
+//        return ResponseEntity.ok(userService.getSelectedUserByUserName(username));
+//    }
+
+    @GetMapping("/customer")
+    ResponseEntity<?> getAllCustomer() {
+        return ResponseEntity.ok(userService.getAllUser().stream().filter(userDTO -> userDTO.getUserRole().equals(UserRole.CUSTOMER)).collect(Collectors.toSet()));
     }
 
     @GetMapping
     ResponseEntity<?> getAllUser() {
-        return ResponseEntity.ok(userService.getAllUser());
+        return ResponseEntity.ok(userService.getAllUser().stream().filter(userDTO -> userDTO.getUserRole().equals(UserRole.USER)).collect(Collectors.toSet()));
     }
 
     @PostMapping("/token")
@@ -66,7 +72,7 @@ public class AuthController {
             @RequestPart String nic,
             @RequestPart String email,
             @RequestPart String address,
-            @RequestPart String userName,
+            @RequestPart String username,
             @RequestPart String password,
             @RequestPart String userRole,
 
@@ -86,7 +92,7 @@ public class AuthController {
             throw new InvalidException("InValid email");
         if (address == null)
             throw new InvalidException("InValid address");
-        if (userName == null || !Pattern.matches("^[a-z]{5,15}$", userName))
+        if (username == null || !Pattern.matches("^[a-z]{5,15}$", username))
             throw new InvalidException("InValid userName, use only simple letter for username");
         if (password == null || !Pattern.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", password))
             throw new InvalidException("InValid password");
@@ -100,7 +106,7 @@ public class AuthController {
                             .nic(nic)
                             .email(email)
                             .address(address)
-                            .username(userName)
+                            .username(username)
                             .password(password)
                             .userRole(UserRole.CUSTOMER)
 
@@ -120,7 +126,7 @@ public class AuthController {
                             .nic(nic)
                             .email(email)
                             .address(address)
-                            .username(userName)
+                            .username(username)
                             .password(password)
                             .userRole(userRole.equals("USER") ? UserRole.USER : UserRole.ADMIN)
 
@@ -133,14 +139,14 @@ public class AuthController {
             throw new InvalidException("InValid role");
     }
 
-    @PutMapping(value = "{userId:^[U][A-Fa-f0-9\\\\-]{36}$}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PutMapping(value = "{userId:^[U][A-Fa-f0-9\\\\-]{36}$}")
     ResponseEntity<?> updateUser(
             @PathVariable String userId,
             @RequestPart String name,
             @RequestPart String nic,
             @RequestPart String email,
             @RequestPart String address,
-            @RequestPart String userName,
+            @RequestPart String username,
             @RequestPart String password,
             @RequestPart String userRole,
 
@@ -150,6 +156,8 @@ public class AuthController {
             @RequestPart(required = false) byte[] nicBackImage,//admins
             @RequestPart(required = false) String phone//admins
     ) {
+        if (userId == null)
+            throw new InvalidException("Id not null");
         if (userRole == null)
             throw new InvalidException("InValid role");
         if (name == null || !Pattern.matches("^[a-zA-Z.+=@\\-_\\s]{3,50}$", name))
@@ -160,7 +168,7 @@ public class AuthController {
             throw new InvalidException("InValid email");
         if (address == null)
             throw new InvalidException("InValid address");
-        if (userName == null || !Pattern.matches("^[a-z]{5,15}$", userName))
+        if (username == null || !Pattern.matches("^[a-z]{5,15}$", username))
             throw new InvalidException("InValid userName, use only simple letter for username");
         if (password == null || !Pattern.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", password))
             throw new InvalidException("InValid password");
@@ -170,11 +178,12 @@ public class AuthController {
                 throw new InvalidException("InValid profile image");
             userService.updateUser(
                     UserDTO.builder()
+                            .userId(userId)
                             .name(name)
                             .nic(nic)
                             .email(email)
                             .address(address)
-                            .username(userName)
+                            .username(username)
                             .password(password)
                             .userRole(UserRole.CUSTOMER)
 
@@ -191,11 +200,12 @@ public class AuthController {
                 throw new InvalidException("InValid phone number");
             userService.updateUser(
                     UserDTO.builder()
+                            .userId(userId)
                             .name(name)
                             .nic(nic)
                             .email(email)
                             .address(address)
-                            .username(userName)
+                            .username(username)
                             .password(password)
                             .userRole(userRole.equals("USER") ? UserRole.USER : UserRole.ADMIN)
 

@@ -6,6 +6,7 @@ import lk.ijse.authservice.dto.UserDTO;
 import lk.ijse.authservice.entity.User;
 import lk.ijse.authservice.exception.DuplicateException;
 import lk.ijse.authservice.exception.InUseException;
+import lk.ijse.authservice.exception.InvalidException;
 import lk.ijse.authservice.exception.NotFoundException;
 import lk.ijse.authservice.persistance.UserDao;
 import lk.ijse.authservice.service.AuthService;
@@ -19,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -92,7 +94,10 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public void updateUser(UserDTO userDTO) {
-        userDao.findById(userDTO.getUserId()).orElseThrow(() -> new NotFoundException("User not found"));
+        User user = userDao.findById(userDTO.getUserId()).orElseThrow(() -> new NotFoundException("User not found"));
+        if (Objects.equals(user.getUserRole(), "ADMIN")){
+            throw new InvalidException("ADMIN can't update");
+        }
         Optional<User> optionalUserForNic = userDao.findByNic(userDTO.getNic());
         if (optionalUserForNic.isPresent() && !optionalUserForNic.get().getUserId().equals(userDTO.getUserId()))
             throw new DuplicateException("Duplicate user nic");
@@ -106,6 +111,9 @@ public class AuthServiceImpl implements AuthService {
     public void deleteUser(String userId) {
         User user = userDao.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));
         String userRole = user.getUserRole();
+        if (Objects.equals(userRole, "ADMIN")){
+            throw new InvalidException("ADMIN can't delete");
+        }
         if (userRole != null && userRole.equals("CUSTOMER")) {
             RestTemplate restTemplate = new RestTemplate();
             List<UserBookingDTO> dtos = restTemplate.getForObject(bookingDataEndPoint + "/" + userId, List.class);

@@ -208,7 +208,8 @@ body {
 /* end nav bar */
 
 #login-section {
-    background: linear-gradient(90deg, #C7C5F4, var(--first-color));
+    /* background: linear-gradient(90deg, #C7C5F4, var(--first-color)); */
+    background-color: #ae87ee90;
     margin: 0;
     box-sizing: border-box;
     font-family: Raleway, sans-serif;
@@ -1292,14 +1293,17 @@ body {
 
     width: 600px !important;
 }
-#packagePrice{
+
+#packagePrice {
     text-align: center;
 }
+
 #packagePrice .bx {
     font-size: 50px;
 }
 
-.guide_remove,.package_remove {
+.guide_remove,
+.package_remove {
     border: none;
     outline: 0;
     display: inline-block;
@@ -1317,16 +1321,92 @@ body {
     opacity: 0.7;
 }
 
-#packageDetailsCard{
+#packageDetailsCard {
     margin-top: 25px;
 }
-#hotelOptionDetailsCard{
+
+#hotelOptionDetailsCard {
     margin-top: 25px;
 }
-#vehicleDetailsCard{
+
+#vehicleDetailsCard {
     margin-top: 25px;
 }
-#vehicle_cart .bx{
+
+#vehicle_cart .bx {
     font-size: 50px;
     color: #ff0000;
+}
+#customer_table_body tr td {
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#customer-manage,
+#user-manage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+#customer-form,
+#user-form {
+    padding: 25px;
+    margin: 30px 0;
+    width: 98%;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #FFF;
+}
+
+#manageCustomerImageChooser,
+#manageCustomerImageChooser .row {
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#manage-customer-img-for-crop {
+    width: 100%;
+}
+
+#manage-customer-img-file-input {
+    margin-top: 1rem;
+    font-size: 12px;
+}
+
+#manage-customer-img-file-input::file-selector-button {
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--white-color);
+    padding: 0.5em;
+    border: 2px solid var(--first-color);
+    border-radius: 3px;
+    background-color: var(--first-color);
+}
+
+#manage-cropped-img-view {
+    width: 40vw;
+    height: 40vw;
+    padding: 3% 5%;
+}
+
+#manage-cropped-img-view img {
+    width: 90%;
+    margin-bottom: 2%;
+}
+
+#manage-cropped-img-view button {
+    width: 20%;
+}
+
+#goManageCustomerImageChooser{
+    background-color: var(--first-color);
+    color: var(--white-color);
+}
+
+.edit_icon{
+    font-size: 50px;
+
 }

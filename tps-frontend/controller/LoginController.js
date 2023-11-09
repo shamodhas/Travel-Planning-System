@@ -1,5 +1,5 @@
 
-export class UserController {
+export class LoginController {
     constructor() {
         $('#btn-login-now').click((event) => this.handleVerifyLogin(event));
         $('#btn-customer-create').click((event) => this.handleSaveCustomerValidation(event));
@@ -9,8 +9,6 @@ export class UserController {
 
     handleVerifyLogin(event) {
         event.preventDefault();
-        // test for userName use as role no need pass to log
-        // use customer,admin,user as username
         const username = $('#txtLoginUsername').val();
         const password = $('#txtLoginPassword').val();
         console.log(username)
@@ -27,7 +25,7 @@ export class UserController {
             contentType: "application/json",
             success: (response) => {
                 console.log(response)
-                localStorage.setItem('jwt', response.token);
+                localStorage.setItem('token', response.token);
                 // const userDetails = this.getUSerDetails(username,response);
                 // const user = JSON.parse(response);
                 // const userRole = userName//user.userRole
@@ -41,6 +39,8 @@ export class UserController {
                     alert('username or password wrong');
                     return;
                 }
+                $('#userId').val(response.userId);
+                $('#userRole').val(response.userRole);
                 $('#txtLoginUsername').val('')
                 $('#txtLoginPassword').val('')
                 $('#isRememberMe').prop('checked', false);
@@ -51,11 +51,11 @@ export class UserController {
                 $('#btn-open-login').hide();
                 $('#dashboard-section').show();
 
-                // $('#header_img').prop('src',user.profile);
+                $('#header_img').prop('src',"data:image/jpeg;base64, "+user.profile);
                 $('#header_img').show();
             },
             error: (error) => {
-
+                alert('username or password wrong')
             }
         })
     }
@@ -64,7 +64,7 @@ export class UserController {
             type: "GET",
             url: "http://localhost:8090/auth/api/v1/auth/" + username,
             headers: {
-                'Authorization': 'Bearer '+token
+                "Authorization": "Bearer " + localStorage.getItem('token')
             },
             success: (user) => {
                 console.log(user)
@@ -108,8 +108,9 @@ export class UserController {
             formData.append('nic', nic);
             formData.append('address', address);
             formData.append('profile', profile);
-            formData.append('userName', userName);
+            formData.append('username', userName);
             formData.append('password', password);
+            formData.append('userRole', "CUSTOMER");
 
             this.handleSaveCustomer(formData);
         } catch (e) {
@@ -121,11 +122,12 @@ export class UserController {
     handleSaveCustomer(customer) {
         $.ajax({
             type: "POST",
-            url: "",
+            url: "http://localhost:8090/auth/api/v1/auth/register",
             data: customer,
             contentType: false,
             processData: false,
             success: (data) => {
+                document.getElementById("btn-go-login").click();
                 alert('success')
             },
             error: (error) => {
@@ -157,5 +159,7 @@ export class UserController {
         $('#btn-customer').show();
         $('#btn-user').show();
     }
+
+    
 }
-new UserController();
+new LoginController();

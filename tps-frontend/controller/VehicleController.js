@@ -35,6 +35,9 @@ export class VehicleController {
             $.ajax({
                 type: "GET",
                 url: "http://localhost:8090/vehicle/api/v1/vehicle/" + vehicleId,
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem('token')
+                },
                 success: (vehicle) => {
                     this.setVehicleFormFields(vehicle);
                 }
@@ -71,21 +74,6 @@ export class VehicleController {
         // $('#txtVehicleDriverLicenseFrontImage').val(vehicle.vehicleFrontImage);
         // $('#txtVehicleDriverLicenseBackImage').val(vehicle.vehicleFrontImage);
     }
-    // imageToFile(imageByte){
-    //     // data:image/jpeg;base64, ${vehicle.driverLicenseBackImage}
-    //     imageByte = "data:image/jpeg;base64, "+ imageByte;
-    //     var arr = imageByte.split(',');
-    //     var mime = arr[0].match(/:(.*?);/)[1];
-    //     var bstr = atob(arr[1]);
-    //     var n = bstr.length;
-    //     var u8arr = new Uint8Array(n);
-
-    //     while (n--) {
-    //       u8arr[n] = bstr.charCodeAt(n);
-    //     }
-
-    //     return new File([u8arr], 'image.jpg', { type: mime });
-    // }
     handleLoadMoreVehicleDetails(event) {
         const vehicleId = $(event.target.closest('.vehicle_card')).find('.vehicle_id').val();
 
@@ -95,6 +83,9 @@ export class VehicleController {
         $.ajax({
             type: "GET",
             url: "http://localhost:8090/vehicle/api/v1/vehicle/" + vehicleId,
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            },
             success: (vehicle) => {
                 $('#vehicle_details_body').append(`
                     <input id="more_details_vehicle_id" type="hidden" value="${vehicle.vehicleId}">
@@ -199,6 +190,9 @@ export class VehicleController {
         $.ajax({
             type: "POST",
             url: "http://localhost:8090/vehicle/api/v1/vehicle",
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            },
             data: vehicle,
             contentType: false,
             processData: false,
