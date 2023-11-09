@@ -1,5 +1,5 @@
 # Travel Planning System
-aad
+
 <div align="left">
 <br>
 <img style="margin: 20px" width="80px" src="https://user-images.githubusercontent.com/25181517/192108890-200809d1-439c-4e23-90d3-b090cf9a4eea.png">
