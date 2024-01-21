@@ -28,7 +28,7 @@ public class DataTypeConvertor {
         try {
             if (user.getUserRole().equalsIgnoreCase("CUSTOMER")) {
                 userDTO.setProfile(decodeImage(user.getProfile()));
-            } else if (user.getUserRole().equalsIgnoreCase("USER") || user.getUserRole().equalsIgnoreCase("ADMIN")) {
+            } else if (user.getUserRole().equalsIgnoreCase("USER")) {
                 userDTO.setNicFrontImage(decodeImage(user.getNicFrontImage()));
                 userDTO.setNicBackImage(decodeImage(user.getNicBackImage()));
             }
@@ -43,7 +43,7 @@ public class DataTypeConvertor {
         try {
             if (userDTO.getUserRole().equals(UserRole.CUSTOMER)) {
                 user.setProfile(encodeImage(userDTO.getProfile()));
-            } else if (userDTO.getUserRole().equals(UserRole.USER) || userDTO.getUserRole().equals(UserRole.ADMIN)) {
+            } else if (userDTO.getUserRole().equals(UserRole.USER) ) {
                 user.setNicFrontImage(encodeImage(userDTO.getNicFrontImage()));
                 user.setNicBackImage(encodeImage(userDTO.getNicBackImage()));
             }

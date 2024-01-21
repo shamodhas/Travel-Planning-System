@@ -11,8 +11,7 @@ export class LoginController {
         event.preventDefault();
         const username = $('#txtLoginUsername').val();
         const password = $('#txtLoginPassword').val();
-        console.log(username)
-        console.log(password)
+
         const user = {
             username,
             password
@@ -26,9 +25,7 @@ export class LoginController {
             success: (response) => {
                 console.log(response)
                 localStorage.setItem('token', response.token);
-                // const userDetails = this.getUSerDetails(username,response);
-                // const user = JSON.parse(response);
-                // const userRole = userName//user.userRole
+
                 if (response.userRole == 'CUSTOMER') {
                     this.customerRoleViewSet();
                 } else if (response.userRole == 'USER') {
